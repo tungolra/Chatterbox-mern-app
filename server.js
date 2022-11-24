@@ -2,7 +2,9 @@ const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
-const { allowedNodeEnvironmentFlags } = require("process");
+
+require("dotenv").config();
+require("./config/database");
 
 const app = express();
 
@@ -14,7 +16,7 @@ app.use(express.json());
 app.use(favicon(path.join(__dirname, "build", "favicon.ico")));
 app.use(express.static(path.join(__dirname, "build")));
 
-// Configure to use port 3001 instead of 3000 during
+// Configure to use port 8080 instead of 3000 during
 // development to avoid collision with React's dev server
 const port = process.env.PORT || 8080;
 
