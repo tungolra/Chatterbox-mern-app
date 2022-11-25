@@ -7,7 +7,7 @@ import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
 
 function App() {
-  const [user, setUser] = useState({});
+  const [user, setUser] = useState(null);
   return (
     <main className="App">
       App!
