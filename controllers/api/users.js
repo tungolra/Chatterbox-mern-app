@@ -1,15 +1,22 @@
-// const User = require("../../models/user");
+const User = require("../../models/user");
+const jwt = require("jsonwebtoken");
 
-function create(req, res) {
-  console.log(req.body);
-  res.json({
-    user: {
-      name: req.body.name,
-      email: req.body.email,
-    },
-  });
+async function create(req, res) {
+  try {
+    const user = await User.create(req.body);
+    const token = createJWT(user);
+    res.json(token);
+  } catch (error) {
+    res.status(400).json(error);
+  }
 }
 
 module.exports = {
   create,
 };
+
+//Helper Functions
+
+function createJWT(user) {
+  return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
+}
