@@ -21,17 +21,23 @@ export function getToken() {
   return token;
 }
 
+export function checkToken() {
+  // checkToken returns a string, but let's
+  // make it a Date object for more flexibility
+  return usersAPI.checkToken().then((dateStr) => new Date(dateStr));
+}
+
 export function getUser() {
   const token = getToken();
   return token ? JSON.parse(atob(token.split(".")[1])).user : null;
 }
 
 export function logOut() {
-  localStorage.removeItem('token')
+  localStorage.removeItem("token");
 }
 
-export async function logIn(credentials){
-  const token = await usersAPI.logIn(credentials)
-  localStorage.setItem('token', token)
-  return getUser()
+export async function logIn(credentials) {
+  const token = await usersAPI.logIn(credentials);
+  localStorage.setItem("token", token);
+  return getUser();
 }
