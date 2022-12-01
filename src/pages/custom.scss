@@ -1,0 +1,11 @@
+
+$theme-colors: (
+    "primary": #090b0c,
+    "custom-color": #990000,
+    "black": black,
+    "gray-dark": rgb(62, 62, 62),
+    "white": white,
+);
+
+$primary:#00997d;
+@import "../node_modules/bootstrap/scss/bootstrap";

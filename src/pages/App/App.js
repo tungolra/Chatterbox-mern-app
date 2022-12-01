@@ -1,13 +1,21 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 import { getUser } from "../../utilities/users-service";
+// Pages
 import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import ListHotelPage from "../ListHotelPage/ListHotelPage"
-import "./App.css";
+// Components
 import NavBar from "../../components/NavBar/NavBar";
-import { set } from "mongoose";
+//Styles
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
+import "./App.css";
+
+
+
+
 
 function App() {
   const [user, setUser] = useState(getUser());
