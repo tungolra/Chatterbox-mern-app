@@ -27,7 +27,7 @@ export class SignUpForm extends Component {
       const user = await signUp(formData)
       this.props.setUser(user)
     } catch (error) {
-      this.setState({error: 'Sign Up Failed - Try Again'})      
+      this.setState({error: 'Sign Up Failed - Try Again'})    
     }
 
   }

@@ -4,7 +4,9 @@ const bcrypt = require("bcrypt");
 
 async function create(req, res) {
   try {
+    console.log(req.body)
     const user = await User.create(req.body);
+    console.log("hit!");
     const token = createJWT(user);
     res.json(token);
   } catch (error) {
