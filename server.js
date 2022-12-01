@@ -22,9 +22,11 @@ app.use(express.static(path.join(__dirname, "build")));
 // Be sure to mount before routes
 app.use(require('./config/checkToken'));
 
-
-
+// routes
 app.use('/api/users', require('./routes/api/users'))
+app.use('/api/chats', require('./routes/api/chats'))
+
+
 app.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });

@@ -1,11 +1,16 @@
+//react toolkit
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
+//utilities
 import { getUser } from "../../utilities/users-service";
+//pages
 import AuthPage from "../AuthPage/AuthPage";
-import NewOrderPage from "../NewOrderPage/NewOrderPage";
-import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
-import "./App.css";
+import CheckTokenPage from "../CheckTokenPage/CheckTokenPage";
+import Home from "./Home/Home";
+//components
 import NavBar from "../../components/NavBar/NavBar";
+//styles
+import "./App.css";
 
 
 function App() {
@@ -17,8 +22,8 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
           {/* set up own routes */}
-            <Route path="/orders/new" element={<NewOrderPage />} />
-            <Route path="/orders" element={<OrderHistoryPage />} />
+            <Route path="/home" element={<Home />} />
+            <Route path="/check-token" element={<CheckTokenPage />} />
           </Routes>
         </>
       ) : (
