@@ -4,7 +4,8 @@ import { signUp } from '../../utilities/users-service'
 export class SignUpForm extends Component {
   state = {
     // add first name, last name
-    name: "",
+    firstname: "",
+    lastname: "",
     email: "",
     password: "",
     confirm: "",
@@ -24,7 +25,7 @@ export class SignUpForm extends Component {
       const formData = {...this.state}
       delete formData.error
       delete formData.confirm
-
+      
       const user = await signUp(formData)
       this.props.setUser(user)
     } catch (error) {
@@ -38,10 +39,18 @@ export class SignUpForm extends Component {
       <div>
         <div className="form-container">
           <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>Name</label>
+            <label>First Name</label>
             <input
               type="text"
-              name="name"
+              name="firstname"
+              value={this.state.name}
+              onChange={this.handleChange}
+              required
+            />
+            <label>Last Name</label>
+            <input
+              type="text"
+              name="lastname"
               value={this.state.name}
               onChange={this.handleChange}
               required
