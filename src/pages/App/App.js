@@ -4,6 +4,7 @@ import { getUser } from "../../utilities/users-service";
 import AuthPage from "../AuthPage/AuthPage";
 import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
+import ListHotelPage from "../ListHotelPage/ListHotelPage"
 import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
 import { set } from "mongoose";
@@ -18,6 +19,7 @@ function App() {
           <Routes>
             <Route path="/orders/new" element={<NewOrderPage />} />
             <Route path="/orders" element={<OrderHistoryPage />} />
+            <Route path="/hotels" element={<ListHotelPage />} />
           </Routes>
         </>
       ) : (
