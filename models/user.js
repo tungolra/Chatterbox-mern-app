@@ -6,6 +6,7 @@ const SALT_ROUNDS = 6;
 
 const userSchema = new Schema(
   {
+    // add first name, last name, profile picture
     name: { type: String, required: true },
     email: {
       type: String,
@@ -23,6 +24,7 @@ const userSchema = new Schema(
   },
   {
     timestamps: true,
+    // returns user data without pw details when retrieving data from local storage
     toJSON: {
       transform: function (doc, ret) {
         delete ret.password;

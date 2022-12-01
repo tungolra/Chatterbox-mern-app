@@ -1,3 +1,5 @@
+// delete page
+
 import React from 'react'
 import * as userService from "../../utilities/users-service"
 
