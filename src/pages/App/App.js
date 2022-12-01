@@ -6,7 +6,7 @@ import NewOrderPage from "../NewOrderPage/NewOrderPage";
 import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
 import "./App.css";
 import NavBar from "../../components/NavBar/NavBar";
-import { set } from "mongoose";
+
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -16,6 +16,7 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+          {/* set up own routes */}
             <Route path="/orders/new" element={<NewOrderPage />} />
             <Route path="/orders" element={<OrderHistoryPage />} />
           </Routes>

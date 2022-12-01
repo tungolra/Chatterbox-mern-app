@@ -6,7 +6,6 @@ async function create(req, res) {
   try {
     console.log(req.body)
     const user = await User.create(req.body);
-    console.log("hit!");
     const token = createJWT(user);
     res.json(token);
   } catch (error) {
@@ -20,6 +19,7 @@ async function login(req, res) {
     if (!user) throw new Error();
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
+    // timer for when user automatically logs out
     const token = createJWT(user);
     res.json(token);
   } catch (error) {
@@ -27,6 +27,7 @@ async function login(req, res) {
   }
 }
 
+//keep, but doesn't do anything...
 function checkToken(req, res) {
   console.log("req.user -->", req.user);
   res.json(req.exp);

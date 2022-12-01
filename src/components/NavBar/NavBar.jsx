@@ -9,8 +9,9 @@ export default function NavBar(props) {
   }
   return (
     <nav>
-      <Link to="/orders">Order History</Link>----
-      <Link to="/orders/new">New Order</Link>----
+    {/* Add own links */}
+      {/* <Link to="/orders">Order History</Link>----
+      <Link to="/orders/new">New Order</Link>---- */}
       <Link to="" onClick={handleLogOut}>
         Log Out
       </Link>

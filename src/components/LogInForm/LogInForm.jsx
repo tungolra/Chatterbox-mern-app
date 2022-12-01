@@ -23,6 +23,7 @@ export default function LogInForm({ setUser }) {
       // will resolve to the user object included in the
       // payload of the JSON Web Token (JWT)
       const user = await usersService.logIn(credentials);
+      // how does this work again...?
       setUser(user);
     } catch {
       setError('Log In Failed - Try Again');

@@ -10,8 +10,7 @@
         - Messages Model
     - Routes/Controllers
         - Auth route to register and login
-        - Users route to get user
-            - (Extra) update user, delete user
+        - Users route to get user, update user, delete user
         - Chat route to create chat, get chat, find chats
         - Messages route to add message, get messages
 - MVP (Front-end)
@@ -37,15 +36,13 @@
     - Set up client-server communications using socket.io 
     
 
-
-## Stage Two - Integrating API to apply chat application
+## Stage Two - Search functionality
+## Stage Three - Group Chat functionality/ Non-intrusive messaging
+## Stage Four - Integrating API to apply chat application
 - Decide on API 
 - Create React Front-end 
 - Connect with Server
 - allow users to upload images
-
-## Stage Three - ?
-## Stage Four - ? 
 
 #### Contributors
 Farnaz Towhidi

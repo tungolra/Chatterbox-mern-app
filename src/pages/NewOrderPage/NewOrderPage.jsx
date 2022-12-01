@@ -1,3 +1,5 @@
+// delete page
+
 import React from 'react'
 
 export default function NewOrderPage() {
