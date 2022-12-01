@@ -15,7 +15,7 @@ export default function NavBar(props) {
       <Link to="" onClick={handleLogOut}>
         Log Out
       </Link>
-      {props.user && <span>----Welcome, {props.user?.name}!</span>}
+      {props.user && <span>----Welcome, {props.user?.firstname}!</span>}
     </nav>
   );
 }
