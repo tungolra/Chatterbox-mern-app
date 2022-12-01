@@ -6,12 +6,12 @@ import { getUser } from "../../utilities/users-service";
 //pages
 import AuthPage from "../AuthPage/AuthPage";
 import CheckTokenPage from "../CheckTokenPage/CheckTokenPage";
-import Home from "./Home/Home";
+import HomePage from "./HomePage/HomePage";
+import ChatPage from "../ChatPage/ChatPage";
 //components
 import NavBar from "../../components/NavBar/NavBar";
 //styles
 import "./App.css";
-
 
 function App() {
   const [user, setUser] = useState(getUser());
@@ -21,8 +21,8 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
-          {/* set up own routes */}
-            <Route path="/home" element={<Home />} />
+            <Route path="/" element={<HomePage />} />
+            <Route path="/chats" element={<ChatPage />} />
             <Route path="/check-token" element={<CheckTokenPage />} />
           </Routes>
         </>

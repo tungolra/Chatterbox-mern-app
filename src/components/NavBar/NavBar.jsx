@@ -8,10 +8,10 @@ export default function NavBar(props) {
     props.setUser(null);
   }
   return (
-    <nav>
+    <nav style={{border: "1px solid blue"}}> This is the nav bar: 
     {/* Add own links */}
-      {/* <Link to="/orders">Order History</Link>----
-      <Link to="/orders/new">New Order</Link>---- */}
+      <Link to="/">Home</Link>----
+      <Link to="/chats">Chats</Link>----
       <Link to="" onClick={handleLogOut}>
         Log Out
       </Link>
