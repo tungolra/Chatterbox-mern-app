@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button} from 'react-bootstrap';
+
 
 
 function ListHotelPage() {
@@ -13,23 +13,25 @@ function ListHotelPage() {
         }
     };
 
+    const getHotelData = () => {
+        fetch(url, options)
+        .then(res => res.json())
+        .then(json => setHotels(json.result))
+        .catch(err => console.error('error:' + err));
+    }
+
     useEffect(() => {
-        function getHotelData() {
-            fetch(url, options)
-            .then(res => res.json())
-            .then(json => setHotels(json.result))
-            .catch(err => console.error('error:' + err));
-        }
         getHotelData()
     }, [])
 
   return (   
    <>   
+   {/* hotel_id, hotel_name_trans,  */}
         <h1>LIST HOTELS</h1>      
         {
             hotels.map((hotel) => {
                 return (
-                    <p key={hotel.hotel_id}>{hotel.city}</p>
+                    <p key={hotel.hotel_id}>{hotel.hotel_name_trans}</p>
                 );
             })            
         }
