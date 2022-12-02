@@ -12,8 +12,6 @@ function ListHotelPage() {
         headers: {
         'X-RapidAPI-Key': `process.env.REACT_APP_RAPID_API_KEY`,
         'X-RapidAPI-Host': `process.env.REACT_APP_RAPID_API_HOST`
-        // 'X-RapidAPI-Key': '87e2cbcb43mshd23e9fabe71900dp1a53f1jsn8da71d5f8299',
-        // 'X-RapidAPI-Host': 'booking-com.p.rapidapi.com'
         }
     };
 
