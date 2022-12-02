@@ -29,7 +29,16 @@ async function showChats(req, res) {
 }
 
 //select from chats
-async function selectChat(req, res) {}
+async function selectChat(req, res) {
+  try {
+    const chat = await Chat.findOne({
+      members: { $all: [req.params.firstId, req.params.secondId] },
+    });
+    res.status(200).json(chat);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
 
 module.exports = {
   createChat,
