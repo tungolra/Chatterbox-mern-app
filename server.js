@@ -25,6 +25,7 @@ app.use(require('./config/checkToken'));
 // routes
 app.use('/api/users', require('./routes/api/users'))
 app.use('/api/chats', require('./routes/api/chats'))
+app.use('/api/messages', require('./routes/api/messages'))
 
 
 app.listen(port, function () {
