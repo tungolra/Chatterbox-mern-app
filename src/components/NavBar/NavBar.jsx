@@ -1,4 +1,5 @@
 import React from "react";
+<<<<<<< HEAD
 import * as userService from "../../utilities/users-service"
 import Container from 'react-bootstrap/Container';
 import Nav from 'react-bootstrap/Nav';
@@ -6,6 +7,10 @@ import Navbar from 'react-bootstrap/Navbar';
 import "../NavBar/NavBar.css"
 import { Link } from "react-router-dom";
 
+=======
+import { Link } from "react-router-dom";
+import * as userService from "../../utilities/UserRequests/users-service"
+>>>>>>> 3930fb06e5b71d4e1424b76254cc790128d23038
 
 export default function NavBar(props) {
   function handleLogOut() {
@@ -28,10 +33,15 @@ export default function NavBar(props) {
           </Nav>
         </Navbar.Collapse>
       </Container>
+<<<<<<< HEAD
     </Navbar> 
 
     <nav style={{border: "1px solid blue"}}> This is the nav bar: 
     {/* Add own links */}
+=======
+    </Navbar>
+    <nav style={{border: "1px solid blue"}}> This is the nav bar: 
+>>>>>>> main
       <Link to="/">Home</Link>----
       <Link to="/chats">Chats</Link>----
       <Link to="" onClick={handleLogOut}>

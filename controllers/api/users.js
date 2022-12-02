@@ -19,7 +19,11 @@ async function login(req, res) {
     if (!user) throw new Error("User not found");
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
+<<<<<<< HEAD
     // timer for when user automatically logs out
+=======
+    console.log(match);
+>>>>>>> main
     const token = createJWT(user);
     res.json(token);
   } catch (err) {

@@ -2,15 +2,13 @@
 import { useState } from "react";
 import { Routes, Route } from "react-router-dom";
 //utilities
-import { getUser } from "../../utilities/users-service";
-// Pages
+import { getUser } from "../../utilities/UserRequests/users-service";
+//pages
 import AuthPage from "../AuthPage/AuthPage";
 import CheckTokenPage from "../CheckTokenPage/CheckTokenPage";
-import NewOrderPage from "../NewOrderPage/NewOrderPage";
-import OrderHistoryPage from "../OrderHistoryPage/OrderHistoryPage";
-import ListHotelPage from "../ListHotelPage/ListHotelPage"
-import HomePage from "./HomePage/HomePage";
+import HomePage from "../HomePage/HomePage";
 import ChatPage from "../ChatPage/ChatPage";
+import ListHotelPage from "../ListHotelPage/ListHotelPage"
 // Components
 import NavBar from "../../components/NavBar/NavBar";
 //Styles
@@ -27,6 +25,7 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/hotels" element={<ListHotelPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/chats" element={<ChatPage />} />
             <Route path="/check-token" element={<CheckTokenPage />} />
