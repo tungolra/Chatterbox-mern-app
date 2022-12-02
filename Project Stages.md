@@ -1,5 +1,7 @@
 # SEI-Project-4
 
+New stuff i did on this file
+
 ## Stage One - Integrating Socket.io into MERN Project
 - MVP (Back-end)
     - Authentication 
