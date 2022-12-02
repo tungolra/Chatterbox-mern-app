@@ -18,8 +18,10 @@ async function createMessage(req, res) {
 
 //get messages in chat
 async function getMessages(req, res) {
+  const { chatId } = req.params;
   try {
-    res.status(200).json(chats);
+    const result = await Message.find ({ chatId })
+    res.status(200).json(result);
   } catch (error) {
     res.status(500).json(error);
   }
