@@ -4,6 +4,7 @@ const bcrypt = require("bcrypt");
 
 async function create(req, res) {
   try {
+    console.log(req.body)
     const user = await User.create(req.body);
     const token = createJWT(user);
     res.json(token);
@@ -18,7 +19,11 @@ async function login(req, res) {
     if (!user) throw new Error("User not found");
     const match = await bcrypt.compare(req.body.password, user.password);
     if (!match) throw new Error();
+<<<<<<< HEAD
     console.log(match);
+=======
+    // timer for when user automatically logs out
+>>>>>>> fd1a22f7ac7e092b1116e43b08e425a9707bca66
     const token = createJWT(user);
     res.json(token);
   } catch (err) {
@@ -26,6 +31,7 @@ async function login(req, res) {
   }
 }
 
+//keep, but doesn't do anything...
 function checkToken(req, res) {
   console.log("req.user -->", req.user);
   res.json(req.exp);
