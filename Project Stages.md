@@ -1,9 +1,14 @@
 # SEI-Project-4
 
 New stuff i did on this file
+
 Did this work?
 hello!
 HAHAHHAH
+
+Did this work? 
+Kendra was here
+
 
 ## Stage One - Integrating Socket.io into MERN Project
 
