@@ -1,7 +1,7 @@
 // delete page
 
 import React from 'react'
-import * as userService from "../../utilities/users-service"
+import * as userService from "../../utilities/UserRequests/users-service"
 
 export default function CheckTokenPage() {
   
