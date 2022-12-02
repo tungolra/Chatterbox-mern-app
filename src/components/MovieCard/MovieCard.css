@@ -1,0 +1,8 @@
+.cardcontainer {
+   background-color: black;
+    border:1px solid rgb(67, 67, 67);
+    border-radius: 0;
+}
+.card --bs-link-color{
+    color:rgb(187, 21, 21);
+}

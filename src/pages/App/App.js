@@ -8,9 +8,12 @@ import AuthPage from "../AuthPage/AuthPage";
 import CheckTokenPage from "../CheckTokenPage/CheckTokenPage";
 import HomePage from "../HomePage/HomePage";
 import ChatPage from "../ChatPage/ChatPage";
-//components
+import ListHotelPage from "../ListHotelPage/ListHotelPage"
+// Components
 import NavBar from "../../components/NavBar/NavBar";
-//styles
+//Styles
+import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./App.css";
 
 
@@ -22,6 +25,7 @@ function App() {
         <>
           <NavBar user={user} setUser={setUser} />
           <Routes>
+            <Route path="/hotels" element={<ListHotelPage />} />
             <Route path="/" element={<HomePage />} />
             <Route path="/chats" element={<ChatPage />} />
             <Route path="/check-token" element={<CheckTokenPage />} />
