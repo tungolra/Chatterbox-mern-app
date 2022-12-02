@@ -10,14 +10,23 @@ async function createChat(req, res) {
       members: [req.body.senderId, req.body.receiverId],
     });
     res.status(200).json(result);
-} catch (error) {
-      console.log("hi", error)
+  } catch (error) {
+    console.log("hi", error);
     res.status(500).json(error);
   }
 }
 
 //show user's chats
-async function showChats(req, res) {}
+async function showChats(req, res) {
+  try {
+    const chats = await Chat.find({
+      members: { $in: [req.params.userId] },
+    });
+    res.status(200).json(chats);
+  } catch (error) {
+    res.status(500).json(error);
+  }
+}
 
 //select from chats
 async function selectChat(req, res) {}
