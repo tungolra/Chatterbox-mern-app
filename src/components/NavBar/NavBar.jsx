@@ -28,13 +28,16 @@ export default function NavBar(props) {
           </Nav>
         </Navbar.Collapse>
       </Container>
-    </Navbar>
-    <nav>
-      <Link to="/orders">Order History</Link>----
-      <Link to="/orders/new">New Order</Link>----
+    </Navbar> 
+
+    <nav style={{border: "1px solid blue"}}> This is the nav bar: 
+    {/* Add own links */}
+      <Link to="/">Home</Link>----
+      <Link to="/chats">Chats</Link>----
       <Link to="" onClick={handleLogOut}>
         Log Out
-      </Link>    
+      </Link>
+      {props.user && <span>----Welcome, {props.user?.firstname}!</span>}
     </nav>
     </>
   );
