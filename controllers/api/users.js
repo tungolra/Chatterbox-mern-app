@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 
 async function create(req, res) {
   try {
-    console.log(req.body)
+    console.log(req.body);
     const user = await User.create(req.body);
     const token = createJWT(user);
     res.json(token);
@@ -28,8 +28,6 @@ async function login(req, res) {
 }
 //getUser
 //getAllUsers
-
-
 
 module.exports = {
   create,

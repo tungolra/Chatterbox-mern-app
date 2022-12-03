@@ -61,7 +61,8 @@ export default function ChatList({ user }) {
         This ChatList gets data from DB of user's current convos
           {/* need to show name of person chatting to */}
           {chats.map((chat, idx) => (
-            <div key={idx} onClick={() => setCurrentChat(chat)}>
+            <div style={{border: "1px solid red"}} key={idx} onClick={() => setCurrentChat(chat)}>
+              placeholder for select chat: {chat._id} (replace with Conversation component)
               <Conversation currentUserId={user._id} chat={chat}/>
             </div>
           ))}
@@ -74,7 +75,7 @@ export default function ChatList({ user }) {
       <div> Convo selected ? show Chatbox : ""</div>
       <ChatBox
         currentChat={currentChat}
-        userId={user._id}
+        currentUserId={user._id}
         setSendMessage={setSendMessage}
         receivedMessage={receivedMessage}
       />
