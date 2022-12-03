@@ -26,7 +26,6 @@ export default function ChatList({ user }) {
     getUserChats();
   }, [user._id]);
 
-
   return (
     <>
       <div style={{ border: "1px solid black" }}>
@@ -34,9 +33,9 @@ export default function ChatList({ user }) {
         <ul>
           {/* need to show name of person chatting to */}
           {chats.map((chat, idx) => (
-            <li key={idx}
-             onClick={() => setCurrentChat(chat)}
-             >Chat member: {chat.members[1]} </li>
+            <li key={idx} onClick={() => setCurrentChat(chat)}>
+              Chat member: {chat.members[1]}{" "}
+            </li>
           ))}
           <li>Convo #2 </li>
           <li>Convo #3 </li>
@@ -44,7 +43,12 @@ export default function ChatList({ user }) {
         </ul>
       </div>
       <div> Convo selected ? show Chatbox : ""</div>
-      <ChatBox currentChat={currentChat} userId={user._id}/>
+      <ChatBox
+        currentChat={currentChat}
+        userId={user._id}
+        setSendMessage={setSendMessage}
+        receivedMessage={receivedMessage}
+      />
     </>
   );
 }
