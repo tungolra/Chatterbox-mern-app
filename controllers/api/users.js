@@ -26,18 +26,21 @@ async function login(req, res) {
     res.status(400).json("Bad Credentials");
   }
 }
+//getUser
+//getAllUsers
 
-//keep, but doesn't do anything...
-function checkToken(req, res) {
-  console.log("req.user -->", req.user);
-  res.json(req.exp);
-}
+
 
 module.exports = {
   create,
   login,
   checkToken,
 };
+//keep, but doesn't do anything...
+function checkToken(req, res) {
+  console.log("req.user -->", req.user);
+  res.json(req.exp);
+}
 
 //Helper Functions
 

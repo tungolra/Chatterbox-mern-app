@@ -1,11 +1,14 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
-import * as chatsService from "../../utilities/ChatRequests/chat-service";
+// import * as chatsService from "../../utilities/ChatRequests/chat-service";
 import axios from "axios";
+import { io } from "socket.io-client"
+import Conversation from "../Conversation/Conversation";
 
 export default function ChatList({ user }) {
+  const socket = useRef()
   const [chats, setChats] = useState([]);
-  // const [onlineUsers, setOnlineUsers] = useState([]);
+  const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
@@ -26,17 +29,43 @@ export default function ChatList({ user }) {
     getUserChats();
   }, [user._id]);
 
+  //connect to socket.io
+  useEffect(() => {
+    socket.current = io("http://localhost:8800");
+    //to subscribe to specific event, we have to write emit
+    socket.current.emit("new-user-add", user._id);
+    socket.current.on("get-users", (users) => {
+      setOnlineUsers(users);
+    });
+  }, [user]);
+
+
+   // send message to socket server
+   useEffect(() => {
+    if (sendMessage !== null) {
+      socket.current.emit("send-message", sendMessage);
+    }
+  }, [sendMessage]);
+
+  //receive message from socket server
+  useEffect(() => {
+    socket.current.on("receive-message", (data) => {
+      setReceivedMessage(data);
+    });
+  }, []);
+
+
   return (
     <>
       <div style={{ border: "1px solid black" }}>
         This ChatList gets data from DB of user's current convos
-        <ul>
           {/* need to show name of person chatting to */}
           {chats.map((chat, idx) => (
-            <li key={idx} onClick={() => setCurrentChat(chat)}>
-              Chat member: {chat.members[1]}{" "}
-            </li>
+            <div key={idx} onClick={() => setCurrentChat(chat)}>
+              <Conversation currentUserId={user._id} chat={chat}/>
+            </div>
           ))}
+        <ul>
           <li>Convo #2 </li>
           <li>Convo #3 </li>
           <li>Convo #... </li>
