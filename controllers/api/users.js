@@ -21,9 +21,20 @@ async function login(req, res) {
     if (!match) throw new Error();
     // timer for when user automatically logs out
     const token = createJWT(user);
+    console.log ("token")
     res.json(token);
   } catch (error) {
     res.status(400).json("Bad Credentials");
+  }
+}
+
+async function updateUser(req,res) {
+  try {
+    const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
+    console.log (req.body)
+    if (!user) throw new Error();
+  } catch (error) {
+    console.log ("error in update")
   }
 }
 
@@ -33,14 +44,15 @@ function checkToken(req, res) {
   res.json(req.exp);
 }
 
-module.exports = {
-  create,
-  login,
-  checkToken,
-};
-
 //Helper Functions
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 }
+
+module.exports = {
+  create,
+  login,
+  update:updateUser,
+  checkToken,
+};
