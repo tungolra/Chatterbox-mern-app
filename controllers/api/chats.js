@@ -18,6 +18,7 @@ async function showChats(req, res) {
     const chats = await Chat.find({
       members: { $in: [req.params.userId] },
     });
+    console.log(chats)
     res.status(200).json(chats);
   } catch (error) {
     res.status(500).json(error);

@@ -23,7 +23,7 @@ function App() {
           <NavBar user={user} setUser={setUser} />
           <Routes>
             <Route path="/" element={<HomePage user={user} setUser={setUser} />} />
-            <Route path="/chats" element={<ChatPage />} />
+            <Route path="/chats" element={<ChatPage user={user}/>} />
             <Route path="/check-token" element={<CheckTokenPage />} />
           </Routes>
         </>
