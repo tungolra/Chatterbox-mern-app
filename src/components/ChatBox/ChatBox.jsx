@@ -2,7 +2,7 @@ import React from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 
-export default function ChatBox() {
+export default function ChatBox({currentChat, userId}) {
   function handleChange(e) {}
   async function handleSend(e) {}
   return (

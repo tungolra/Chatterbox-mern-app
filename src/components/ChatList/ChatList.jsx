@@ -44,7 +44,7 @@ export default function ChatList({ user }) {
         </ul>
       </div>
       <div> Convo selected ? show Chatbox : ""</div>
-      <ChatBox />
+      <ChatBox currentChat={currentChat} userId={user._id}/>
     </>
   );
 }
