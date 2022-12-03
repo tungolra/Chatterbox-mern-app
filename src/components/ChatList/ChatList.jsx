@@ -3,6 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 // import * as chatsService from "../../utilities/ChatRequests/chat-service";
 import axios from "axios";
 import { io } from "socket.io-client"
+import Conversation from "../Conversation/Conversation";
 
 export default function ChatList({ user }) {
   const socket = useRef()
@@ -58,13 +59,13 @@ export default function ChatList({ user }) {
     <>
       <div style={{ border: "1px solid black" }}>
         This ChatList gets data from DB of user's current convos
-        <ul>
           {/* need to show name of person chatting to */}
           {chats.map((chat, idx) => (
-            <li key={idx} onClick={() => setCurrentChat(chat)}>
-              Chat member: {chat.members[1]}{" "}
-            </li>
+            <div key={idx} onClick={() => setCurrentChat(chat)}>
+              <Conversation currentUserId={user._id} chat={chat}/>
+            </div>
           ))}
+        <ul>
           <li>Convo #2 </li>
           <li>Convo #3 </li>
           <li>Convo #... </li>

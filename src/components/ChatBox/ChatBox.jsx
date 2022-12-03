@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import { format } from "timeago.js";
@@ -14,11 +14,11 @@ export default function ChatBox({
   const [newMessage, setNewMessage] = useState("");
 
   // add received message to list of messages
-  useEffect(() => { 
-    if (receivedMessage !== null && receivedMessage?.chatId == chat?._id){
-      setMessages([...messages, receivedMessage])
-    }
-  }, [receivedMessage])
+  // useEffect(() => { 
+  //   if (receivedMessage !== null && receivedMessage?.chatId == currentChat?._id){
+  //     setMessages([...messages, receivedMessage])
+  //   }
+  // }, [receivedMessage])
 
   // get chat member data
 
