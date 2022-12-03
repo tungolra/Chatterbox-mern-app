@@ -5,7 +5,7 @@ import { format } from "timeago.js";
 
 export default function ChatBox({
   currentChat,
-  userId,
+  currentUserId,
   setSendMessage,
   receivedMessage,
 }) {
@@ -14,13 +14,23 @@ export default function ChatBox({
   const [newMessage, setNewMessage] = useState("");
 
   // add received message to list of messages
-  // useEffect(() => { 
-  //   if (receivedMessage !== null && receivedMessage?.chatId == currentChat?._id){
-  //     setMessages([...messages, receivedMessage])
-  //   }
-  // }, [receivedMessage])
+  useEffect(() => { 
+    if (receivedMessage !== null && receivedMessage?.chatId == currentChat?._id){
+      setMessages([...messages, receivedMessage])
+    }
+  }, [receivedMessage])
+
 
   // get chat member data
+  useEffect(() => { 
+    const userId = currentChat?.members?.find((id) => id !== currentUserId) 
+    setUserData(userId)
+  }, [currentChat, currentUserId])
+
+  // get messages for chat
+  useEffect(()=> {
+    
+  }, [currentChat])
 
   function handleChange(e) {}
   async function handleSend(e) {}
