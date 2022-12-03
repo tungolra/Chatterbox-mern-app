@@ -1,11 +1,14 @@
 import React from "react";
 
-export default function Messages() {
+export default function Messages({messages}) {
+  
+
   return (
     <>
       <div>
-        This Messages Component will also fetch messages from DB to display the
-        history of messages between users
+        {messages.map((message, idx) => 
+        <p key={idx}>{message.text}</p>
+        )}
         
       </div>
     </>
