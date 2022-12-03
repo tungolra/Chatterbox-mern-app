@@ -12,6 +12,7 @@ export default function ChatList({ user }) {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
+  console.log(onlineUsers)
 
   //get chat
   useEffect(() => {
@@ -62,8 +63,8 @@ export default function ChatList({ user }) {
           {/* need to show name of person chatting to */}
           {chats.map((chat, idx) => (
             <div style={{border: "1px solid red"}} key={idx} onClick={() => setCurrentChat(chat)}>
-              placeholder for select chat: {chat._id} (replace with Conversation component)
               <Conversation currentUserId={user._id} chat={chat}/>
+              placeholder for select chat: {chat._id} (replace with Conversation component)
             </div>
           ))}
         <ul>
@@ -72,7 +73,6 @@ export default function ChatList({ user }) {
           <li>Convo #... </li>
         </ul>
       </div>
-      <div> Convo selected ? show Chatbox : ""</div>
       <ChatBox
         currentChat={currentChat}
         currentUserId={user._id}

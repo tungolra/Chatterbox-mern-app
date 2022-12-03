@@ -44,8 +44,24 @@ export default function ChatBox({
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
 
-  function handleChange(e) {}
-  async function handleSend(e) {}
+  function handleChange(e) {
+    setNewMessage(newMessage);
+  }
+  async function handleSend(e) {
+    e.preventDefault();
+    const message = {
+      senderId: currentUserId,
+      text: newMessage,
+      chatId: currentChat._id,
+    };
+    try {
+      let newMessage = await axios.post(`api/messages`)
+      setMessages([...messages, newMessage])
+      setNewMessage("")
+    } catch (error) {
+      console.log(error)
+    }
+  }
   return (
     <>
       {currentChat ? (
@@ -54,7 +70,8 @@ export default function ChatBox({
           selects
           <hr />
           <Messages messages={messages} />
-          <InputEmoji value="" onChange={handleChange} />
+          <InputEmoji value={newMessage} onChange={handleChange} />
+          <button onClick={handleSend}>Send</button>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>
