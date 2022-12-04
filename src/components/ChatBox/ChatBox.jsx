@@ -24,6 +24,7 @@ export default function ChatBox({
     }
   }, [receivedMessage]);
 
+
   // get chat member data
   useEffect(() => {
     const userId = currentChat?.members?.find((id) => id !== currentUserId);
@@ -54,7 +55,6 @@ export default function ChatBox({
       senderId: currentUserId,
       text: newMessage,
     };
-    console.log(message.text)
     try {
       let newMessage = await axios.post(`api/messages`, message)
       setMessages([...messages, newMessage])
@@ -62,7 +62,10 @@ export default function ChatBox({
     } catch (error) {
       console.log(error)
     }
+    const receiverId = currentChat.members.find((id) => id !== currentUserId)
+    setSendMessage({...message, receiverId})
   }
+
   return (
     <>
       {currentChat ? (
