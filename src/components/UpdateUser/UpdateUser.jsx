@@ -3,7 +3,7 @@ import { Modal, useMantineTheme } from "@mantine/core";
 import { useSetState } from "@mantine/hooks";
 import { update } from '../../utilities/UserRequests/users-service'
 
-export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
+export default function UpdateUser({ user, setUser, modalOpened, setModalOpened }) {
   let state = {
     firstname: user.firstname ,
     lastname: user.lastname,
@@ -11,60 +11,55 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     profilePicture: user.profilePicture,
     about: user.about
   }
-
-  const [formData, setFormData] = useState ({
-    firstname: user.firstname ,
-    lastname: user.lastname,
-    email: user.email,
-    profilePicture: user.profilePicture,
-    about: user.about
-  })
-  const theme = useMantineTheme();
+  const [formData, setFormData] = useState (state)
+  // const theme = useMantineTheme();
   
 
   function handleChange(e) {
     state[e.target.name] = e.target.value
-    // setFormData = {...formData, lastname : e.target.value} 
+   setFormData = {...formData, lastname : e.target.value} 
     setFormData(state)
    }
   
 
   function handleSubmit(e) {
-    e.preventDefault()
-    try {
-      console.log (formData)
-      const user = update(formData)
-      // setUser(user)
-    } catch (error) {
-      console.log ({error}) 
-    }
+     e.preventDefault()
+     try {
+       const user = update(formData)
+       setUser(user)
+     } catch (error) {
+       console.log ({error}) 
+     }
   }
     
 
   return (
-    <Modal
-      overlayColor={
-        theme.colorScheme === "dark"
-          ? theme.colors.dark[9]
-          : theme.colors.gray[2]
-      }
-      overlayOpacity={0.55}
-      overlayBlur={3}
-      opened={modalOpened}
-      onClose={() => setModalOpened(false)}
-    >
+    // <Modal
+    //   overlayColor={
+    //     theme.colorScheme === "dark"
+    //       ? theme.colors.dark[9]
+    //       : theme.colors.gray[2]
+    //   }
+    //   overlayOpacity={0.55}
+    //   overlayBlur={3}
+    //   opened={modalOpened}
+    //   onClose={() => setModalOpened(false)}
+    // >
       <form onSubmit={handleSubmit}>
         <h3>Your Info</h3>
         <div>
           <label>First Name</label>
           <input
-            value={state.firstname}
+            
             onChange={handleChange}
             type="text"
             className="infoInput"
             name="firstname"
             placeholder="First Name"
           />
+          <input type="text" onChange={handleChange} ></input>
+
+
           <label>Last Name</label>
           <input
             value={state.lastname}
@@ -94,7 +89,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             name="profilePicture"
             placeholder="Profile Picture"
           />
-
+          <label>About </label>
           <textarea
             value={state.about}
             onChange={handleChange}
@@ -109,6 +104,6 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
 
         <button type="submit">Update</button>
       </form>
-    </Modal>
+    // </Modal>
   );
 }
