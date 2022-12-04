@@ -1,18 +1,16 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
-// import * as chatsService from "../../utilities/ChatRequests/chat-service";
 import axios from "axios";
-import { io } from "socket.io-client"
+import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
 
 export default function ChatList({ user }) {
-  const socket = useRef()
+  const socket = useRef();
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
-
 
   //get chat
   useEffect(() => {
@@ -39,9 +37,8 @@ export default function ChatList({ user }) {
     });
   }, [user]);
 
-
-   // send message to socket server
-   useEffect(() => {
+  // send message to socket server
+  useEffect(() => {
     if (sendMessage !== null) {
       socket.current.emit("send-message", sendMessage);
     }
@@ -50,24 +47,34 @@ export default function ChatList({ user }) {
   //receive message from socket server
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      console.log(data)
+      console.log(data);
       setReceivedMessage(data);
     });
   }, []);
 
-
+  //check who is online
+  function isOnline(chat){
+    const chatMember = chat.members.find((member) => member !== user._id)
+    const online = onlineUsers.find((user)=> user.userId === chatMember)
+    return online ? true : false
+  }
 
   return (
     <>
       <div style={{ border: "1px solid black" }}>
         This ChatList gets data from DB of user's current convos
-          {/* need to show name of person chatting to */}
-          {chats.map((chat, idx) => (
-            <div style={{border: "1px solid red"}} key={idx} onClick={() => setCurrentChat(chat)}>
-              <Conversation currentUserId={user._id} chat={chat}/>
-              placeholder for select chat: {chat._id} (replace with Conversation component)
-            </div>
-          ))}
+        {/* need to show name of person chatting to */}
+        {chats.map((chat, idx) => (
+          <div
+            style={{ border: "1px solid red" }}
+            key={idx}
+            onClick={() => setCurrentChat(chat)}
+            
+          >
+            <Conversation currentUserId={user._id} chat={chat} online = {isOnline(chat)}/>
+
+          </div>
+        ))}
         <ul>
           <li>Convo #2 </li>
           <li>Convo #3 </li>
