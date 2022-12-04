@@ -2,7 +2,8 @@ const Message = require("../../models/message");
 
 //create message
 async function createMessage(req, res) {
-  console.log("hit createmessage ctrlr")
+  
+  console.log("hit createmessage ctrlr: ", req.body)
   const { chatId, senderId, text } = req.body;
   const message = new Message({
     chatId,

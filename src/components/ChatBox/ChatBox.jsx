@@ -44,18 +44,19 @@ export default function ChatBox({
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
 
-  function handleChange(e) {
-    setNewMessage(newMessage);
+  function handleChange(inputText) {
+    setNewMessage(inputText);
   }
   async function handleSend(e) {
     e.preventDefault();
     const message = {
+      chatId: currentChat._id,
       senderId: currentUserId,
       text: newMessage,
-      chatId: currentChat._id,
     };
+    console.log(message.text)
     try {
-      let newMessage = await axios.post(`api/messages`)
+      let newMessage = await axios.post(`api/messages`, message)
       setMessages([...messages, newMessage])
       setNewMessage("")
     } catch (error) {
