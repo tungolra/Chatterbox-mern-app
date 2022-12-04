@@ -51,6 +51,7 @@ export default function ChatList({ user }) {
   //receive message from socket server
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
+      console.log(data)
       setReceivedMessage(data);
     });
   }, []);
