@@ -13,6 +13,7 @@ export default function ChatBox({
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  
 
   // add received message to list of messages
   useEffect(() => {
