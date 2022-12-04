@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
-import { format } from "timeago.js";
+
 import axios from "axios";
 
 export default function ChatBox({
