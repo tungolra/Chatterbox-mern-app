@@ -32,12 +32,20 @@ io.on("connection", (socket) => {
     console.log("hit send message socket")
     const { receiverId } = data;
     // if this is a user inside activeUser based
-    const user = activeUsers.find((user) => user.userId === receiverId);
+    console.log("find", activeUsers.find((user) => {
+      user.userId === receiverId
+    }))
+    const user = activeUsers.find((user) => {
+      user.userId === receiverId
+    });
+
     console.log("Sending ReceiverId");
     console.log("Data: ", data);
     //if user exists within a specific socket Id, then emit "receive-message" that
     //will be retrieved on client-side
+    console.log("from send-message socket: ", activeUsers)
     if (user) {
+      console.log("hit receive-message socket")
       io.to(user.socketId).emit("receive-message", data);
     }
   });

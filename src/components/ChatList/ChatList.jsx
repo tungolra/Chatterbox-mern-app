@@ -12,7 +12,7 @@ export default function ChatList({ user }) {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
-  console.log(onlineUsers)
+
 
   //get chat
   useEffect(() => {
@@ -54,6 +54,7 @@ export default function ChatList({ user }) {
       setReceivedMessage(data);
     });
   }, []);
+
 
 
   return (
