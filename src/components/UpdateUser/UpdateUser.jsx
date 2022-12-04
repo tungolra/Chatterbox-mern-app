@@ -1,3 +1,4 @@
+import './UpdatUser.css';
 import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useSetState } from "@mantine/hooks";
@@ -91,7 +92,9 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
 
         </div>
 
-        <button type="submit">Update</button>
+        <button 
+          type="submit"
+          className="submitBtn">Update</button>
       </form>
   );
 }
