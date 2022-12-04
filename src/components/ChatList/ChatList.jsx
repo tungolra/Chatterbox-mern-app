@@ -19,7 +19,6 @@ export default function ChatList({ user }) {
     const getUserChats = async () => {
       try {
         let response = await axios.get(`/api/chats/${user._id}`);
-        // console.log("Response", response)
         // if (!response.ok) throw new Error("No response received")
         let chatsData = response;
         setChats(chatsData.data);

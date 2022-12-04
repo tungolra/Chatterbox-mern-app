@@ -36,8 +36,9 @@ export default function ChatBox({
     const serverRoute = "api/messages";
     const getChatMessages = async () => {
       try {
-        let response = await axios.get(`${serverRoute}/${currentChat._id}`);
-        setMessages(response.data);
+        let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
+        setMessages(data);
+        console.log(messages)
       } catch (error) {
         console.log(error);
       }
@@ -57,7 +58,8 @@ export default function ChatBox({
     };
     try {
       let newMessage = await axios.post(`api/messages`, message)
-      setMessages([...messages, newMessage])
+      console.log(newMessage.data)
+      setMessages([...messages, newMessage.data])
       setNewMessage("")
     } catch (error) {
       console.log(error)
