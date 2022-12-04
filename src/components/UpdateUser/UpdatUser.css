@@ -1,3 +1,11 @@
+.updateContainer {
+    display:flex;
+}
+
+.updateContainer >label {
+    color:red
+}
+
 .infoInput {
     border:1px solid #1165EB;
     border-radius: 20px;

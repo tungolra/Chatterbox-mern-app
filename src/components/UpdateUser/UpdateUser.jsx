@@ -1,8 +1,9 @@
-import './UpdatUser.css';
 import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useSetState } from "@mantine/hooks";
-import { update } from '../../utilities/UserRequests/users-service'
+import { update } from '../../utilities/UserRequests/users-service';
+import './UpdatUser.css';
+
 
 export default function UpdateUser({ user, setUser, modalOpened, setModalOpened }) {
   let state = {
@@ -35,7 +36,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
     
 
   return (
-
+    <div className="updateContainer">
       <form onSubmit={handleSubmit}>
         <h3>Your Info</h3>
         <div>
@@ -69,16 +70,18 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
               name="email"
               placeholder="Email"       
             />
-          
+       
           <label>picture</label>
           <input
             defaultValue={state.picture}
             onChange={handleChange}
-            type="text"
+            type="file"
             className="infoInput"
             name="profilePicture"
             placeholder="Profile Picture"
           />
+          <input type="submit" value="Upload Photo" />
+
           <label>About </label>
           <textarea
             defaultValue={state.about}
@@ -96,5 +99,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
           type="submit"
           className="submitBtn">Update</button>
       </form>
+    </div>
+      
   );
 }

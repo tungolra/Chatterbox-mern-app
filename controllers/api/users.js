@@ -1,6 +1,17 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+const uuid = require("uuid");
+// import boto3 from "boto3";
+S3_BUCKET = 'gacatcollectordjango'
+S3_BASE_URL = 'https://s3.us-east-1.amazonaws.com/'
+const REGION = "ca-central-1"
+
+// Source: https://javascript.plainenglish.io/how-to-upload-files-to-aws-s3-in-react-591e533d615e
+// const myBucket = new AWS.S3({
+//   params: { Bucket: S3_BUCKET},
+//   region: REGION,
+// })
 
 async function create(req, res) {
   try {
@@ -36,6 +47,24 @@ async function updateUser(req,res) {
   } catch (error) {
     console.log ("error in update")
   }
+
+  photo_file = request.FILES.get('photo-file', None)
+  if (req.body.profilePicture)
+    console.log (`uploading image {req.body.profilePicture} start `)
+    try {
+      s3.upload_fileobj(photo_file, BUCKET, key)
+      
+
+      
+      photo.save()
+    }
+      
+    catch {
+      return res.status(400).json(err); 
+    }
+      
+
+
 }
 
 //keep, but doesn't do anything...
