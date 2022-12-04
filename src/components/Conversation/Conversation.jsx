@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 
-export default function Conversation({ currentUserId, chat }) {
+export default function Conversation({ currentUserId, chat, online }) {
   const [userData, setUserData] = useState(null);
-  
 
   //find all users but the current user
   useEffect(() => {
@@ -15,13 +14,17 @@ export default function Conversation({ currentUserId, chat }) {
         console.log(error);
       }
     }
-    getUserData()
+    getUserData();
   }, []);
   return (
     <div>
       Conversation Component: lists all of user's open chats
       <br />
-      <span>Convo 1...</span>
+      <span>
+        Placeholder for selected chat (replace user's name): {chat._id}
+        <br/>
+        Chat Member is: {online ? "online" : "offline"}
+      </span>
     </div>
   );
 }

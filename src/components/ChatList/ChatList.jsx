@@ -52,6 +52,13 @@ export default function ChatList({ user }) {
     });
   }, []);
 
+  //check who is online
+  function isOnline(chat){
+    const chatMember = chat.members.find((member) => member !== user._id)
+    const online = onlineUsers.find((user)=> user.userId === chatMember)
+    return online ? true : false
+  }
+
   return (
     <>
       <div style={{ border: "1px solid black" }}>
@@ -62,10 +69,10 @@ export default function ChatList({ user }) {
             style={{ border: "1px solid red" }}
             key={idx}
             onClick={() => setCurrentChat(chat)}
+            
           >
-            <Conversation currentUserId={user._id} chat={chat} />
-            placeholder for select chat: {chat._id} (replace with Conversation
-            component)
+            <Conversation currentUserId={user._id} chat={chat} online = {isOnline(chat)}/>
+
           </div>
         ))}
         <ul>
