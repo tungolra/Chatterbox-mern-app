@@ -17,7 +17,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
 
   function handleChange(e) {
     state[e.target.name] = e.target.value
-   setFormData = {...formData, lastname : e.target.value} 
+    setFormData( {...formData, lastname : e.target.value} )
     setFormData(state)
    }
   
@@ -34,35 +34,24 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
     
 
   return (
-    // <Modal
-    //   overlayColor={
-    //     theme.colorScheme === "dark"
-    //       ? theme.colors.dark[9]
-    //       : theme.colors.gray[2]
-    //   }
-    //   overlayOpacity={0.55}
-    //   overlayBlur={3}
-    //   opened={modalOpened}
-    //   onClose={() => setModalOpened(false)}
-    // >
+
       <form onSubmit={handleSubmit}>
         <h3>Your Info</h3>
         <div>
           <label>First Name</label>
           <input
-            
+            defaultValue={state.firstname}
             onChange={handleChange}
             type="text"
             className="infoInput"
             name="firstname"
             placeholder="First Name"
           />
-          <input type="text" onChange={handleChange} ></input>
-
+          
 
           <label>Last Name</label>
           <input
-            value={state.lastname}
+            defaultValue={state.lastname}
             onChange={handleChange}
             type="text"
             className="infoInput"
@@ -72,7 +61,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
 
             <label>Email</label>
             <input
-              value={state.email}
+              defaultValue={state.email}
               onChange={handleChange}
               type="email"
               className="infoInput"
@@ -82,7 +71,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
           
           <label>picture</label>
           <input
-            value={state.picture}
+            defaultValue={state.picture}
             onChange={handleChange}
             type="text"
             className="infoInput"
@@ -91,7 +80,7 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
           />
           <label>About </label>
           <textarea
-            value={state.about}
+            defaultValue={state.about}
             onChange={handleChange}
             type="text"
             className="infoInput"
@@ -104,6 +93,5 @@ export default function UpdateUser({ user, setUser, modalOpened, setModalOpened 
 
         <button type="submit">Update</button>
       </form>
-    // </Modal>
   );
 }
