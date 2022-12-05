@@ -15,6 +15,7 @@ export async function update(userData) {
 
 export function getToken() {
   const token = localStorage.getItem("token");
+  console.log (token)
   if (!token) return null;
   // get the token then decode using atob
   // for alternative to the now depracated atob

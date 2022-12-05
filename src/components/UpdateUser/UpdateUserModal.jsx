@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
-import { useSetState } from "@mantine/hooks";
 import { update } from '../../utilities/UserRequests/users-service';
-import { UploadToS3 } from 'react-upload-to-s3'
+import axios from 'axios';
 import './UpdatUserModal.css';
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
+  const [selectedFile, setSelectedFile] = React.useState(null);
+
   const theme = useMantineTheme();
   let state = {
     firstname: user.firstname ,
@@ -16,27 +17,45 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     about: user.about
   }
   const [formData, setFormData] = useState (state)
-  // const theme = useMantineTheme();
+  //  const theme = useMantineTheme();
   
 
   function handleChange(e) {
     state[e.target.name] = e.target.value
-    setFormData( {...formData, lastname : e.target.value} )
     setFormData(state)
+    console.log (state)
    }
   
+  function handleFileSelect (e) {
+    // state[e.target.name] = e.target.value
+    setFormData({...formData, selectedFile: e.target.files[0]})
+    setSelectedFile(e.target.files[0])
+  }
 
   function handleSubmit(e) {
      e.preventDefault()
+      // const data = new FormData()
+      // data.append ('file', selectedFile)
+        
      try {
-       const user = update(formData)
-       setUser(user)
+      console.log (formData)
+      console.log (state)
+      const user = update(formData)
+      setUser(user)
+      // if (state.profilePicture) {
+      //   console.log (formData)
+      //   axios.post('/api/users/update', data , {
+      //     headers: {
+      //     "Content-type": "multipart/form-data",
+      //   },
+      // })
+      // }
+       
      } catch (error) {
        console.log ({error}) 
      }
   }
     
-
   return (
     <Modal
       overlayColor={
@@ -49,7 +68,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit}  encType="multipart/form-data">
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
@@ -57,14 +76,13 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
           <div>
             <input
               defaultValue={state.firstname}
-              onChange={handleChange}
+              onChange={handleFileSelect}
               type="text"
               className="infoInput"
               name="firstname"
               placeholder="First Name"
             />
             
-
             <input
               defaultValue={state.lastname}
               onChange={handleChange}
@@ -84,26 +102,14 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
               />
         
             <input
-              defaultValue={state.picture}
-              onChange={handleChange}
+              
+              onChange={handleFileSelect}
               type="file"
               className="infoInput custom-file-input"
               name="profilePicture"
               placeholder="Profile Picture"
             />
-            <UploadToS3 
-                className="infoInput custom-file-input"
-                bucket="{process.env.REACT_APP_BUCKET_NAME}"
-                awsRegion="{process.env.REACT_APP_REGION}"
-                awsKey="{process.env.REACT_APP_ACCESS}"
-                awsSecret="{process.env.REACT_APP_SECRET}"
-                awsMediaConvertEndPoint="{process.env.S3_BASE_URL}"
-                type="image"
-                mediaConvertRole="mediaconvert_role"
-                theme={theme}
-                showNewUpload={false}
-                onResult={(result) => {console.log('on Result', result);}} />
-                
+            
             <textarea
               defaultValue={state.about}
               onChange={handleChange}
@@ -116,10 +122,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             <button 
             type="submit"
             className="submitBtn">Update</button>
-          </div>
-
-          
-       
+          </div>     
       </div>
       </form>
     </Modal>

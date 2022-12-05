@@ -1,5 +1,5 @@
 //react toolkit
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 //utilities
 import { getUser } from "../../utilities/UserRequests/users-service";
@@ -18,6 +18,13 @@ import "./App.css";
 
 function App() {
   const [user, setUser] = useState(getUser());
+
+  useEffect( () => {
+    localStorage.removeItem('token')
+    setUser(null)
+  }, [])
+
+
   return (
     <main className="App">
       {user ? (
