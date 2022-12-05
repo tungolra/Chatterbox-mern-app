@@ -22,7 +22,12 @@ async function getMessages(req, res) {
   }
 }
 
+async function deleteMessage(req, res){
+  const {chatId, messageId} = req.params
+}
+
 module.exports = {
   createMessage,
   getMessages,
+  delete: deleteMessage
 };

@@ -75,11 +75,6 @@ export default function ChatList({ user }) {
 
           </div>
         ))}
-        <ul>
-          <li>Convo #2 </li>
-          <li>Convo #3 </li>
-          <li>Convo #... </li>
-        </ul>
       </div>
       <ChatBox
         currentChat={currentChat}

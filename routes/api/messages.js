@@ -4,5 +4,6 @@ const messagesCtrl = require("../../controllers/api/messages");
 
 router.post("/", messagesCtrl.createMessage);
 router.get("/:chatId", messagesCtrl.getMessages);
+router.delete("/:chatId/:messageId", messagesCtrl.delete)
 
 module.exports = router; 
