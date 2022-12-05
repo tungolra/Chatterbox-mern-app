@@ -47,15 +47,20 @@ io.on("connection", (socket) => {
 
   //delete message
   socket.on("delete-message", (data) => {
-    const { messages, receiverId } = data;
-    let user;
+    const { messages, receiverId, currentUserId } = data;
+    let receiver;
+    let sender;
     activeUsers.forEach((u) => {
       if (u.userId === receiverId) {
-        user = u;
+        receiver = u;
+      }
+      if (u.userId === currentUserId){
+        sender = u
       }
     });
-    if (user) {
-      io.to(user.socketId).emit("deleted", data);
+    if (receiver) {
+      io.to(receiver.socketId).emit("deleted", data);
+      io.to(sender.socketId).emit("deleted", data);
     }
   });
 

@@ -1,11 +1,9 @@
-import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import axios from "axios"
 
 export default function DeleteMessageModal({
   modalOpened,
   setModalOpened,
-  setMessages,
   messageId,
   messages, 
   socket,
@@ -17,10 +15,9 @@ export default function DeleteMessageModal({
 
   function handleDelete() {
     const receiverId = currentChat?.members?.find((id) => id !== currentUserId)
-    socket.current.emit("delete-message", { messages, receiverId, messageId})
+    socket.current.emit("delete-message", { messages, receiverId, messageId, currentUserId})
     axios.delete(`/api/messages/${messageId}`)
     setModalOpened(false)
-    // handleUpdate(setMessages)
   }
 
   return (

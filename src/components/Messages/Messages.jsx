@@ -35,7 +35,6 @@ export default function Messages({
               socket={socket}
               currentChat={currentChat}
               currentUserId={currentUserId}
-              // handleUpdate={handleUpdate}
             />
             {message.text}
             <br />

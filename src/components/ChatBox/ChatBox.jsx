@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useRef } from "react";
+import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
@@ -6,9 +6,6 @@ import axios from "axios";
 export default function ChatBox({
   currentChat,
   currentUserId,
-  setSendMessage,
-  receivedMessage,
-  remainingMessage,
   setMessages,
   setNewMessage,
   messages,

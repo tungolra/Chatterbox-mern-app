@@ -9,7 +9,6 @@ export default function ChatList({ user }) {
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const [remainingMessage, setRemainingMessage] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
 
@@ -101,7 +100,7 @@ export default function ChatList({ user }) {
         currentUserId={user._id}
 
 
-        remainingMessage={remainingMessage}
+        // remainingMessage={remainingMessage}
         setMessages={setMessages}
         setNewMessage={setNewMessage}
         messages={messages}
