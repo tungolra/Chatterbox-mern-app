@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateUser from "../../components/UpdateUser/UpdateUser";
+import UpdateUserModal from "../../components/UpdateUser/UpdateUserModal";
 
 export default function Home({user,setUser}) {
   const [modalOpened, setModalOpened] = useState(false);
@@ -9,10 +9,13 @@ export default function Home({user,setUser}) {
       <div>Home Page</div>
       <div>
         <button onClick={() => setModalOpened(true)}>Edit Profile</button>
-        <UpdateUser        
+        <UpdateUserModal
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
           user={user}
           setUser={setUser}
         />
+       
       </div>
     </>
   );
