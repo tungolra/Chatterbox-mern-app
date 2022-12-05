@@ -1,9 +1,23 @@
-import React from 'react'
+import React from "react";
+import axios from "axios";
 
-export default function UsersList() {
-  return (
-    <>
-    <div style={{border: "1px solid black"}}>
+async function getAllUsers(req, res) {
+  try {
+    const users = await User.find({});
+    res.status(200);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}
+
+//map function user.name 
+{/* <div>
+
+</div> */}
+
+return (
+  <>
+    <div style={{ border: "1px solid black" }}>
       This UsersList gets data from DB of all users
       <ul>
         <li>User #1 </li>
@@ -13,5 +27,4 @@ export default function UsersList() {
       </ul>
     </div>
   </>
-  )
-}
+);

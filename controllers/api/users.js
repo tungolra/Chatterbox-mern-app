@@ -25,14 +25,29 @@ async function login(req, res) {
     res.status(400).json("Bad Credentials");
   }
 }
-//getUser
-//getAllUsers
+
+// where is the getAllUsers being called from
+
+// set up axios call
+
+async function getAllUsers(req, res) {
+  try {
+    const users = await User.find({});
+    res.status(200).json(users);
+  } catch (error) {
+    res.status(400).json(error);
+  }
+}
+
+//create prop for users
 
 module.exports = {
   create,
   login,
   checkToken,
+  getAllUsers,
 };
+
 //keep, but doesn't do anything...
 function checkToken(req, res) {
   console.log("req.user -->", req.user);
