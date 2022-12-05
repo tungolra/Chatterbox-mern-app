@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import UpdateUserModal from "../../components/UpdateUser/UpdateUserModal";
 
+
 export default function Home({user,setUser}) {
   const [modalOpened, setModalOpened] = useState(false);
  

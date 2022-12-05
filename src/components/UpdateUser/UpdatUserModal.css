@@ -1,9 +1,13 @@
+h1{
+  color:#2F15D1;
+  ;
+}
+
 .updateContainer {
     display:flex;
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    width:100%;
     gap: 3px;
 }
 
@@ -20,6 +24,11 @@
     font-size: 14px;
     text-align: center;
     margin: 4px;;
+}
+.profileImg{
+  border:2px solid #1165EB;
+    border-radius: 100px;
+    width:100px;
 }
 
 .submitBtn {

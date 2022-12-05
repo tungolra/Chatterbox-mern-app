@@ -18,3 +18,7 @@ REACT_APP_REGION=add the location of your bucket (eg: us-west-2)
 REACT_APP_ACCESS=got-from-the-security-credentials
 REACT_APP_SECRET=got-from-the-security-credentials
 Run npm start to start the server on PORT 3000
+
+# Installation
+npm install --save react-upload-to-s3
+https://www.npmjs.com/package/react-upload-to-s3

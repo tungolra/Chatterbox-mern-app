@@ -14,6 +14,8 @@ import NavBar from "../../components/NavBar/NavBar";
 import "./App.css";
 
 
+
+
 function App() {
   const [user, setUser] = useState(getUser());
   return (

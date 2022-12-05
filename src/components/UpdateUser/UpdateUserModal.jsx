@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { useSetState } from "@mantine/hooks";
 import { update } from '../../utilities/UserRequests/users-service';
+import { UploadToS3 } from 'react-upload-to-s3'
 import './UpdatUserModal.css';
 
 
@@ -48,8 +49,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
+      <form onSubmit={handleSubmit}>
       <div className="updateContainer">
-        <form onSubmit={handleSubmit}>
+        <h1>CHATTER BOX</h1>
+        
+        <img className="profileImg" src={state.profilePicture} />
           <div>
             <input
               defaultValue={state.firstname}
@@ -87,7 +91,19 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
               name="profilePicture"
               placeholder="Profile Picture"
             />
-
+            <UploadToS3 
+                className="infoInput custom-file-input"
+                bucket="{process.env.REACT_APP_BUCKET_NAME}"
+                awsRegion="{process.env.REACT_APP_REGION}"
+                awsKey="{process.env.REACT_APP_ACCESS}"
+                awsSecret="{process.env.REACT_APP_SECRET}"
+                awsMediaConvertEndPoint="{process.env.S3_BASE_URL}"
+                type="image"
+                mediaConvertRole="mediaconvert_role"
+                theme={theme}
+                showNewUpload={false}
+                onResult={(result) => {console.log('on Result', result);}} />
+                
             <textarea
               defaultValue={state.about}
               onChange={handleChange}
@@ -103,8 +119,9 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
           </div>
 
           
-        </form>
+       
       </div>
+      </form>
     </Modal>
     
       
