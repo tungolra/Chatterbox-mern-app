@@ -38,9 +38,9 @@ export default function LogInForm({ setUser }) {
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
-          <Input
+          <TextField
             sx={{
-              borderRadius: "10px solid black",
+              borderRadius: "10px",
             }}
             id="outlined-basic"
             variant="outlined"
