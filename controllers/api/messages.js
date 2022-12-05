@@ -4,7 +4,6 @@ const Message = require("../../models/message");
 async function createMessage(req, res) {
   try {
     const message = await Message.create(req.body);
-    console.log(req.body)
     res.status(200).json(message);
   } catch (error) {
     res.status(500).json(error);

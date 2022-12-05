@@ -27,19 +27,21 @@ io.on("connection", (socket) => {
 
   //send message
   socket.on("send-message", (data) => {
-    const { receiverId } = data;
+    const { receiverId, messageInfo } = data;
     let user;
     activeUsers.forEach((u) => {
       if (u.userId === receiverId) {
         user = u;
       }
     });
+    console.log(user);
     console.log("Sending ReceiverId");
-    console.log("Data: ", data);
+    console.log("Data: ", messageInfo);
     //if user exists within a specific socket Id, then emit "receive-message" that
     //will be retrieved on client-side
     if (user) {
-      io.to(user.socketId).emit("receive-message", data);
+      console.log("user socketid: ", user.socketId)
+      io.to(user.socketId).emit("receive-message", messageInfo);
     }
   });
 

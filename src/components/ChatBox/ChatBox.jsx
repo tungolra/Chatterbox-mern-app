@@ -13,6 +13,7 @@ export default function ChatBox({
   setNewMessage,
   messages,
   newMessage,
+  socket
 }) {
   const [userData, setUserData] = useState(null);
 
@@ -29,20 +30,21 @@ export default function ChatBox({
   }
   async function handleSend(e) {
     e.preventDefault();
-    const message = {
+    const messageInfo = {
       chatId: currentChat._id,
       senderId: currentUserId,
       text: newMessage,
     };
+    const receiverId = currentChat?.members?.find((id) => id !== currentUserId)
     try {
-      let newMessage = await axios.post(`api/messages`, message);
+      let newMessage = await axios.post(`api/messages`, messageInfo);
+      socket.current.emit('send-message', {messageInfo: newMessage.data, receiverId});
       setMessages([...messages, newMessage.data]);
       setNewMessage("");
     } catch (error) {
       console.log(error);
     }
-    const receiverId = currentChat.members.find((id) => id !== currentUserId);
-    setSendMessage({ ...message, receiverId });
+
   }
 
   return (

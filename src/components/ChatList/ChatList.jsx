@@ -9,8 +9,8 @@ export default function ChatList({ user }) {
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const [sendMessage, setSendMessage] = useState(null);
-  const [receivedMessage, setReceivedMessage] = useState(null);
+  const [sendMessage, setSendMessage] = useState(null); // remove
+  const [receivedMessage, setReceivedMessage] = useState(null); // remove
   const [remainingMessage, setRemainingMessage] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -35,46 +35,46 @@ export default function ChatList({ user }) {
     socket.current = io("http://localhost:8800");
     //to subscribe to specific event, we have to write emit
     socket.current.emit("new-user-add", user._id);
-
   }, [user]);
 
-
-  // send message to socket server
-  useEffect(() => {
-    if (sendMessage !== null) {
-      socket.current.emit("send-message", sendMessage);
-    }
-  }, [sendMessage]);
+  // // send message to socket server --> don't need
+  // useEffect(() => {
+  //   if (sendMessage !== null) {
+  //     socket.current.emit("send-message", sendMessage);
+  //   }
+  // }, [sendMessage]);
 
   //listen on get users, receive, deleted...
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      console.log(data)
-      setReceivedMessage(data);
+      console.log("this is the received message: ", data);
+      const { message, receiverId } = data;
+
+      setMessages((messages) => [...messages, message.text]);
     });
     socket.current.on("deleted", (data) => {
-      console.log(data)
       setMessages(data);
     });
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
     return () => {
-      socket.current.off("receive-message")
-      socket.current.off("deleted")
-      socket.current.off("get-users") 
-    }
+      socket.current.off("receive-message");
+      socket.current.off("deleted");
+      socket.current.off("get-users");
+      socket.current.disconnect()
+    };
   }, []);
 
   // add received message to list of messages
-  useEffect(() => {
-    if (
-      receivedMessage !== null &&
-      receivedMessage?.chatId == currentChat?._id
-    ) {
-      setMessages([...messages, receivedMessage]);
-    }
-  }, [receivedMessage]);
+  // useEffect(() => {
+  //   if (
+  //     receivedMessage !== null &&
+  //     receivedMessage?.chatId == currentChat?._id
+  //   ) {
+  //     setMessages([...messages, receivedMessage]);
+  //   }
+  // }, [receivedMessage]);
 
   // get messages for chat
   useEffect(() => {
@@ -90,15 +90,15 @@ export default function ChatList({ user }) {
     };
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
-  // function to get chat messages and setMessages 
+  // function to get chat messages and setMessages
 
   // send deleted message to socket server
-  useEffect(() => {
+  // useEffect(() => {
 
-    const receiverId = currentChat?.members?.find((id) => id !== user._id);
-    console.log("from delete msg use effect - receiverId: ", receiverId);
-    socket.current.emit("delete-message", { messages, receiverId });
-  }, [messages]);
+  //   const receiverId = currentChat?.members?.find((id) => id !== user._id);
+  //   console.log("from delete msg use effect - receiverId: ", receiverId);
+  //   socket.current.emit("delete-message", { messages, receiverId });
+  // }, [messages]);
 
   //update set messages after delete
   // useEffect(() => {
@@ -144,6 +144,7 @@ export default function ChatList({ user }) {
         setNewMessage={setNewMessage}
         messages={messages}
         newMessage={newMessage}
+        socket={socket}
         // handleUpdate={handleUpdate}
       />
     </>
