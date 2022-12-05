@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
-import { format } from "timeago.js";
+
 import axios from "axios";
 
 export default function ChatBox({
@@ -13,6 +13,7 @@ export default function ChatBox({
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
+  
 
   // add received message to list of messages
   useEffect(() => {
@@ -23,6 +24,7 @@ export default function ChatBox({
       setMessages([...messages, receivedMessage]);
     }
   }, [receivedMessage]);
+
 
   // get chat member data
   useEffect(() => {
@@ -35,8 +37,9 @@ export default function ChatBox({
     const serverRoute = "api/messages";
     const getChatMessages = async () => {
       try {
-        let response = await axios.get(`${serverRoute}/${currentChat._id}`);
-        setMessages(response.data);
+        let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
+        setMessages(data);
+        console.log(messages)
       } catch (error) {
         console.log(error);
       }
@@ -44,24 +47,28 @@ export default function ChatBox({
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
 
-  function handleChange(e) {
-    setNewMessage(newMessage);
+  function handleChange(inputText) {
+    setNewMessage(inputText);
   }
   async function handleSend(e) {
     e.preventDefault();
     const message = {
+      chatId: currentChat._id,
       senderId: currentUserId,
       text: newMessage,
-      chatId: currentChat._id,
     };
     try {
-      let newMessage = await axios.post(`api/messages`)
-      setMessages([...messages, newMessage])
+      let newMessage = await axios.post(`api/messages`, message)
+      console.log(newMessage.data)
+      setMessages([...messages, newMessage.data])
       setNewMessage("")
     } catch (error) {
       console.log(error)
     }
+    const receiverId = currentChat.members.find((id) => id !== currentUserId)
+    setSendMessage({...message, receiverId})
   }
+
   return (
     <>
       {currentChat ? (

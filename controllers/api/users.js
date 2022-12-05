@@ -16,7 +16,6 @@ const config = {
 
 async function create(req, res) {
   try {
-    console.log(req.body);
     const user = await User.create(req.body);
     const token = createJWT(user);
     res.json(token);

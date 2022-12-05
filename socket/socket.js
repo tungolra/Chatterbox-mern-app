@@ -10,7 +10,6 @@ const io = require("socket.io")(8800, {
 let activeUsers = [];
 
 io.on("connection", (socket) => {
-  console.log("hit connection socket")
   //add new user ; newUserId passed in from react side
   socket.on("new-user-add", (newUserId) => {
     //if user not found, then add to socket server
@@ -22,17 +21,20 @@ io.on("connection", (socket) => {
       });
     }
     //sending data to client-side via io.emit; client side retrieves data by
-    //calling 'get-users'
     console.log("Connected Users", activeUsers);
     io.emit("get-users", activeUsers);
   });
 
   //send message
   socket.on("send-message", (data) => {
-    console.log("hit send message socket")
     const { receiverId } = data;
-    // if this is a user inside activeUser based
-    const user = activeUsers.find((user) => user.userId === receiverId);
+    let user; 
+    activeUsers.forEach(u => {
+      if (u.userId === receiverId ){
+        user = u
+      }
+    })
+
     console.log("Sending ReceiverId");
     console.log("Data: ", data);
     //if user exists within a specific socket Id, then emit "receive-message" that
