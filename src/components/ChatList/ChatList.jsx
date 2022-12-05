@@ -9,8 +9,6 @@ export default function ChatList({ user }) {
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
   const [currentChat, setCurrentChat] = useState(null);
-  const [sendMessage, setSendMessage] = useState(null); // remove
-  const [receivedMessage, setReceivedMessage] = useState(null); // remove
   const [remainingMessage, setRemainingMessage] = useState([]);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
@@ -37,23 +35,14 @@ export default function ChatList({ user }) {
     socket.current.emit("new-user-add", user._id);
   }, [user]);
 
-  // // send message to socket server --> don't need
-  // useEffect(() => {
-  //   if (sendMessage !== null) {
-  //     socket.current.emit("send-message", sendMessage);
-  //   }
-  // }, [sendMessage]);
-
   //listen on get users, receive, deleted...
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      console.log("this is the received message: ", data);
-      const { message, receiverId } = data;
-
-      setMessages((messages) => [...messages, message.text]);
+      setMessages((messages) => [...messages, data]);
     });
     socket.current.on("deleted", (data) => {
-      setMessages(data);
+      const { messageId } = data
+      setMessages((messages) => messages.filter((message) => message._id !== messageId))
     });
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
@@ -66,16 +55,6 @@ export default function ChatList({ user }) {
     };
   }, []);
 
-  // add received message to list of messages
-  // useEffect(() => {
-  //   if (
-  //     receivedMessage !== null &&
-  //     receivedMessage?.chatId == currentChat?._id
-  //   ) {
-  //     setMessages([...messages, receivedMessage]);
-  //   }
-  // }, [receivedMessage]);
-
   // get messages for chat
   useEffect(() => {
     const serverRoute = "api/messages";
@@ -83,7 +62,6 @@ export default function ChatList({ user }) {
       try {
         let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
         setMessages(data);
-        // setRemainingMessages(data) // =S
       } catch (error) {
         console.log(error);
       }
@@ -91,22 +69,6 @@ export default function ChatList({ user }) {
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
   // function to get chat messages and setMessages
-
-  // send deleted message to socket server
-  // useEffect(() => {
-
-  //   const receiverId = currentChat?.members?.find((id) => id !== user._id);
-  //   console.log("from delete msg use effect - receiverId: ", receiverId);
-  //   socket.current.emit("delete-message", { messages, receiverId });
-  // }, [messages]);
-
-  //update set messages after delete
-  // useEffect(() => {
-  //   console.log("set remaining messages hit");
-  //   // socket.current.on("deleted", (data) => {
-  //   //   setMessages(data);
-  //   // });
-  // }, []);
 
   //check who is online
   function isOnline(chat) {
@@ -137,8 +99,8 @@ export default function ChatList({ user }) {
       <ChatBox
         currentChat={currentChat}
         currentUserId={user._id}
-        setSendMessage={setSendMessage}
-        receivedMessage={receivedMessage}
+
+
         remainingMessage={remainingMessage}
         setMessages={setMessages}
         setNewMessage={setNewMessage}

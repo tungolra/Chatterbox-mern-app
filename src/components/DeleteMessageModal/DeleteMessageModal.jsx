@@ -7,13 +7,17 @@ export default function DeleteMessageModal({
   setModalOpened,
   setMessages,
   messageId,
-  messages,
+  messages, 
+  socket,
+  currentChat,
+  currentUserId
+
 }) {
   const theme = useMantineTheme();
 
-
   function handleDelete() {
-    setMessages(messages.filter((message) => message._id !== messageId))
+    const receiverId = currentChat?.members?.find((id) => id !== currentUserId)
+    socket.current.emit("delete-message", { messages, receiverId, messageId})
     axios.delete(`/api/messages/${messageId}`)
     setModalOpened(false)
     // handleUpdate(setMessages)

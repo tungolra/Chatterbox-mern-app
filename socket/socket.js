@@ -55,7 +55,7 @@ io.on("connection", (socket) => {
       }
     });
     if (user) {
-      io.to(user.socketId).emit("deleted", messages);
+      io.to(user.socketId).emit("deleted", data);
     }
   });
 

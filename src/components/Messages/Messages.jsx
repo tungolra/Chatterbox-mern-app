@@ -2,7 +2,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 
-export default function Messages({ messages, setMessages }) {
+export default function Messages({
+  messages,
+  setMessages,
+  socket,
+  currentChat,
+  currentUserId,
+}) {
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
 
@@ -15,7 +21,6 @@ export default function Messages({ messages, setMessages }) {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
 
-
   return (
     <>
       <div>
@@ -27,6 +32,9 @@ export default function Messages({ messages, setMessages }) {
               setMessages={setMessages}
               messageId={message._id}
               messages={messages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
               // handleUpdate={handleUpdate}
             />
             {message.text}

@@ -57,6 +57,9 @@ export default function ChatBox({
           <Messages
             messages={messages}
             setMessages={setMessages}
+            socket={socket}
+            currentChat={currentChat}
+            currentUserId={currentUserId}
           />
           <InputEmoji value={newMessage} onChange={handleChange} />
           <button onClick={handleSend}>Send</button>
