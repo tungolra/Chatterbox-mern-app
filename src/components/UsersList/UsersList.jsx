@@ -10,10 +10,12 @@ async function getAllUsers(req, res) {
   }
 }
 
-//map function user.name 
-{/* <div>
+//map function user.name
+{
+  /* <div>
 
-</div> */}
+</div> */
+}
 
 return (
   <>
