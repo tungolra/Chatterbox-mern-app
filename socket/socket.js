@@ -28,12 +28,12 @@ io.on("connection", (socket) => {
   //send message
   socket.on("send-message", (data) => {
     const { receiverId } = data;
-    let user; 
-    activeUsers.forEach(u => {
-      if (u.userId === receiverId ){
-        user = u
+    let user;
+    activeUsers.forEach((u) => {
+      if (u.userId === receiverId) {
+        user = u;
       }
-    })
+    });
     console.log("Sending ReceiverId");
     console.log("Data: ", data);
     //if user exists within a specific socket Id, then emit "receive-message" that
@@ -44,21 +44,18 @@ io.on("connection", (socket) => {
   });
 
   //delete message
-  socket.on("delete-message", (data) => { 
+  socket.on("delete-message", (data) => {
     const { messages, receiverId } = data;
-    let user; 
-    activeUsers.forEach(u => {
-      if (u.userId === receiverId ){
-        user = u
+    let user;
+    activeUsers.forEach((u) => {
+      if (u.userId === receiverId) {
+        user = u;
       }
-    })
+    });
     if (user) {
-      console.log("socket delete emit hit!")
-      console.log("messages: ", messages)
-      io.to(user.socketId).emit('deleted', messages)
-      // io.to(user.socketId).emit("receive-message", messages);
+      io.to(user.socketId).emit("deleted", messages);
     }
-  })
+  });
 
   //if user
 

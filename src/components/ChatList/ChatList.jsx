@@ -12,6 +12,8 @@ export default function ChatList({ user }) {
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
   const [remainingMessage, setRemainingMessage] = useState([]);
+  const [messages, setMessages] = useState([]);
+  const [newMessage, setNewMessage] = useState("");
 
   //get chat
   useEffect(() => {
@@ -33,10 +35,9 @@ export default function ChatList({ user }) {
     socket.current = io("http://localhost:8800");
     //to subscribe to specific event, we have to write emit
     socket.current.emit("new-user-add", user._id);
-    socket.current.on("get-users", (users) => {
-      setOnlineUsers(users);
-    });
+
   }, [user]);
+
 
   // send message to socket server
   useEffect(() => {
@@ -45,25 +46,73 @@ export default function ChatList({ user }) {
     }
   }, [sendMessage]);
 
-  //receive message from socket server
+  //listen on get users, receive, deleted...
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
+      console.log(data)
       setReceivedMessage(data);
     });
+    socket.current.on("deleted", (data) => {
+      console.log(data)
+      setMessages(data);
+    });
+    socket.current.on("get-users", (users) => {
+      setOnlineUsers(users);
+    });
+    return () => {
+      socket.current.off("receive-message")
+      socket.current.off("deleted")
+      socket.current.off("get-users") 
+    }
   }, []);
 
-  //set remaining messages
-  useEffect(() => { 
-    socket.current.on('deleted', (data) => {
-      setRemainingMessage(data)
-    })
-  }, [])
+  // add received message to list of messages
+  useEffect(() => {
+    if (
+      receivedMessage !== null &&
+      receivedMessage?.chatId == currentChat?._id
+    ) {
+      setMessages([...messages, receivedMessage]);
+    }
+  }, [receivedMessage]);
+
+  // get messages for chat
+  useEffect(() => {
+    const serverRoute = "api/messages";
+    const getChatMessages = async () => {
+      try {
+        let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
+        setMessages(data);
+        // setRemainingMessages(data) // =S
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (currentChat !== null) getChatMessages();
+  }, [currentChat]);
+  // function to get chat messages and setMessages 
+
+  // send deleted message to socket server
+  useEffect(() => {
+
+    const receiverId = currentChat?.members?.find((id) => id !== user._id);
+    console.log("from delete msg use effect - receiverId: ", receiverId);
+    socket.current.emit("delete-message", { messages, receiverId });
+  }, [messages]);
+
+  //update set messages after delete
+  // useEffect(() => {
+  //   console.log("set remaining messages hit");
+  //   // socket.current.on("deleted", (data) => {
+  //   //   setMessages(data);
+  //   // });
+  // }, []);
 
   //check who is online
-  function isOnline(chat){
-    const chatMember = chat.members.find((member) => member !== user._id)
-    const online = onlineUsers.find((user)=> user.userId === chatMember)
-    return online ? true : false
+  function isOnline(chat) {
+    const chatMember = chat.members.find((member) => member !== user._id);
+    const online = onlineUsers.find((user) => user.userId === chatMember);
+    return online ? true : false;
   }
 
   return (
@@ -76,10 +125,12 @@ export default function ChatList({ user }) {
             style={{ border: "1px solid red" }}
             key={idx}
             onClick={() => setCurrentChat(chat)}
-            
           >
-            <Conversation currentUserId={user._id} chat={chat} online = {isOnline(chat)}/>
-
+            <Conversation
+              currentUserId={user._id}
+              chat={chat}
+              online={isOnline(chat)}
+            />
           </div>
         ))}
       </div>
@@ -89,6 +140,11 @@ export default function ChatList({ user }) {
         setSendMessage={setSendMessage}
         receivedMessage={receivedMessage}
         remainingMessage={remainingMessage}
+        setMessages={setMessages}
+        setNewMessage={setNewMessage}
+        messages={messages}
+        newMessage={newMessage}
+        // handleUpdate={handleUpdate}
       />
     </>
   );

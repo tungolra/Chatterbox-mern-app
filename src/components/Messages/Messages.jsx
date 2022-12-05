@@ -27,6 +27,7 @@ export default function Messages({ messages, setMessages }) {
               setMessages={setMessages}
               messageId={message._id}
               messages={messages}
+              // handleUpdate={handleUpdate}
             />
             {message.text}
             <br />

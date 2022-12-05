@@ -7,7 +7,7 @@ export default function DeleteMessageModal({
   setModalOpened,
   setMessages,
   messageId,
-  messages
+  messages,
 }) {
   const theme = useMantineTheme();
 
@@ -16,6 +16,7 @@ export default function DeleteMessageModal({
     setMessages(messages.filter((message) => message._id !== messageId))
     axios.delete(`/api/messages/${messageId}`)
     setModalOpened(false)
+    // handleUpdate(setMessages)
   }
 
   return (
