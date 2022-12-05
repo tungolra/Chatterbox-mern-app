@@ -1,12 +1,22 @@
 import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
+import axios from "axios"
 
-export default function DeleteMessageModal({ modalOpened, setModalOpened }) {
+export default function DeleteMessageModal({
+  modalOpened,
+  setModalOpened,
+  setMessages,
+  messageId,
+  messages
+}) {
   const theme = useMantineTheme();
 
-  function handleChange(e) {}
 
-  function handleSubmit(e) {}
+  function handleDelete() {
+    setMessages(messages.filter((message) => message._id !== messageId))
+    axios.delete(`/api/messages/${messageId}`)
+    setModalOpened(false)
+  }
 
   return (
     <Modal
@@ -20,10 +30,8 @@ export default function DeleteMessageModal({ modalOpened, setModalOpened }) {
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form onSubmit={handleSubmit}>
         <p>Delete Message?</p>
-        <button type="submit">Delete</button>
-      </form>
+        <button onClick={() => handleDelete(messageId)}>Delete</button>
     </Modal>
   );
 }

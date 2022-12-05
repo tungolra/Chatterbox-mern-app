@@ -23,7 +23,10 @@ async function getMessages(req, res) {
 }
 
 async function deleteMessage(req, res){
-  const {chatId, messageId} = req.params
+  const {messageId} = req.params
+  await Message.findByIdAndDelete(messageId)
+  res.status(200).json("Message Deleted")
+  
 }
 
 module.exports = {

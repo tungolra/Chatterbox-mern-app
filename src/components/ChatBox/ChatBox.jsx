@@ -79,7 +79,7 @@ export default function ChatBox({
           This ChatBox will render the container for a conversation the user
           selects
           <hr />
-          <Messages messages={messages} />
+          <Messages messages={messages} setMessages={setMessages} />
           <InputEmoji value={newMessage} onChange={handleChange} />
           <button onClick={handleSend}>Send</button>
         </div>
