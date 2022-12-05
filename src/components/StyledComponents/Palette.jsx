@@ -1,7 +1,7 @@
 import Button from "@mui/material/Button";
 import { createTheme, ThemeProvider } from "@mui/material/styles";
 
-const theme = createTheme({
+export const theme = createTheme({
   palette: {
     primary: {
       main: "#2f15d1",
@@ -11,6 +11,8 @@ const theme = createTheme({
     },
   },
 });
+
+
 export default function Palette() {
   return (
     <ThemeProvider theme={theme}>

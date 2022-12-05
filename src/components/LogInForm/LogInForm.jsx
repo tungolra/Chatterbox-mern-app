@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as usersService from "../../utilities/UserRequests/users-service";
 // mui below
 import Button from "@mui/material/Button";
-import { TextField } from "@mui/material";
+import { Input, TextField } from "@mui/material";
 
 export default function LogInForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -38,7 +38,10 @@ export default function LogInForm({ setUser }) {
       <div className="form-container">
         <form autoComplete="off" onSubmit={handleSubmit}>
           <label>Email</label>
-          <TextField
+          <Input
+            sx={{
+              borderRadius: "10px solid black",
+            }}
             id="outlined-basic"
             variant="outlined"
             type="text"
