@@ -13,7 +13,6 @@ export default function ChatBox({
   const [userData, setUserData] = useState(null);
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
-  
 
   // add received message to list of messages
   useEffect(() => {
@@ -24,7 +23,6 @@ export default function ChatBox({
       setMessages([...messages, receivedMessage]);
     }
   }, [receivedMessage]);
-
 
   // get chat member data
   useEffect(() => {
@@ -39,7 +37,7 @@ export default function ChatBox({
       try {
         let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
         setMessages(data);
-        console.log(messages)
+        console.log(messages);
       } catch (error) {
         console.log(error);
       }
@@ -58,15 +56,15 @@ export default function ChatBox({
       text: newMessage,
     };
     try {
-      let newMessage = await axios.post(`api/messages`, message)
-      console.log(newMessage.data)
-      setMessages([...messages, newMessage.data])
-      setNewMessage("")
+      let newMessage = await axios.post(`api/messages`, message);
+      console.log(newMessage.data);
+      setMessages([...messages, newMessage.data]);
+      setNewMessage("");
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-    const receiverId = currentChat.members.find((id) => id !== currentUserId)
-    setSendMessage({...message, receiverId})
+    const receiverId = currentChat.members.find((id) => id !== currentUserId);
+    setSendMessage({ ...message, receiverId });
   }
 
   return (
