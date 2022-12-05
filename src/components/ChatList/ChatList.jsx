@@ -11,6 +11,7 @@ export default function ChatList({ user }) {
   const [currentChat, setCurrentChat] = useState(null);
   const [sendMessage, setSendMessage] = useState(null);
   const [receivedMessage, setReceivedMessage] = useState(null);
+  const [remainingMessage, setRemainingMessage] = useState([]);
 
   //get chat
   useEffect(() => {
@@ -47,10 +48,16 @@ export default function ChatList({ user }) {
   //receive message from socket server
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      console.log(data);
       setReceivedMessage(data);
     });
   }, []);
+
+  //set remaining messages
+  useEffect(() => { 
+    socket.current.on('deleted', (data) => {
+      setRemainingMessage(data)
+    })
+  }, [])
 
   //check who is online
   function isOnline(chat){
@@ -81,6 +88,7 @@ export default function ChatList({ user }) {
         currentUserId={user._id}
         setSendMessage={setSendMessage}
         receivedMessage={receivedMessage}
+        remainingMessage={remainingMessage}
       />
     </>
   );
