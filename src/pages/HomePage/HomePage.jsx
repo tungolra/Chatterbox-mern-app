@@ -1,7 +1,19 @@
-import React from 'react'
+import React, { useState } from "react";
+import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
 
 export default function Home() {
+  const [modalOpened, setModalOpened] = useState(false);
   return (
-    <div>Home Page</div>
-  )
+    <>
+      <div>Home Page</div>
+      <div>
+        <button onClick={() => setModalOpened(true)}>Edit Profile</button>
+        <UpdateUserModal
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+          // data={user}
+        />
+      </div>
+    </>
+  );
 }

@@ -4,7 +4,6 @@ const bcrypt = require("bcrypt");
 
 async function create(req, res) {
   try {
-    console.log(req.body)
     const user = await User.create(req.body);
     const token = createJWT(user);
     res.json(token);
@@ -26,18 +25,19 @@ async function login(req, res) {
     res.status(400).json("Bad Credentials");
   }
 }
-
-//keep, but doesn't do anything...
-function checkToken(req, res) {
-  console.log("req.user -->", req.user);
-  res.json(req.exp);
-}
+//getUser
+//getAllUsers
 
 module.exports = {
   create,
   login,
   checkToken,
 };
+//keep, but doesn't do anything...
+function checkToken(req, res) {
+  console.log("req.user -->", req.user);
+  res.json(req.exp);
+}
 
 //Helper Functions
 

@@ -2,9 +2,11 @@ const express = require("express");
 const path = require("path");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
+const cors = require('cors');
 
 require("dotenv").config();
 require("./config/database");
+require('./socket/socket')
 
 // Configure to use port 3001 instead of 3000 during
 // development to avoid collision with React's dev server
@@ -12,6 +14,7 @@ const port = process.env.PORT || 3001;
 
 const app = express();
 
+app.use(cors())
 app.use(logger("dev"));
 app.use(express.json());
 // Configure both serve-favicon & static middleware
@@ -28,9 +31,11 @@ app.use('/api/chats', require('./routes/api/chats'))
 app.use('/api/messages', require('./routes/api/messages'))
 
 
-app.listen(port, function () {
+const server = app.listen(port, function () {
   console.log(`Express app running on port ${port}`);
 });
+
+
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests

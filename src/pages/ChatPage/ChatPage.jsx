@@ -2,7 +2,7 @@ import React from "react";
 import ChatList from "../../components/ChatList/ChatList";
 import UsersList from "../../components/UsersList/UsersList";
 
-export default function ChatPage() {
+export default function ChatPage({user}) {
   return (
     <>
       <div>
@@ -12,7 +12,7 @@ export default function ChatPage() {
         <UsersList />
       </div>
       <div>
-        <ChatList />
+        <ChatList user={user}/>
       </div>
     </>
   );

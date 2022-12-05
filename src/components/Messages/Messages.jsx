@@ -1,12 +1,29 @@
-import React from "react";
+import React, { useEffect, useRef } from "react";
+import { format } from "timeago.js";
 
-export default function Messages() {
+export default function Messages({ messages }) {
+  const scroll = useRef();
+  console.log(scroll);
+  // const sender = messages.find((message)=> {
+  // getUser call to server
+  // })
+
+  // scroll to last message
+  useEffect(() => {
+    scroll.current?.scrollIntoView({ behaviour: "smooth" });
+  }, [messages]);
   return (
     <>
       <div>
-        This Messages Component will also fetch messages from DB to display the
-        history of messages between users
-        
+        {messages.map((message, idx) => (
+          <p ref={scroll} key={idx}>
+            {message.text}
+            <br />
+            Sent: {format(message.createdAt)}
+            <br />
+            Sent by: (sender variable goes here)
+          </p>
+        ))}
       </div>
     </>
   );
