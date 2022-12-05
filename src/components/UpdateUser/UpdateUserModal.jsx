@@ -9,21 +9,24 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
   const [selectedFile, setSelectedFile] = React.useState(null);
 
   const theme = useMantineTheme();
-  let state = {
+  // let state = {
+   
+  // }
+  const [formData, setFormData] = useState ({
     firstname: user.firstname ,
     lastname: user.lastname,
     email: user.email,
     profilePicture: user.profilePicture,
     about: user.about
-  }
-  const [formData, setFormData] = useState (state)
+  })
+  console.log (formData)
   //  const theme = useMantineTheme();
   
 
   function handleChange(e) {
-    state[e.target.name] = e.target.value
-    setFormData(state)
-    console.log (state)
+      
+    setFormData({...formData, [e.target.name]:e.target.value })
+    // setFormData(state)
    }
   
   function handleFileSelect (e) {
@@ -38,9 +41,10 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       // data.append ('file', selectedFile)
         
      try {
-      console.log (formData)
-      console.log (state)
+      console.log ("updating form start:front-end ...")
+      console.log ({formData})
       const user = update(formData)
+      
       setUser(user)
       // if (state.profilePicture) {
       //   console.log (formData)
@@ -72,11 +76,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
-        <img className="profileImg" src={state.profilePicture} />
+        <img className="profileImg" src={formData.profilePicture} />
           <div>
             <input
-              defaultValue={state.firstname}
-              onChange={handleFileSelect}
+              value={formData.firstname}
+              onChange={handleChange}
               type="text"
               className="infoInput"
               name="firstname"
@@ -84,7 +88,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             />
             
             <input
-              defaultValue={state.lastname}
+              value={formData.lastname}
               onChange={handleChange}
               type="text"
               className="infoInput"
@@ -93,7 +97,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             />
 
               <input
-                defaultValue={state.email}
+                value={formData.email}
                 onChange={handleChange}
                 type="email"
                 className="infoInput"
@@ -101,17 +105,17 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
                 placeholder="Email"       
               />
         
-            <input
+            {/* <input
               
               onChange={handleFileSelect}
               type="file"
               className="infoInput custom-file-input"
               name="profilePicture"
               placeholder="Profile Picture"
-            />
+            /> */}
             
             <textarea
-              defaultValue={state.about}
+              value={formData.about}
               onChange={handleChange}
               type="text"
               className="infoInput"
