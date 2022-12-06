@@ -1,5 +1,5 @@
 // socket.io server installation: https://socket.io/docs/v4/server-installation/
-
+// const server = require("../server")
 const io = require("socket.io")(8800, {
   cors: {
     origin: "http://localhost:3000",
