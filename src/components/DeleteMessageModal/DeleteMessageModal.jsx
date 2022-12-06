@@ -14,6 +14,7 @@ export default function DeleteMessageModal({
   const theme = useMantineTheme();
 
   async function handleDelete() {
+    console.log("handle delete: ", messageId)
     const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
     socket.current.emit("delete-message", {
       messages,
@@ -26,7 +27,7 @@ export default function DeleteMessageModal({
     } catch (error) {
       console.log(error);
     }
-    // setMessages((messages)=> [...messages])
+    setMessages((msgs)=>msgs )
     setModalOpened(false);
   }
 
