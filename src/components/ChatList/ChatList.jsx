@@ -3,6 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
+import UsersList from "../UsersList/UsersList";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -80,8 +81,11 @@ export default function ChatList({ user }) {
 
   return (
     <>
+     <div>
+        <UsersList user={user}/>
+      </div>
       <div style={{ border: "1px solid black" }}>
-        This ChatList gets data from DB of user's current convos
+        This ChatList component gets data from DB of all users & user's current convos
         {/* need to show name of person chatting to */}
         {chats.map((chat, idx) => (
           <div

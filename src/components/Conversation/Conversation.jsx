@@ -2,14 +2,14 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Conversation({ currentUserId, chat, online }) {
-  const [userData, setUserData] = useState(null);
+  const [userData, setUserData] = useState(null); //needed?
 
   //find all users but the current user
-  useEffect(() => {
-    const userId = chat.members.find((id) => id !== currentUserId);
+  useEffect(() => { 
+    const userId = chat.members.find((id) => id !== currentUserId);//needed?
     async function getUserData() {
       try {
-        let response = await axios.get(`api/users/`);
+        await axios.get(`api/users/`);
       } catch (error) {
         console.log(error);
       }

@@ -4,7 +4,7 @@ const Chat = require("../../models/chat");
 async function createChat(req, res) {
   try {
     const result = await Chat.create({
-      members: [req.body.senderId, req.body.receiverId],
+      members: [req.params.firstId, req.params.secondId],
     });
     res.status(200).json(result);
   } catch (error) {

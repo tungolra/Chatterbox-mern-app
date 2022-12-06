@@ -6,10 +6,7 @@ export default function ChatPage({user}) {
   return (
     <>
       <div>
-        This Chat Page will contain the ChatList and UsersList Components
-      </div>
-      <div>
-        <UsersList />
+        This Chat Page will contain the ChatList Component
       </div>
       <div>
         <ChatList user={user}/>
