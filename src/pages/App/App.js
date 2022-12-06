@@ -27,6 +27,10 @@ export const themeOptions = createTheme({
       main: "#A378FF",
     },
   },
+  // navlinks: {
+  //   marginLeft: themeOptions.spacing(10),
+  //   display: "flex",
+  // },
 });
 
 function App() {

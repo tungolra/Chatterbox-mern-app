@@ -10,18 +10,25 @@ export default function NavBar(props) {
     props.setUser(null);
   }
   return (
-    <AppBar position="static" color="transparent" sx={{ zIndex: "0" }}>
+    <AppBar
+      boxShadow="none"
+      position="static"
+      color="transparent"
+      sx={{ zIndex: "0" }}
+    >
       <nav style={{ border: "1px solid blue" }}>
         {" "}
-        This is the nav bar:
         {/* Add own links */}
+        <h1 className="logo">chatter[box]</h1>
+        <br></br>
         <Link color="secondary" to="/">
-          Home
+          Home&nbsp;
         </Link>
-        <Link to="/chats">Chats</Link>
+        <Link to="/chats">Chats&nbsp;</Link>
         <Link to="" onClick={handleLogOut}>
-          Log Out
+          Log Out&nbsp;
         </Link>
+        <br></br>
         {props.user && <span>Welcome, {props.user?.firstname}!</span>}
       </nav>
     </AppBar>
