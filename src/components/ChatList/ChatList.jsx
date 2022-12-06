@@ -142,6 +142,8 @@ export default function ChatList({ user }) {
               </div>
             ))}
           </div>
+        </Grid>
+        <Grid item xs={8}>
           <ChatBox
             currentChat={currentChat}
             currentUserId={user._id}
