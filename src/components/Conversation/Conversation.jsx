@@ -22,7 +22,7 @@ export default function Conversation({ currentUserId, chat, online }) {
     <div>
       <br />
       <span>
-        {userData.firstname} - {userData._id}
+        {userData?.firstname}
         <br />
         Chat Member is: {online ? "online" : "offline"}
       </span>

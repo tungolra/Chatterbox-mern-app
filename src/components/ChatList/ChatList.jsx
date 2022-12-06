@@ -109,8 +109,7 @@ export default function ChatList({ user }) {
     <>
         This ChatList component gets data from DB of all users & user's current convos
         <div style={{ border: "1px solid black" }}>
-        
-        This UsersList gets data from DB of all users
+        All existing Users in DB (not including logged in user): 
         {allUsers.map((friend, idx) => (
           <div key={idx} onClick={() => startChat(friend._id)}>
             {friend.firstname} {friend.lastname}
