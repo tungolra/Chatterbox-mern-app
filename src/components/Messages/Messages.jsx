@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
+import "./Messages.css";
 
 export default function Messages({
   messages,
@@ -11,10 +12,7 @@ export default function Messages({
 }) {
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
-
-  // const sender = messages.find((message)=> {
-  // getUser call to server
-  // })
+  const [messageId, setMessageId] = useState(null);
 
   // scroll to last message
   useEffect(() => {
@@ -23,26 +21,36 @@ export default function Messages({
 
   return (
     <>
-      <div>
+      <div className="messages-container">
         {messages.map((message, idx) => (
-          <p ref={scroll} key={idx} onClick={() => setModalOpened(true)}>
-            <DeleteMessageModal
-              modalOpened={modalOpened}
-              setModalOpened={setModalOpened}
-              setMessages={setMessages}
-              messageId={message._id}
-              messages={messages}
-              socket={socket}
-              currentChat={currentChat}
-              currentUserId={currentUserId}
-            />
-            {message.text}
+          <p
+            className={
+              message.senderId === currentUserId ? "message own" : "message"
+            }
+            ref={scroll}
+            key={idx}
+            onClick={() => {
+              console.log("onclick msg id: ", message._id);
+              setMessageId(message._id);
+              setModalOpened(true);
+            }}
+          >
+            {message.text} - {message._id}
             <br />
             Sent: {format(message.createdAt)}
             <br />
             Sent by: (sender variable goes here)
           </p>
         ))}
+        <DeleteMessageModal
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+          setMessages={setMessages}
+          messageId={messageId}
+          socket={socket}
+          currentChat={currentChat}
+          currentUserId={currentUserId}
+        />
       </div>
     </>
   );

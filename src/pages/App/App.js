@@ -36,11 +36,6 @@ export const themeOptions = createTheme({
 function App() {
   const [user, setUser] = useState(getUser());
 
-  useEffect(() => {
-    localStorage.removeItem("token");
-    setUser(null);
-  }, []);
-
   return (
     <main className="App">
       <ThemeProvider theme={themeOptions}>
