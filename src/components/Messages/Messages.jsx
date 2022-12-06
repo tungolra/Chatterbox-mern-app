@@ -15,6 +15,13 @@ export default function Messages({
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
 
+  const time = (t) => {
+    console.log(t);
+  };
+
+  time((t) => {
+    console.log(t);
+  });
   // scroll to last message
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
@@ -36,13 +43,16 @@ export default function Messages({
               setModalOpened(true);
             }}
           >
+            {console.log(message)}
             {message.text} - {message._id}
             <br />
-            Sent: {format(message.createdAt)}
+            Sent: {message.createdAt.slice(0, -5)}
             <br />
             Sent by: (sender variable goes here)
           </p>
         ))}
+        {/* take out T using for loop */}
+
         <DeleteMessageModal
           modalOpened={modalOpened}
           setModalOpened={setModalOpened}
