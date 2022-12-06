@@ -3,7 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input, Grid } from "@mui/material";
+import { Input, Grid, TextField } from "@mui/material";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -108,10 +108,16 @@ export default function ChatList({ user }) {
     <>
       <Grid container spacing={2}>
         <Grid item xs={4}>
+          <TextField
+            sx={{ width: "25vw", border: "2px solid #2f15d1" }}
+            className="outlined-basic"
+            variant="outlined"
+            type="text"
+            placeholder="Search for a User"
+          ></TextField>
           <div style={{ border: "1px solid black" }}>
-            All existing Users in DB (not including logged in user) (To be
-            replaced with search box to find specific user):
-            <Input type="text" placeholder="Search for a User"></Input>
+            {/* All existing Users in DB (not including logged in user) (To be
+            replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
                 {friend.firstname} {friend.lastname}
