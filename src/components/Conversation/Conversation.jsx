@@ -1,4 +1,6 @@
 import React, { useEffect, useState } from "react";
+import { Input, Grid, TextField } from "@mui/material";
+import './Conversation.css';
 import axios from "axios";
 
 export default function Conversation({ currentUserId, chat, online }) {
@@ -19,13 +21,12 @@ export default function Conversation({ currentUserId, chat, online }) {
   }, []);
 
   return (
-    <div>
-      <br />
-      <span>
-        {userData?.firstname}
-        <br />
-        Chat Member is: {online ? "online" : "offline"}
-      </span>
-    </div>
+
+    <Grid container spacing={2}>     
+      
+      <Grid item xs={3}><img class="profileImg" src={null ? "https://ga-chatterbox.s3.ca-central-1.amazonaws.com/user.png" : userData?.profilePicture} /></Grid>
+      <Grid item xs={5}>{userData?.firstname}</Grid>
+      <Grid item xs={4}>Chat Member is: {online ? "online" : "offline"}</Grid>      
+    </Grid>    
   );
 }
