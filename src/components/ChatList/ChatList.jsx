@@ -3,7 +3,8 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input, Grid, TextField } from "@mui/material";
+import { Input, Grid, TextField, Box } from "@mui/material";
+import { Container } from "react-bootstrap";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -111,7 +112,7 @@ export default function ChatList({ user }) {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <TextField
-            sx={{ width: "25vw", border: "2px solid #2f15d1" }}
+            sx={{ width: "25vw", border: "2px solid #2f15d1", margin: "10px" }}
             className="outlined-basic"
             variant="outlined"
             type="text"
@@ -144,15 +145,33 @@ export default function ChatList({ user }) {
               </div>
             ))}
           </div>
-          <ChatBox
-            currentChat={currentChat}
-            currentUserId={user._id}
-            setMessages={setMessages}
-            setNewMessage={setNewMessage}
-            messages={messages}
-            newMessage={newMessage}
-            socket={socket}
-          />
+        </Grid>
+        <Grid
+          item
+          xs={8}
+          sx={{
+            border: "solid 2px red",
+            justifyContent: "center",
+            height: "50px",
+          }}
+        >
+          <Container
+            sx={{
+              justifyContent: "bottom",
+              position: "fixed",
+              maxWidth: "100vw",
+            }}
+          >
+            <ChatBox
+              currentChat={currentChat}
+              currentUserId={user._id}
+              setMessages={setMessages}
+              setNewMessage={setNewMessage}
+              messages={messages}
+              newMessage={newMessage}
+              socket={socket}
+            />
+          </Container>
         </Grid>
       </Grid>
     </>
