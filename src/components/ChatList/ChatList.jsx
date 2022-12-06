@@ -40,8 +40,10 @@ export default function ChatList({ user }) {
       setMessages((messages) => [...messages, data]);
     });
     socket.current.on("deleted", (data) => {
-      const { messageId } = data
-      setMessages((messages) => messages.filter((message) => message._id !== messageId))
+      const { messageId } = data;
+      setMessages((messages) =>
+        messages.filter((message) => message._id !== messageId)
+      );
     });
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
@@ -50,7 +52,7 @@ export default function ChatList({ user }) {
       socket.current.off("receive-message");
       socket.current.off("deleted");
       socket.current.off("get-users");
-      socket.current.disconnect()
+      socket.current.disconnect();
     };
   }, []);
 
@@ -98,8 +100,6 @@ export default function ChatList({ user }) {
       <ChatBox
         currentChat={currentChat}
         currentUserId={user._id}
-
-
         // remainingMessage={remainingMessage}
         setMessages={setMessages}
         setNewMessage={setNewMessage}
