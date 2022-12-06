@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import UpdateUserModal from "../../components/UpdateUser/UpdateUserModal";
+import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
 
 
 export default function Home({user,setUser}) {
