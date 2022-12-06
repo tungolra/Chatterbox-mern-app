@@ -11,16 +11,25 @@ export default function NavBar(props) {
   return (
     <Grid container spacing={2}>
       <Grid item xs={4}>
+        <h1 className="logo">chatter[box]</h1>
         <AppBar
           boxShadow="none"
           position="static"
           color="transparent"
-          sx={{ zIndex: "0" }}
+          sx={{
+            zIndex: "0",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
         >
-          <nav style={{ border: "1px solid blue" }}>
+          <nav
+            style={{
+              width: "25vw",
+              border: "2px solid #2f15d1",
+            }}
+          >
             {" "}
             {/* Add own links */}
-            <h1 className="logo">chatter[box]</h1>
             <br></br>
             <Link color="secondary" to="/">
               Home&nbsp;
