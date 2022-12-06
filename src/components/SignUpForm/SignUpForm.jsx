@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { signUp } from "../../utilities/UserRequests/users-service";
+import "./SignUpForm.css";
 // mui below
-import { TextField } from "@mui/material";
-import Button from "@mui/material/Button";
+
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import { TextField, Input, Button, Link } from "@mui/material";
+
 
 export class SignUpForm extends Component {
   state = {
@@ -14,7 +19,6 @@ export class SignUpForm extends Component {
     confirm: "",
     error: "",
   };
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -38,66 +42,144 @@ export class SignUpForm extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>First Name</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="text"
-              name="firstname"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Last Name</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="text"
-              name="lastname"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Email</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Password</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Confirm</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="password"
-              name="confirm"
-              value={this.state.confirm}
-              onChange={this.handleChange}
-              required
-            />
-            <Button variant="contained" type="submit" disabled={disable}>
-              SIGN UP
-            </Button>
-          </form>
-        </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
-      </div>
+      // <ThemeProvider theme={theme}>
+        <Grid container component="main" sx={{ height: "100vh" }}>
+        <CssBaseline />
+          {/* Left side */}
+          <Grid
+            item
+            xs={false}
+            sm={4}
+            md={7}
+            sx={{ backgroundSize: "cover", backgroundPosition: "center" }}
+          >
+            <h1 className="logo">chatter[box]</h1>
+            <h3> Welcome! </h3>
+            {/* placeholder circle */}
+            <svg  xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="100" />
+            </svg>
+            <h6>Upload a Profile Photo</h6>
+          </Grid>
+          {/* Right Side */}
+          <Grid
+            item
+            xs={12}
+            sm={8}
+            md={5}
+            elevation={6}
+            square
+
+          >
+            <Box
+              sx={{
+                my: 8,
+                mx: 4,
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "center",
+              }}
+            >
+              <Box
+                component="form"
+                autoComplete="off"
+                onSubmit={this.handleSubmit}
+                sx={{display: "flex", flexDirection: "column"}}
+                className="TextField-without-border-radius"
+              >
+                <Input
+                  className="outlined-basic"
+                  variant="outlined"
+                  type="text"
+                  name="firstname"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="First Name"
+                  margin="normal"
+                  fullWidth
+                  required
+                  autoFocus
+                  disableUnderline
+
+                />
+
+                <Input
+                  className="outlined-basic"
+                  variant="outlined"
+                  type="text"
+                  name="lastname"
+                  value={this.state.name}
+                  onChange={this.handleChange}
+                  placeholder="Last Name"
+                  margin="normal"
+                  fullWidth
+                  required
+                  autoFocus
+                  disableUnderline
+                />
+
+                <Input
+                  className="outlined-basic"
+                  variant="outlined"
+                  type="email"
+                  name="email"
+                  value={this.state.email}
+                  onChange={this.handleChange}
+                  placeholder="Email"
+                  margin="normal"
+                  fullWidth
+                  required
+                  autoFocus
+                  disableUnderline
+                />
+
+                <Input
+                  className="outlined-basic"
+                  variant="outlined"
+                  type="password"
+                  name="password"
+                  value={this.state.password}
+                  onChange={this.handleChange}
+                  placeholder="Password"
+                  margin="normal"
+                  fullWidth
+                  required
+                  autoFocus
+                  disableUnderline
+                />
+
+                <Input
+                  className="outlined-basic"
+                  variant="outlined"
+                  type="password"
+                  name="confirm"
+                  value={this.state.confirm}
+                  onChange={this.handleChange}
+                  placeholder="Confirm Password"
+                  margin="normal"
+                  fullWidth
+                  required
+                  autoFocus
+                  disableUnderline
+                />
+                <Button
+                  type="submit"
+                  fullWidth
+                  variant="contained"
+                  sx={{ mt: 3, mb: 2 }}
+                  disabled={disable}
+                >
+                  START CHATTING
+                </Button>
+                <Link variant="contained" onClick={() => this.props.setShowSignUp(!this.propsshowSignUp)}>
+        {this.propsshowSignUp ? "Already have an account? Log In!" : "Don't have an account? Sign Up!"}
+      </Link>
+                <p className="error-message">&nbsp;{this.state.error}</p>
+              </Box>
+            </Box>
+          </Grid>
+        </Grid>
+      // </ThemeProvider>
     );
   }
 }
