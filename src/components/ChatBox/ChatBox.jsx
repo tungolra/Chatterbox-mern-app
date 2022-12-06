@@ -21,7 +21,6 @@ export default function ChatBox({
   }, [currentChat, currentUserId]);
 
   //handle functions
-
   function handleChange(inputText) {
     setNewMessage(inputText);
   }
