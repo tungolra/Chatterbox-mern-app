@@ -42,7 +42,7 @@ export default function LogInForm({ setUser }) {
             sx={{
               borderRadius: "10px",
             }}
-            id="outlined-basic"
+            className="outlined-basic"
             variant="outlined"
             type="text"
             name="email"
@@ -52,7 +52,7 @@ export default function LogInForm({ setUser }) {
           />
           <label>Password</label>
           <TextField
-            id="outlined-basic"
+            className="outlined-basic"
             variant="outlined"
             type="password"
             name="password"

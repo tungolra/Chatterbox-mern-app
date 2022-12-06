@@ -43,7 +43,7 @@ export class SignUpForm extends Component {
           <form autoComplete="off" onSubmit={this.handleSubmit}>
             <label>First Name</label>
             <TextField
-              id="outlined-basic"
+              className="outlined-basic"
               variant="outlined"
               type="text"
               name="firstname"
@@ -53,7 +53,7 @@ export class SignUpForm extends Component {
             />
             <label>Last Name</label>
             <TextField
-              id="outlined-basic"
+              className="outlined-basic"
               variant="outlined"
               type="text"
               name="lastname"
@@ -63,7 +63,7 @@ export class SignUpForm extends Component {
             />
             <label>Email</label>
             <TextField
-              id="outlined-basic"
+              className="outlined-basic"
               variant="outlined"
               type="email"
               name="email"
@@ -73,7 +73,7 @@ export class SignUpForm extends Component {
             />
             <label>Password</label>
             <TextField
-              id="outlined-basic"
+              className="outlined-basic"
               variant="outlined"
               type="password"
               name="password"
@@ -83,7 +83,7 @@ export class SignUpForm extends Component {
             />
             <label>Confirm</label>
             <TextField
-              id="outlined-basic"
+              className="outlined-basic"
               variant="outlined"
               type="password"
               name="confirm"

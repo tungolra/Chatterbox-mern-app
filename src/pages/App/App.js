@@ -17,7 +17,11 @@ import { ThemeProvider, createTheme } from "@mui/material";
 export const themeOptions = createTheme({
   palette: {
     primary: {
+      light: "#FFFFFF",
       main: "#2f15d1",
+
+      dark: "#002884",
+      contrastText: "#fff",
     },
     secondary: {
       main: "#A378FF",
@@ -25,16 +29,13 @@ export const themeOptions = createTheme({
   },
 });
 
-
-
 function App() {
   const [user, setUser] = useState(getUser());
 
-  useEffect( () => {
-    localStorage.removeItem('token')
-    setUser(null)
-  }, [])
-
+  useEffect(() => {
+    localStorage.removeItem("token");
+    setUser(null);
+  }, []);
 
   return (
     <main className="App">
@@ -43,7 +44,10 @@ function App() {
           <>
             <NavBar user={user} setUser={setUser} />
             <Routes>
-              <Route path="/" element={<HomePage user={user} setUser={setUser} />} />
+              <Route
+                path="/"
+                element={<HomePage user={user} setUser={setUser} />}
+              />
               <Route path="/chats" element={<ChatPage user={user} />} />
               <Route path="/check-token" element={<CheckTokenPage />} />
             </Routes>
