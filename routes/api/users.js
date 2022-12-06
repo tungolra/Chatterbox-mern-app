@@ -9,7 +9,9 @@ router.post("/login", usersCtrl.login);
 router.post("/update", usersCtrl.update)
 router.post("/uploadPicture", usersCtrl.uploadPicture)
 router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
-//getUser
 //getAllUsers
+router.get("/", usersCtrl.getAllUsers);
+//getUser
+router.get("/:userId", usersCtrl.getUser);
 
 module.exports = router;

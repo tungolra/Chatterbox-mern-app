@@ -1,23 +1,31 @@
 import { Modal, useMantineTheme } from "@mantine/core";
-import axios from "axios"
+import axios from "axios";
 
 export default function DeleteMessageModal({
   modalOpened,
   setModalOpened,
   messageId,
-  messages, 
+  messages,
   socket,
   currentChat,
-  currentUserId
-
+  currentUserId,
 }) {
   const theme = useMantineTheme();
 
-  function handleDelete() {
-    const receiverId = currentChat?.members?.find((id) => id !== currentUserId)
-    socket.current.emit("delete-message", { messages, receiverId, messageId, currentUserId})
-    axios.delete(`/api/messages/${messageId}`)
-    setModalOpened(false)
+  async function handleDelete() {
+    const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+    socket.current.emit("delete-message", {
+      messages,
+      receiverId,
+      messageId,
+      currentUserId,
+    });
+    try {
+      await axios.delete(`/api/messages/${messageId}`);
+    } catch (error) {
+      console.log(error);
+    }
+    setModalOpened(false);
   }
 
   return (
@@ -32,8 +40,8 @@ export default function DeleteMessageModal({
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-        <p>Delete Message?</p>
-        <button onClick={() => handleDelete(messageId)}>Delete</button>
+      <p>Delete Message?</p>
+      <button onClick={() => handleDelete(messageId)}>Delete</button>
     </Modal>
   );
 }
