@@ -2,6 +2,8 @@ import React from "react";
 import { useState } from "react";
 import LogInForm from "../../components/LogInForm/LogInForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import SignUpFormCopy from "../../components/SignUpForm/SignUpFormCopy";
+
 // mui
 import Button from "@mui/material/Button";
 

@@ -1,0 +1,6 @@
+.outlined-basic { 
+    border-radius: 30px;
+}
+.TextField-without-border-radius fieldset {
+    border-radius: 0;
+  }
