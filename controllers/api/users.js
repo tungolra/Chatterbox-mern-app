@@ -1,6 +1,12 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+// const uuid = require("uuid");
+// const S3 = require("react-aws-s3")
+let aws = require('aws-sdk')
+
+// aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+// var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
 
 async function create(req, res) {
   try {
@@ -11,6 +17,7 @@ async function create(req, res) {
     res.status(400).json(error);
   }
 }
+
 
 async function login(req, res) {
   try {
@@ -25,22 +32,63 @@ async function login(req, res) {
     res.status(400).json("Bad Credentials");
   }
 }
-//getUser
-//getAllUsers
 
-module.exports = {
-  create,
-  login,
-  checkToken,
-};
-//keep, but doesn't do anything...
+
+async function updateUser(req,res) {
+  try {   
+    const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
+    if (!user) throw new Error();
+  } catch (error) {
+    return res.status(400).json(error); 
+  }
+}
+
+async function uploadPicture(req,res) {
+if (req.files.file) 
+    console.log (`uploading image ${req.files.name} start. `)
+    try {   
+      uploadFileOnS3(req.files.file.name, req.files.file)
+      res.status(200).json('SENT')
+    }    
+    catch(error) {
+      return res.status(400).json(error); 
+    }
+}
+
+function uploadFileOnS3(fileName, fileData){
+  var params = {
+    Key: fileName,
+    Body:  fileData.data,
+  };
+  s3bucket.upload(params, function (err, res) {        
+      if(err) {
+        console.log("Error in uploading file on s3 due to "+ err)
+      }
+      else {
+        console.log(res)
+        console.log("File successfully uploaded.")
+      }
+  });
+}
+
 function checkToken(req, res) {
   console.log("req.user -->", req.user);
   res.json(req.exp);
 }
+
+//getUser
+//getAllUsers
 
 //Helper Functions
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 }
+
+module.exports = {
+  create,
+  login,
+  update:updateUser,
+  uploadPicture,
+  checkToken,
+};
