@@ -7,11 +7,7 @@ import './UpdatUserModal.css';
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
   const [selectedFile, setSelectedFile] = React.useState(null);
-
   const theme = useMantineTheme();
-  // let state = {
-   
-  // }
   const [formData, setFormData] = useState ({
     firstname: user.firstname ,
     lastname: user.lastname,
@@ -19,44 +15,34 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     profilePicture: user.profilePicture,
     about: user.about
   })
-  console.log (formData)
   //  const theme = useMantineTheme();
   
 
-  function handleChange(e) {
-      
+  function handleChange(e) {     
     setFormData({...formData, [e.target.name]:e.target.value })
-    // setFormData(state)
    }
   
   function handleFileSelect (e) {
-    // state[e.target.name] = e.target.value
     setFormData({...formData, selectedFile: e.target.files[0]})
     setSelectedFile(e.target.files[0])
   }
 
   function handleSubmit(e) {
      e.preventDefault()
-      // const data = new FormData()
-      // data.append ('file', selectedFile)
-        
-     try {
-      console.log ("updating form start:front-end ...")
-      console.log ({formData})
-      const user = update(formData)
-      
-      setUser(user)
-      // if (state.profilePicture) {
-      //   console.log (formData)
-      //   axios.post('/api/users/update', data , {
-      //     headers: {
-      //     "Content-type": "multipart/form-data",
-      //   },
-      // })
-      // }
-       
-     } catch (error) {
-       console.log ({error}) 
+      const data = new FormData()
+      data.append ('file', selectedFile)       
+      try {          
+        const user = update(formData)     
+        setUser(user)
+        if (data) {      
+          axios.post('/api/users/uploadPicture', data , {
+            headers: {
+            "Content-type": "multipart/form-data",
+          },
+        })
+        }
+      } catch (error) {
+        console.log ({error}) 
      }
   }
     
@@ -76,7 +62,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
-        <img className="profileImg" src={formData.profilePicture} />
+        <img className="profileImg" src={formData.profilePicture} alt="profileimage" />
           <div>
             <input
               value={formData.firstname}
@@ -105,14 +91,14 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
                 placeholder="Email"       
               />
         
-            {/* <input
+            <input
               
               onChange={handleFileSelect}
               type="file"
               className="infoInput custom-file-input"
               name="profilePicture"
               placeholder="Profile Picture"
-            /> */}
+            />
             
             <textarea
               value={formData.about}
@@ -129,8 +115,6 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
           </div>     
       </div>
       </form>
-    </Modal>
-    
-      
+    </Modal>     
   );
 }

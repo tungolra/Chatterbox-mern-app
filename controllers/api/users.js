@@ -1,16 +1,12 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-const uuid = require("uuid");
-const S3 = require("react-aws-s3")
-const config = {
-  bucketName: process.env.REACT_APP_BUCKET_NAME,
-  region: process.env.REACT_APP_REGION,
-  accessKeyId: process.env.REACT_APP_ACCESS,
-  secretAccessKey: process.env.REACT_APP_SECRET,
-  S3_BASE_URL:process.env.S3_BASE_URL
-} 
+// const uuid = require("uuid");
+// const S3 = require("react-aws-s3")
+let aws = require('aws-sdk')
 
+// aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+// var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
 
 async function create(req, res) {
   try {
@@ -21,6 +17,7 @@ async function create(req, res) {
     res.status(400).json(error);
   }
 }
+
 
 async function login(req, res) {
   try {
@@ -38,26 +35,40 @@ async function login(req, res) {
 
 
 async function updateUser(req,res) {
-  try {
-    console.log (req.body)
+  try {   
     const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
     if (!user) throw new Error();
   } catch (error) {
-    console.log ("error in update")
+    return res.status(400).json(error); 
   }
+}
 
-  if (req.body.profilePicture) 
-    console.log (`uploading image ${req.body.profilePicture} start `)
-    try {
-      const ReactS3Client = new S3(config)    
-      let newFileName = file.name.replace(/\..+$/, "");
-      ReactS3Client.uploadFile(req.files.file, newFileName) 
-      console.log (`uploading image ${req.body.profilePicture} finished `)
-      // res.status(200).json(result);    
+async function uploadPicture(req,res) {
+if (req.files.file) 
+    console.log (`uploading image ${req.files.name} start. `)
+    try {   
+      uploadFileOnS3(req.files.file.name, req.files.file)
+      res.status(200).json('SENT')
     }    
     catch(error) {
       return res.status(400).json(error); 
     }
+}
+
+function uploadFileOnS3(fileName, fileData){
+  var params = {
+    Key: fileName,
+    Body:  fileData.data,
+  };
+  s3bucket.upload(params, function (err, res) {        
+      if(err) {
+        console.log("Error in uploading file on s3 due to "+ err)
+      }
+      else {
+        console.log(res)
+        console.log("File successfully uploaded.")
+      }
+  });
 }
 
 function checkToken(req, res) {
@@ -78,5 +89,6 @@ module.exports = {
   create,
   login,
   update:updateUser,
+  uploadPicture,
   checkToken,
 };
