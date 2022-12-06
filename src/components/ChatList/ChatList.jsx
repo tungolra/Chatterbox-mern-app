@@ -13,6 +13,8 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
+  //state for chats with unread messages 
+  
 
   //get chat
   useEffect(() => {
