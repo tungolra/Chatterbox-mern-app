@@ -77,6 +77,15 @@ function checkToken(req, res) {
 }
 
 //getUser
+async function getUser (req, res){ 
+  try {
+    const result = await User.findById(req.params.userId)
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json(error)
+  }
+}
+
 //getAllUsers
 async function getAllUsers (req, res){ 
   try {
@@ -100,5 +109,6 @@ module.exports = {
   update:updateUser,
   uploadPicture,
   checkToken,
+  getUser,
   getAllUsers,
 };

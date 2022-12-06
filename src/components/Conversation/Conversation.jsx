@@ -2,27 +2,28 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 
 export default function Conversation({ currentUserId, chat, online }) {
-  const [userData, setUserData] = useState(null); //needed?
+  const [userData, setUserData] = useState(null);
 
   //find all users but the current user
-  useEffect(() => { 
-    const userId = chat.members.find((id) => id !== currentUserId);//needed?
+  useEffect(() => {
+    const friendId = chat.members.find((id) => id !== currentUserId);
     async function getUserData() {
       try {
-        await axios.get(`api/users/`);
+        const { data } = await axios.get(`api/users/${friendId}`);
+        setUserData(data);
       } catch (error) {
         console.log(error);
       }
     }
     getUserData();
   }, []);
+
   return (
     <div>
-      Conversation Component: lists all of user's open chats
       <br />
       <span>
-        Placeholder for selected chat (replace user's name): {chat._id}
-        <br/>
+        {userData.firstname} - {userData._id}
+        <br />
         Chat Member is: {online ? "online" : "offline"}
       </span>
     </div>

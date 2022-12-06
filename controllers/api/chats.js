@@ -2,6 +2,7 @@ const Chat = require("../../models/chat");
 
 //create chat
 async function createChat(req, res) {
+  // if chat doesn't exist...
   try {
     const result = await Chat.create({
       members: [req.params.firstId, req.params.secondId],
@@ -10,6 +11,7 @@ async function createChat(req, res) {
   } catch (error) {
     res.status(500).json(error);
   }
+  // else dont do anything
 }
 
 //show user's chats
