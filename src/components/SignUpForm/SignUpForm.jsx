@@ -6,11 +6,8 @@ import "./SignUpForm.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
-import Typography from "@mui/material/Typography";
-import Paper from "@mui/material/Paper";
-import { createTheme, ThemeProvider } from "@mui/material/styles";
-import { TextField, Container, Button } from "@mui/material";
-const theme = createTheme();
+import { TextField, Input, Button, Link } from "@mui/material";
+
 
 export class SignUpForm extends Component {
   state = {
@@ -59,8 +56,8 @@ export class SignUpForm extends Component {
             <h1 className="logo">chatter[box]</h1>
             <h3> Welcome! </h3>
             {/* placeholder circle */}
-            <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-              <circle cx="50" cy="50" r="10" />
+            <svg  xmlns="http://www.w3.org/2000/svg">
+              <circle cx="50" cy="50" r="100" />
             </svg>
             <h6>Upload a Profile Photo</h6>
           </Grid>
@@ -72,6 +69,7 @@ export class SignUpForm extends Component {
             md={5}
             elevation={6}
             square
+
           >
             <Box
               sx={{
@@ -87,8 +85,9 @@ export class SignUpForm extends Component {
                 autoComplete="off"
                 onSubmit={this.handleSubmit}
                 sx={{display: "flex", flexDirection: "column"}}
+                className="TextField-without-border-radius"
               >
-                <TextField
+                <Input
                   className="outlined-basic"
                   variant="outlined"
                   type="text"
@@ -100,10 +99,11 @@ export class SignUpForm extends Component {
                   fullWidth
                   required
                   autoFocus
-                  sx={{borderRadius:"30px"}}
+                  disableUnderline
+
                 />
 
-                <TextField
+                <Input
                   className="outlined-basic"
                   variant="outlined"
                   type="text"
@@ -115,9 +115,10 @@ export class SignUpForm extends Component {
                   fullWidth
                   required
                   autoFocus
+                  disableUnderline
                 />
 
-                <TextField
+                <Input
                   className="outlined-basic"
                   variant="outlined"
                   type="email"
@@ -129,9 +130,10 @@ export class SignUpForm extends Component {
                   fullWidth
                   required
                   autoFocus
+                  disableUnderline
                 />
 
-                <TextField
+                <Input
                   className="outlined-basic"
                   variant="outlined"
                   type="password"
@@ -143,9 +145,10 @@ export class SignUpForm extends Component {
                   fullWidth
                   required
                   autoFocus
+                  disableUnderline
                 />
 
-                <TextField
+                <Input
                   className="outlined-basic"
                   variant="outlined"
                   type="password"
@@ -157,6 +160,7 @@ export class SignUpForm extends Component {
                   fullWidth
                   required
                   autoFocus
+                  disableUnderline
                 />
                 <Button
                   type="submit"
@@ -167,6 +171,9 @@ export class SignUpForm extends Component {
                 >
                   START CHATTING
                 </Button>
+                <Link variant="contained" onClick={() => this.props.setShowSignUp(!this.propsshowSignUp)}>
+        {this.propsshowSignUp ? "Already have an account? Log In!" : "Don't have an account? Sign Up!"}
+      </Link>
                 <p className="error-message">&nbsp;{this.state.error}</p>
               </Box>
             </Box>
