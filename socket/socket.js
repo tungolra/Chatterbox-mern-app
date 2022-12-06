@@ -1,4 +1,7 @@
 // socket.io server installation: https://socket.io/docs/v4/server-installation/
+
+const { $$typeof } = require("react-input-emoji");
+
 // const server = require("../server")
 const io = require("socket.io")(8800, {
   cors: {
@@ -25,8 +28,17 @@ io.on("connection", (socket) => {
     io.emit("get-users", activeUsers);
   });
 
+  function createChatMsg(data) {
+    var timeS = moment(msg.time).fromNow();
+    var li =
+      "<li><p class='pull-right'>" + timeS + "   " + msg.data + "</p></li>";
+    return li;
+  }
+
   //send message
   socket.on("send-message", (data) => {
+    var li = createChatMsg(msg);
+    $(".chat").append(li);
     const { receiverId, messageInfo } = data;
     let user;
     activeUsers.forEach((u) => {
@@ -40,7 +52,7 @@ io.on("connection", (socket) => {
     //if user exists within a specific socket Id, then emit "receive-message" that
     //will be retrieved on client-side
     if (user) {
-      console.log("user socketid: ", user.socketId)
+      console.log("user socketid: ", user.socketId);
       io.to(user.socketId).emit("receive-message", messageInfo);
     }
   });
@@ -54,8 +66,8 @@ io.on("connection", (socket) => {
       if (u.userId === receiverId) {
         receiver = u;
       }
-      if (u.userId === currentUserId){
-        sender = u
+      if (u.userId === currentUserId) {
+        sender = u;
       }
     });
     if (receiver) {
