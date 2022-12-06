@@ -10,7 +10,7 @@ export default function ChatBox({
   setNewMessage,
   messages,
   newMessage,
-  socket
+  socket,
 }) {
   const [userData, setUserData] = useState(null);
 
@@ -31,10 +31,13 @@ export default function ChatBox({
       senderId: currentUserId,
       text: newMessage,
     };
-    const receiverId = currentChat?.members?.find((id) => id !== currentUserId)
+    const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
     try {
       let newMessage = await axios.post(`api/messages`, messageInfo);
-      socket.current.emit('send-message', {messageInfo: newMessage.data, receiverId});
+      socket.current.emit("send-message", {
+        messageInfo: newMessage.data,
+        receiverId,
+      });
       setMessages([...messages, newMessage.data]);
       setNewMessage("");
     } catch (error) {
@@ -45,7 +48,7 @@ export default function ChatBox({
   return (
     <>
       {currentChat ? (
-        <div style={{ border: "1px solid black" }}>
+        <div style={{ border: "3px solid red", maxHeight: "100px" }}>
           This ChatBox will render the container for a conversation the user
           selects
           <hr />

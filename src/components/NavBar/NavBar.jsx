@@ -7,6 +7,7 @@ import Stack from "@mui/material/Stack";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
+import { Container } from "react-bootstrap";
 
 export default function NavBar(props) {
   function handleLogOut() {
@@ -17,7 +18,9 @@ export default function NavBar(props) {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <h1 className="logo">chatter[box]</h1>
-        {props.user && <span>Welcome, {props.user?.firstname}!</span>}
+        <Container>
+          {props.user && <span>Welcome, {props.user?.firstname}!</span>}
+        </Container>
         <AppBar
           boxShadow="none"
           position="static"
@@ -26,15 +29,15 @@ export default function NavBar(props) {
             zIndex: "0",
             justifyContent: "center",
             alignItems: "center",
+            boxShadow: "0",
           }}
         >
           {" "}
-
           <br></br>
           <Stack
             direction="row"
             alignItems="center"
-            spacing={1}
+            spacing={3}
             justifyContent="center"
           >
             <IconButton alignItems="center">
