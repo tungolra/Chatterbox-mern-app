@@ -9,14 +9,12 @@ async function getAllUsers(req, res) {
     res.status(400).json(error);
   }
 }
-
 //map function user.name
-{
-  /* <div>
-
-</div> */
-}
-
+{/* <div>
+{users.map((user, userIndex) => (
+  <div key={userIndex}>
+))}
+</div> */}
 return (
   <>
     <div style={{ border: "1px solid black" }}>
