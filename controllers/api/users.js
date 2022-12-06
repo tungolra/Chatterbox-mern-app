@@ -5,9 +5,9 @@ const bcrypt = require("bcrypt");
 // const S3 = require("react-aws-s3")
 let aws = require('aws-sdk')
 
-// aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
-// var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
-
+aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
+const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
@@ -38,14 +38,19 @@ async function updateUser(req,res) {
   try {   
     const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
     if (!user) throw new Error();
+    
   } catch (error) {
     return res.status(400).json(error); 
   }
 }
 
 async function uploadPicture(req,res) {
+  console.log (req.params.email)
+  const user = await User.findOne({ email: req.params.email });
+  user.profilePicture = `${base_URL}/${req.files.file.name}`
+  user.save()
 if (req.files.file) 
-    console.log (`uploading image ${req.files.name} start. `)
+    console.log (`uploading image ${req.files.file.name} start. `)
     try {   
       uploadFileOnS3(req.files.file.name, req.files.file)
       res.status(200).json('SENT')

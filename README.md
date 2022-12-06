@@ -18,6 +18,7 @@ npm install
 npm install --save react-upload-to-s3
 npm install --save multer
 npm i express-fileupload
+npm i aws-sdk
 
 # References
 https://www.npmjs.com/package/react-upload-to-s3

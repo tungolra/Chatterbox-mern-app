@@ -20,22 +20,27 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
 
   function handleChange(e) {     
     setFormData({...formData, [e.target.name]:e.target.value })
+    
    }
   
   function handleFileSelect (e) {
-    setFormData({...formData, selectedFile: e.target.files[0]})
-    setSelectedFile(e.target.files[0])
+    // setFormData({...formData, selectedFile: e.target.files[0]})
+    // setFormData({...formData, selectedFile: e.target.files[0]})
+     setSelectedFile(e.target.files[0])
   }
 
   function handleSubmit(e) {
-     e.preventDefault()
-      const data = new FormData()
-      data.append ('file', selectedFile)       
+     console.log ("4")
+     console.log (formData)
+     e.preventDefault()       
       try {          
         const user = update(formData)     
         setUser(user)
+        const data = new FormData()
+        data.append ('file', selectedFile)  
+        
         if (data) {      
-          axios.post('/api/users/uploadPicture', data , {
+          axios.post(`/api/users/uploadPicture/${formData.email}`, data , {
             headers: {
             "Content-type": "multipart/form-data",
           },
@@ -58,7 +63,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form onSubmit={handleSubmit}  encType="multipart/form-data">
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
