@@ -37,15 +37,13 @@ async function login(req, res) {
 async function updateUser(req,res) {
   try {   
     const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
-    if (!user) throw new Error();
-    
+    if (!user) throw new Error();   
   } catch (error) {
     return res.status(400).json(error); 
   }
 }
 
 async function uploadPicture(req,res) {
-  console.log (req.params.email)
   const user = await User.findOne({ email: req.params.email });
   user.profilePicture = `${base_URL}/${req.files.file.name}`
   user.save()

@@ -15,7 +15,6 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     profilePicture: user.profilePicture,
     about: user.about
   })
-  //  const theme = useMantineTheme();
   
 
   function handleChange(e) {     
@@ -24,8 +23,6 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
    }
   
   function handleFileSelect (e) {
-    // setFormData({...formData, selectedFile: e.target.files[0]})
-    // setFormData({...formData, selectedFile: e.target.files[0]})
      setSelectedFile(e.target.files[0])
   }
 

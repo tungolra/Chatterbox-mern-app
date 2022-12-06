@@ -3,7 +3,6 @@ const path = require("path");
 const favicon = require("serve-favicon");
 const logger = require("morgan");
 const cors = require('cors');
-const multer = require('multer');
 const fileupload = require('express-fileupload')
 require("dotenv").config();
 require("./config/database");
@@ -14,7 +13,6 @@ require('./socket/socket')
 const port = process.env.PORT || 3001;
 
 const app = express();
-// const upload = multer({dest: 'public/uploads/'}).single('file');
 app.use(cors())
 app.use(fileupload());
 app.use(logger("dev"));
