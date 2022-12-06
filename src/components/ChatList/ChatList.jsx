@@ -3,7 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import UsersList from "../UsersList/UsersList";
+import { Input } from "@mui/material"
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -18,10 +18,9 @@ export default function ChatList({ user }) {
   useEffect(() => {
     const getUserChats = async () => {
       try {
-        let response = await axios.get(`/api/chats/${user._id}`);
-        // if (!response.ok) throw new Error("No response received")
-        let chatsData = response;
-        setChats(chatsData.data);
+        let payload = await axios.get(`/api/chats/${user._id}`);
+        if (!payload.status === 200) throw new Error("No response received")
+        setChats(payload.data);
       } catch (error) {
         console.log(error);
       }
@@ -73,8 +72,8 @@ export default function ChatList({ user }) {
   }, [currentChat]);
   // function to get chat messages and setMessages
 
-   //set all users
-   useEffect(() => {
+  //set all users
+  useEffect(() => {
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
@@ -88,11 +87,11 @@ export default function ChatList({ user }) {
     };
     getAllUsers();
   }, []);
-  
-  //start chat 
+
+  //start chat
   async function startChat(friendId) {
     try {
-      await axios.post(`api/chats/create/${user._id}/${friendId}` );
+      await axios.post(`api/chats/create/${user._id}/${friendId}`);
     } catch (error) {
       console.log(error);
     }
@@ -107,20 +106,19 @@ export default function ChatList({ user }) {
 
   return (
     <>
-        This ChatList component gets data from DB of all users & user's current convos
-        <div style={{ border: "1px solid black" }}>
-        All existing Users in DB (not including logged in user): 
+      <div style={{ border: "1px solid black" }}>
+        All existing Users in DB (not including logged in user) (To be replaced
+        with search box to find specific user):
+        <Input type="text" placeholder="Search for a User"></Input>
         {allUsers.map((friend, idx) => (
           <div key={idx} onClick={() => startChat(friend._id)}>
             {friend.firstname} {friend.lastname}
           </div>
         ))}
       </div>
-     {/* <div>
-        <UsersList user={user}/>
-      </div> */}
+
       <div style={{ border: "1px solid black" }}>
-        {/* need to show name of person chatting to */}
+        Active Chats:
         {chats.map((chat, idx) => (
           <div
             style={{ border: "1px solid red" }}

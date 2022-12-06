@@ -2,7 +2,6 @@ const Chat = require("../../models/chat");
 
 //create chat
 async function createChat(req, res) {
-  console.log("hit")
   const chat = await Chat.findOne({
     members: { $all: [req.params.firstId, req.params.secondId] },
   });
@@ -12,7 +11,6 @@ async function createChat(req, res) {
         members: [req.params.firstId, req.params.secondId],
       });
       res.status(200).json(result);
-
     } catch (error) {
       res.status(500).json(error);
     }
