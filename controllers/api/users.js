@@ -1,6 +1,12 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
+// const uuid = require("uuid");
+// const S3 = require("react-aws-s3")
+let aws = require("aws-sdk");
+
+// aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+// var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
 
 async function create(req, res) {
   try {
@@ -26,36 +32,62 @@ async function login(req, res) {
   }
 }
 
-// where is the getAllUsers being called from
-
-// set up axios call
-
-async function getAllUsers(req, res) {
+async function updateUser(req, res) {
   try {
-    const users = await User.find({});
-    res.status(200).json(users);
+    const user = await User.findOneAndUpdate(
+      { email: req.body.email },
+      req.body
+    );
+    if (!user) throw new Error();
   } catch (error) {
-    res.status(400).json(error);
+    return res.status(400).json(error);
   }
 }
 
-//create prop for users
+async function uploadPicture(req, res) {
+  if (req.files.file) console.log(`uploading image ${req.files.name} start. `);
+  try {
+    uploadFileOnS3(req.files.file.name, req.files.file);
+    res.status(200).json("SENT");
+  } catch (error) {
+    return res.status(400).json(error);
+  }
+}
 
-module.exports = {
-  create,
-  login,
-  checkToken,
-  getAllUsers,
-};
+function uploadFileOnS3(fileName, fileData) {
+  var params = {
+    Key: fileName,
+    Body: fileData.data,
+  };
+  s3bucket.upload(params, function (err, res) {
+    if (err) {
+      console.log("Error in uploading file on s3 due to " + err);
+    } else {
+      console.log(res);
+      console.log("File successfully uploaded.");
+    }
+  });
+}
 
-//keep, but doesn't do anything...
 function checkToken(req, res) {
   console.log("req.user -->", req.user);
   res.json(req.exp);
 }
 
+//getUser
+//getAllUsers
+// function getAllUsers(req, res) {}
 //Helper Functions
 
 function createJWT(user) {
   return jwt.sign({ user }, process.env.SECRET, { expiresIn: "24h" });
 }
+
+module.exports = {
+  create,
+  login,
+  update: updateUser,
+  uploadPicture,
+  checkToken,
+  // getAllUsers,
+};

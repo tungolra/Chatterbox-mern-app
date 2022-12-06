@@ -1,5 +1,5 @@
 //react toolkit
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
 //utilities
 import { getUser } from "../../utilities/UserRequests/users-service";
@@ -12,24 +12,46 @@ import ChatPage from "../ChatPage/ChatPage";
 import NavBar from "../../components/NavBar/NavBar";
 //styles
 import "./App.css";
+import { ThemeProvider, createTheme } from "@mui/material";
+
+export const themeOptions = createTheme({
+  palette: {
+    primary: {
+      main: "#2f15d1",
+    },
+    secondary: {
+      main: "#A378FF",
+    },
+  },
+});
+
 
 
 function App() {
   const [user, setUser] = useState(getUser());
+
+  useEffect( () => {
+    localStorage.removeItem('token')
+    setUser(null)
+  }, [])
+
+
   return (
     <main className="App">
-      {user ? (
-        <>
-          <NavBar user={user} setUser={setUser} />
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/chats" element={<ChatPage user={user}/>} />
-            <Route path="/check-token" element={<CheckTokenPage />} />
-          </Routes>
-        </>
-      ) : (
-        <AuthPage setUser={setUser} />
-      )}
+      <ThemeProvider theme={themeOptions}>
+        {user ? (
+          <>
+            <NavBar user={user} setUser={setUser} />
+            <Routes>
+              <Route path="/" element={<HomePage user={user} setUser={setUser} />} />
+              <Route path="/chats" element={<ChatPage user={user} />} />
+              <Route path="/check-token" element={<CheckTokenPage />} />
+            </Routes>
+          </>
+        ) : (
+          <AuthPage setUser={setUser} />
+        )}
+      </ThemeProvider>
     </main>
   );
 }
