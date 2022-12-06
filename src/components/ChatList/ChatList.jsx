@@ -3,7 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input } from "@mui/material"
+import { Input, Grid, TextField } from "@mui/material";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -19,7 +19,7 @@ export default function ChatList({ user }) {
     const getUserChats = async () => {
       try {
         let payload = await axios.get(`/api/chats/${user._id}`);
-        if (!payload.status === 200) throw new Error("No response received")
+        if (!payload.status === 200) throw new Error("No response received");
         setChats(payload.data);
       } catch (error) {
         console.log(error);
@@ -106,43 +106,53 @@ export default function ChatList({ user }) {
 
   return (
     <>
-      <div style={{ border: "1px solid black" }}>
-        All existing Users in DB (not including logged in user) (To be replaced
-        with search box to find specific user):
-        <Input type="text" placeholder="Search for a User"></Input>
-        {allUsers.map((friend, idx) => (
-          <div key={idx} onClick={() => startChat(friend._id)}>
-            {friend.firstname} {friend.lastname}
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <TextField
+            sx={{ width: "25vw", border: "2px solid #2f15d1" }}
+            className="outlined-basic"
+            variant="outlined"
+            type="text"
+            placeholder="Search for a User"
+          ></TextField>
+          <div style={{ border: "1px solid black" }}>
+            {/* All existing Users in DB (not including logged in user) (To be
+            replaced with search box to find specific user): */}
+            {allUsers.map((friend, idx) => (
+              <div key={idx} onClick={() => startChat(friend._id)}>
+                {friend.firstname} {friend.lastname}
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
 
-      <div style={{ border: "1px solid black" }}>
-        Active Chats:
-        {chats.map((chat, idx) => (
-          <div
-            style={{ border: "1px solid red" }}
-            key={idx}
-            onClick={() => setCurrentChat(chat)}
-          >
-            <Conversation
-              currentUserId={user._id}
-              chat={chat}
-              online={isOnline(chat)}
-              user={user}
-            />
+          <div style={{ border: "1px solid black" }}>
+            Active Chats:
+            {chats.map((chat, idx) => (
+              <div
+                style={{ border: "1px solid red" }}
+                key={idx}
+                onClick={() => setCurrentChat(chat)}
+              >
+                <Conversation
+                  currentUserId={user._id}
+                  chat={chat}
+                  online={isOnline(chat)}
+                  user={user}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <ChatBox
-        currentChat={currentChat}
-        currentUserId={user._id}
-        setMessages={setMessages}
-        setNewMessage={setNewMessage}
-        messages={messages}
-        newMessage={newMessage}
-        socket={socket}
-      />
+          <ChatBox
+            currentChat={currentChat}
+            currentUserId={user._id}
+            setMessages={setMessages}
+            setNewMessage={setNewMessage}
+            messages={messages}
+            newMessage={newMessage}
+            socket={socket}
+          />
+        </Grid>
+      </Grid>
     </>
   );
 }
