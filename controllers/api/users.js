@@ -78,6 +78,15 @@ function checkToken(req, res) {
 
 //getUser
 //getAllUsers
+async function getAllUsers (req, res){ 
+  try {
+    const result = await User.find({})
+    res.status(200).json(result)
+  } catch (error) {
+    res.status(400).json(error)
+    
+  }
+}
 
 //Helper Functions
 
@@ -91,4 +100,5 @@ module.exports = {
   update:updateUser,
   uploadPicture,
   checkToken,
+  getAllUsers,
 };
