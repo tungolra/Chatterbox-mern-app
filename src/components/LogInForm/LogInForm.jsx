@@ -4,7 +4,7 @@ import { useState } from "react";
 import * as usersService from "../../utilities/UserRequests/users-service";
 // mui below
 import Button from "@mui/material/Button";
-import { Input, TextField } from "@mui/material";
+import { Box, Input, TextField } from "@mui/material";
 
 export default function LogInForm({ setUser }) {
   const [credentials, setCredentials] = useState({
@@ -60,9 +60,12 @@ export default function LogInForm({ setUser }) {
             onChange={handleChange}
             required
           />
-          <Button variant="contained" type="submit">
-            LOG IN
-          </Button>
+
+          <Box>
+            <Button variant="contained" type="submit">
+              LOG IN
+            </Button>
+          </Box>
         </form>
       </div>
       <p className="error-message">&nbsp;{error}</p>
