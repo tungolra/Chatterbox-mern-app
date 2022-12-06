@@ -4,6 +4,7 @@ import axios from "axios";
 export default function DeleteMessageModal({
   modalOpened,
   setModalOpened,
+  setMessages,
   messageId,
   messages,
   socket,
@@ -25,6 +26,7 @@ export default function DeleteMessageModal({
     } catch (error) {
       console.log(error);
     }
+    // setMessages((messages)=> [...messages])
     setModalOpened(false);
   }
 
