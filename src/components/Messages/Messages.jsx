@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
+import "./Messages.css"
 
 export default function Messages({
   messages,
@@ -12,10 +13,6 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
 
-  // const sender = messages.find((message)=> {
-  // getUser call to server
-  // })
-
   // scroll to last message
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
@@ -23,9 +20,14 @@ export default function Messages({
 
   return (
     <>
-      <div>
+      <div className="messages-container">
         {messages.map((message, idx) => (
-          <p ref={scroll} key={idx} onClick={() => setModalOpened(true)}>
+          <p
+            className={message.senderId === currentUserId ? "message own" : "message"}
+            ref={scroll}
+            key={idx}
+            onClick={() => setModalOpened(true)}
+          >
             <DeleteMessageModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
