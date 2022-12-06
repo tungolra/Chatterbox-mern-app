@@ -18,8 +18,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
   
 
   function handleChange(e) {     
-    setFormData({...formData, [e.target.name]:e.target.value })
-    
+    setFormData({...formData, [e.target.name]:e.target.value })  
    }
   
   function handleFileSelect (e) {
@@ -27,8 +26,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
   }
 
   function handleSubmit(e) {
-     console.log ("4")
-     console.log (formData)
+
      e.preventDefault()       
       try {          
         const user = update(formData)     
