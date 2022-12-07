@@ -16,7 +16,6 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       try {
         const { data } = await axios.get(`api/users/${friendId}`);
         setUserData(data);
-        console.log(data)
       } catch (error) {
         console.log(error);
       }
