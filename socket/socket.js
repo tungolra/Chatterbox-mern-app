@@ -33,6 +33,7 @@ function connectIO() {
     //send message
     socket.on("send-message", (data) => {
       const { receiverId, messageInfo } = data;
+      console.log(messageInfo)
       let user;
       activeUsers.forEach((u) => {
         if (u.userId === receiverId) {

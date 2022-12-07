@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Input, Grid, TextField } from "@mui/material";
 import "./Conversation.css";
 import axios from "axios";
-
+import { Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
 
 export default function Conversation({ currentUserId, chat, online, user }) {
