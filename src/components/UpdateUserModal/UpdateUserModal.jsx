@@ -24,13 +24,12 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
    }
   
   function handleFileSelect (e) {
-     //setFormData({...formData, [e.target.name]:e.target.value })  
+      setFormData({...formData, [e.target.name]:e.target.value })  
      setSelectedFile(e.target.files[0]) 
      
   }
 
   function handleSubmit(e) {
-console.log (user)
      e.preventDefault()       
       try {          
         const user = update(formData)     
@@ -43,7 +42,8 @@ console.log (user)
             headers: {
             "Content-type": "multipart/form-data",
           },
-        }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
+          }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
+          // })
         }
       } catch (error) {
         console.log ({error}) 
@@ -68,7 +68,7 @@ console.log (user)
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
-        <img className="profileImg" src={formData.profilePicture} alt="profileimage" />
+        <img className="profileImg" src={user.profilePicture} alt="profileimage" /> 
           <div>
             <input
               value={formData.firstname}
