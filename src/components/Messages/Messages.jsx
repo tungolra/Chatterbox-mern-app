@@ -35,13 +35,11 @@ export default function Messages({
               ref={scroll}
               key={idx}
               onClick={() => {
-                console.log("onclick msg id: ", message._id);
                 setMessageId(message._id);
                 setModalOpened(true);
               }}
             >
               <span className="sender-text">{message.senderId}</span>
-
               <br />
               <Linkify>{message.text}</Linkify>
               <br />

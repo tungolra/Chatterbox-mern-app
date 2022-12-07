@@ -33,7 +33,7 @@ export default function ChatList({ user }) {
 
   //connect to socket.io
   useEffect(() => {
-    socket.current = io("http://localhost:8800");
+    socket.current = io();
     //to subscribe to specific event, we have to write emit
     socket.current.emit("new-user-add", user._id);
   }, [user]);

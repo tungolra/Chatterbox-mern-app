@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
+import { Input, Grid, TextField } from "@mui/material";
+import "./Conversation.css";
 import axios from "axios";
 import { Grid, Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
-export default function Conversation({ currentUserId, chat, online }) {
+
+export default function Conversation({ currentUserId, chat, online, user }) {
+
   const [userData, setUserData] = useState(null);
 
   //find all users but the current user
@@ -12,6 +16,7 @@ export default function Conversation({ currentUserId, chat, online }) {
       try {
         const { data } = await axios.get(`api/users/${friendId}`);
         setUserData(data);
+        console.log(data)
       } catch (error) {
         console.log(error);
       }
@@ -26,11 +31,17 @@ export default function Conversation({ currentUserId, chat, online }) {
       sx={{ width:"25vw",padding: "5px", justifyContent: "center", alignItems: "center" }}
     >
       <Grid item xs={2}>
-        <Avatar sx={{ margin: "auto", backgroundColor: "#A378FF",border: "3px solid #2f15d1" }}></Avatar>
+                <img
+          className="profileImg"
+          src={
+            userData?.profilePicture === ""
+              ? "/logo192.png"
+              : userData?.profilePicture
+          }
+        />
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>
-        
       </Grid>
       <Grid item xs={3}>
         Chat Member is: {online ? "online" : "offline"}

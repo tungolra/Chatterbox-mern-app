@@ -51,7 +51,9 @@ if (req.files.file)
     console.log (`uploading image ${req.files.file.name} start. `)
     try {   
       uploadFileOnS3(req.files.file.name, req.files.file)
-      res.status(200).json('SENT')
+      
+      // res.status(200).json('SENT')
+      res.status(200).redirect("/")
     }    
     catch(error) {
       return res.status(400).json(error); 

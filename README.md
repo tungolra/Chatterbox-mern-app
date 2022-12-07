@@ -1,6 +1,10 @@
 # CHATTER BOX
 
-
+# USED TECHNOLOGIES
+1. React
+2. Mongoose database
+3. socket io 
+4. Amazon Web Services (aws-sdk)
 
 # Steps to follow
 
@@ -15,9 +19,7 @@ Run npm start to start the server on PORT 3000
 
 # Installation
 npm install
-npm install --save react-upload-to-s3
-npm install --save multer
-npm i express-fileupload
+Upload F
 npm i aws-sdk
 
 # References
