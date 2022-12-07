@@ -43,7 +43,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             headers: {
             "Content-type": "multipart/form-data",
           },
-            }).then(res=>setUser({...user, profilePicture:`${user.profilePicture}`} ))
+            }).then(res=>setUser({...user, profilePicture:`https://ga-chatterbox.s3.ca-central-1.amazonaws.com/${selectedFile.name}`} ))
           // }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
           //  })
         }
