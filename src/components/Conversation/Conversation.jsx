@@ -28,7 +28,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         <img
           className="profileImg"
           src={
-            user?.profilePicture === ""
+            userData?.profilePicture === ""
               ? "/logo192.png"
               : userData?.profilePicture
           }
