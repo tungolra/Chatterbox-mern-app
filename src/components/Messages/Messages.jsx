@@ -46,6 +46,7 @@ export default function Messages({
         <DeleteMessageModal
           modalOpened={modalOpened}
           setModalOpened={setModalOpened}
+          messages={messages}
           setMessages={setMessages}
           messageId={messageId}
           socket={socket}
