@@ -132,7 +132,8 @@ export default function ChatList({ user }) {
             {chats.map((chat, idx) => (
               <div
                 style={{
-                  border: "1px solid red",
+                  border: "3px solid #2f15d1",
+                  borderRadius:"15px",
                   margin: "5px",
                   alignItems: "center",
                 }}

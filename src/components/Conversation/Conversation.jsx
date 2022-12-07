@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-
+import { Container, Grid } from "@mui/material";
 export default function Conversation({ currentUserId, chat, online }) {
   const [userData, setUserData] = useState(null);
 
@@ -19,13 +19,20 @@ export default function Conversation({ currentUserId, chat, online }) {
   }, []);
 
   return (
-    <div>
-      <br />
-      <span>
-        {userData?.firstname}
+    <Grid container spacing={3}>
+      <div>
         <br />
-        Chat Member is: {online ? "online" : "offline"}
-      </span>
-    </div>
+        <Grid item xs={1}>
+          Image here
+        </Grid>
+        <Grid item xs={1}>
+          <span>{userData?.firstname}</span>
+        </Grid>
+        <Grid item xs={1}>
+          <br />
+          Chat Member is: {online ? "online" : "offline"}
+        </Grid>
+      </div>
+    </Grid>
   );
 }

@@ -58,7 +58,9 @@ export default function ChatBox({
             currentUserId={currentUserId}
           />
           <InputEmoji value={newMessage} onChange={handleChange} />
-          <Button onClick={handleSend}>Send</Button>
+          <Button color="primary" onClick={handleSend}>
+            Send
+          </Button>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>

@@ -4,6 +4,7 @@ import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 import "./Messages.css";
 import Linkify from "react-linkify";
 import { Button } from "@mui/material";
+import ChatBox from "../ChatBox/ChatBox";
 
 export default function Messages({
   messages,
@@ -15,6 +16,7 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
+  
 
   // scroll to last message
   useEffect(() => {
@@ -24,7 +26,7 @@ export default function Messages({
   return (
     <>
       <div className="message-data">
-        <div className="messages-container">
+        <div >
           {messages.map((message, idx) => (
             <p
               className={
@@ -38,7 +40,8 @@ export default function Messages({
                 setModalOpened(true);
               }}
             >
-              <span className="sender-text">sender variable goes here</span>
+              <span className="sender-text">{message.senderId}</span>
+
               <br />
               <Linkify>{message.text}</Linkify>
               <br />

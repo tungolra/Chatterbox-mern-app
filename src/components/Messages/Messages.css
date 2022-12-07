@@ -20,9 +20,10 @@
   background-color: #a378ff;
 }
 .message-data {
-  color: ;
+  color: #1165eb;
 }
 .sender-text {
   font-weight: bold;
   justify-content: left;
+  color: white;
 }
