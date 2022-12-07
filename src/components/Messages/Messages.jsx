@@ -5,6 +5,7 @@ import "./Messages.css";
 import Linkify from "react-linkify";
 import { Button } from "@mui/material";
 import ChatBox from "../ChatBox/ChatBox";
+import moment from "moment";
 
 export default function Messages({
   messages,
@@ -16,7 +17,10 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
-  
+
+  let newDate = new Date();
+  let sentDate = `${newDate.toLocaleTimeString()}`;
+  // let moment = moment(newDate).format()
 
   // scroll to last message
   useEffect(() => {
@@ -26,7 +30,7 @@ export default function Messages({
   return (
     <>
       <div className="message-data">
-        <div >
+        <div>
           {messages.map((message, idx) => (
             <p
               className={
@@ -43,8 +47,8 @@ export default function Messages({
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
-              Sent: {format(message.createdAt)}
-              <br />
+              (moment) Created at:{" "}
+              {moment(message.createdAt).format("LLL").slice(0, -12)}
             </p>
           ))}
           <DeleteMessageModal
@@ -61,3 +65,4 @@ export default function Messages({
     </>
   );
 }
+// loop through string and cut out characters
