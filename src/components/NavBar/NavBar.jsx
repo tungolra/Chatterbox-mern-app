@@ -1,7 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/UserRequests/users-service";
-import { AppBar, Grid } from "@mui/material";
+import { AppBar, Grid, IconButton, Button } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import Stack from "@mui/material/Stack";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Container } from "react-bootstrap";
 
 export default function NavBar(props) {
   function handleLogOut() {
@@ -12,6 +18,9 @@ export default function NavBar(props) {
     <Grid container spacing={2}>
       <Grid item xs={4}>
         <h1 className="logo">chatter[box]</h1>
+        <Container>
+          {props.user && <span>Welcome, {props.user?.firstname}!</span>}
+        </Container>
         <AppBar
           boxShadow="none"
           position="static"
@@ -20,27 +29,34 @@ export default function NavBar(props) {
             zIndex: "0",
             justifyContent: "center",
             alignItems: "center",
+            boxShadow: "0",
           }}
         >
-          <nav
-            style={{
-              width: "25vw",
-              border: "2px solid #2f15d1",
-            }}
+          {" "}
+          <br></br>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={3}
+            justifyContent="center"
           >
-            {" "}
-            {/* Add own links */}
+            <IconButton alignItems="center">
+              <Link color="secondary" to="/">
+                <PersonOutlineIcon color="secondary">Home</PersonOutlineIcon>
+              </Link>
+            </IconButton>
+            <IconButton>
+              <Link to="/chats">
+                <ChatBubbleOutlineIcon color="secondary"></ChatBubbleOutlineIcon>
+              </Link>
+            </IconButton>
+            <IconButton>
+              <Link to="" onClick={handleLogOut}>
+                <LogoutIcon color="secondary"></LogoutIcon>
+              </Link>
+            </IconButton>
             <br></br>
-            <Link color="secondary" to="/">
-              Home&nbsp;
-            </Link>
-            <Link to="/chats">Chats&nbsp;</Link>
-            <Link to="" onClick={handleLogOut}>
-              Log Out&nbsp;
-            </Link>
-            <br></br>
-            {props.user && <span>Welcome, {props.user?.firstname}!</span>}
-          </nav>
+          </Stack>
         </AppBar>
       </Grid>
     </Grid>

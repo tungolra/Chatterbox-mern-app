@@ -17,5 +17,6 @@ const MessageSchema = new mongoose.Schema(
       timestamps: true,
     }
   );
+  //add read property
 
   module.exports = mongoose.model("Message", MessageSchema);

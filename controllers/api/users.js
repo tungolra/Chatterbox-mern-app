@@ -49,16 +49,19 @@ async function updateUser(req, res) {
 
 async function uploadPicture(req, res) {
   const user = await User.findOne({ email: req.params.email });
-  user.profilePicture = `${base_URL}/${req.files.file.name}`;
-  user.save();
-  if (req.files.file)
-    console.log(`uploading image ${req.files.file.name} start. `);
-  try {
-    uploadFileOnS3(req.files.file.name, req.files.file);
-    res.status(200).json("SENT");
-  } catch (error) {
-    return res.status(400).json(error);
-  }
+  user.profilePicture = `${base_URL}/${req.files.file.name}`
+  user.save()
+if (req.files.file) 
+    console.log (`uploading image ${req.files.file.name} start. `)
+    try {   
+      uploadFileOnS3(req.files.file.name, req.files.file)
+      
+      // res.status(200).json('SENT')
+      res.status(200).redirect("/")
+    }    
+    catch(error) {
+      return res.status(400).json(error); 
+    }
 }
 
 function uploadFileOnS3(fileName, fileData) {

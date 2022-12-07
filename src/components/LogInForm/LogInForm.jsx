@@ -1,12 +1,12 @@
-// LoginForm.jsx
-
+// react modules
 import { useState } from "react";
+//utilities
 import * as usersService from "../../utilities/UserRequests/users-service";
-// mui below
+// styles
 import Button from "@mui/material/Button";
-import { Box, Input, TextField } from "@mui/material";
+import { Box, Input, Link, Container } from "@mui/material";
 
-export default function LogInForm({ setUser }) {
+export default function LogInForm({ setUser, showSignUp, setShowSignUp }) {
   const [credentials, setCredentials] = useState({
     email: "",
     password: "",
@@ -19,14 +19,9 @@ export default function LogInForm({ setUser }) {
   }
 
   async function handleSubmit(evt) {
-    // Prevent form from being submitted to the server
     evt.preventDefault();
     try {
-      // The promise returned by the signUp service method
-      // will resolve to the user object included in the
-      // payload of the JSON Web Token (JWT)
       const user = await usersService.logIn(credentials);
-      // how does this work again...?
       setUser(user);
     } catch {
       setError("Log In Failed - Try Again");
@@ -35,39 +30,70 @@ export default function LogInForm({ setUser }) {
 
   return (
     <div>
-      <div className="form-container">
-        <form autoComplete="off" onSubmit={handleSubmit}>
-          <label>Email</label>
-          <TextField
-            sx={{
-              borderRadius: "10px",
-            }}
+      <Container
+        component="main"
+        sx={{
+          display: "flex",
+          height: "100vh",
+          width: "60vw",
+          flexDirection:"column",
+        }}
+      >
+        <h1 className="logo">chatter[box]</h1>
+        <Box
+          component="form"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          sx={{ display: "flex", flexDirection: "column", }}
+        >
+          <Input
             className="outlined-basic"
             variant="outlined"
             type="text"
             name="email"
             value={credentials.email}
             onChange={handleChange}
+            placeholder="Email"
+            margin="normal"
+            fullWidth
             required
+            autoFocus
+            disableUnderline
           />
-          <label>Password</label>
-          <TextField
+
+          <Input
             className="outlined-basic"
             variant="outlined"
             type="password"
             name="password"
             value={credentials.password}
             onChange={handleChange}
+            placeholder="Password"
+            margin="normal"
+            fullWidth
             required
+            autoFocus
+            disableUnderline
           />
 
+          <Link variant="contained" onClick={() => setShowSignUp(!showSignUp)}>
+            {showSignUp
+              ? "Been here before? Log In!"
+              : "New around here? Sign Up!"}
+          </Link>
           <Box>
-            <Button variant="contained" type="submit">
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth
+              autoFocus
+              sx={{ borderRadius: " 30px" }}
+            >
               LOG IN
             </Button>
           </Box>
-        </form>
-      </div>
+        </Box>
+      </Container>
       <p className="error-message">&nbsp;{error}</p>
     </div>
   );
