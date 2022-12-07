@@ -1,13 +1,12 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-// const uuid = require("uuid");
-// const S3 = require("react-aws-s3")
 let aws = require('aws-sdk')
 
 aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
 var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
 const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
+
 async function create(req, res) {
   try {
     const user = await User.create(req.body);
@@ -50,10 +49,10 @@ async function uploadPicture(req,res) {
 if (req.files.file) 
     console.log (`uploading image ${req.files.file.name} start. `)
     try {   
-      uploadFileOnS3(req.files.file.name, req.files.file)
-      
-      // res.status(200).json('SENT')
-      res.status(200).redirect("/")
+      let response = await uploadFileOnS3(req.files.file.name, req.files.file)
+      console.log (response)
+      // res.status(200).json(response)
+      res.status(200).json(user)
     }    
     catch(error) {
       return res.status(400).json(error); 
@@ -65,13 +64,14 @@ function uploadFileOnS3(fileName, fileData){
     Key: fileName,
     Body:  fileData.data,
   };
-  s3bucket.upload(params, function (err, res) {        
+  s3bucket.upload(params, async function (err, res) {        
       if(err) {
         console.log("Error in uploading file on s3 due to "+ err)
       }
       else {
-        console.log(res)
+        console.log(res)       
         console.log("File successfully uploaded.")
+        return await res
       }
   });
 }

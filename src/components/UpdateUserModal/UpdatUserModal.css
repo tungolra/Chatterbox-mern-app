@@ -28,7 +28,8 @@ h1{
 .profileImg{
   border:2px solid #1165EB;
     border-radius: 100px;
-    width:100px;
+    width:150px;
+    height: 150px;
 }
 
 .submitBtn {

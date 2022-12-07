@@ -22,7 +22,6 @@ export default function NavBar(props) {
           {props.user && <span>Welcome, {props.user?.firstname}!</span>}
         </Container>
         <AppBar
-          boxShadow="none"
           position="static"
           color="transparent"
           sx={{
