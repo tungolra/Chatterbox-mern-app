@@ -68,7 +68,7 @@ function connectIO () {
       });
       if (receiver) {
         io.to(receiver.socketId).emit("deleted", data);
-        io.to(sender.socketId).emit("deleted", data);
+        // io.to(sender.socketId).emit("deleted", data);
       }
     });
     
