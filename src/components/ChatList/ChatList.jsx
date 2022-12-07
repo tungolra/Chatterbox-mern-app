@@ -126,14 +126,14 @@ export default function ChatList({ user }) {
                 <Avatar
                   sx={{
                     margin: "auto",
-                    backgroundColor: "#A378FF",
-                    border: "3px solid #2f15d1",
+                    // backgroundColor: "#A378FF",
+                    // border: "3px solid #2f15d1",
                   }}
                 ></Avatar>
                 <br />
                 <p
                   style={{
-                    // color: "#2f15d1",
+                    color: "#2f15d1",
                     fontWeight: "bold",
                     justifyContent: "center",
                     width: "8vw",
