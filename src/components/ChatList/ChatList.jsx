@@ -133,7 +133,7 @@ export default function ChatList({ user }) {
                 <br />
                 <p
                   style={{
-                    color: "#2f15d1",
+                    // color: "#2f15d1",
                     fontWeight: "bold",
                     justifyContent: "center",
                     width: "8vw",
