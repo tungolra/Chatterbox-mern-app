@@ -15,14 +15,16 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     profilePicture: user.profilePicture,
     about: user.about
   })
-  
+
+       
 
   function handleChange(e) {     
     setFormData({...formData, [e.target.name]:e.target.value })  
    }
   
   function handleFileSelect (e) {
-     setSelectedFile(e.target.files[0])
+     setFormData({...formData, [e.target.name]:e.target.value })  
+     setSelectedFile(e.target.files[0]) 
   }
 
   function handleSubmit(e) {
@@ -30,11 +32,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
      e.preventDefault()       
       try {          
         const user = update(formData)     
-        setUser(user)
+        // setUser(user)
         const data = new FormData()
-        data.append ('file', selectedFile)  
-        
-        if (data) {      
+        data.append('file', selectedFile)      
+         if (selectedFile) {  
+       
           axios.post(`/api/users/uploadPicture/${formData.email}`, data , {
             headers: {
             "Content-type": "multipart/form-data",
@@ -44,6 +46,8 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       } catch (error) {
         console.log ({error}) 
      }
+     setUser(user)
+     setModalOpened(false)
   }
     
   return (

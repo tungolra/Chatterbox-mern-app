@@ -13,7 +13,6 @@ export default function NavBar(props) {
       <Grid item xs={4}>
         <h1 className="logo">chatter[box]</h1>
         <AppBar
-          boxShadow="none"
           position="static"
           color="transparent"
           sx={{
