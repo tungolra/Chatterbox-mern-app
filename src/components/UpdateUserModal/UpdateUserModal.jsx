@@ -3,6 +3,11 @@ import { Modal, useMantineTheme } from "@mantine/core";
 import { update } from '../../utilities/UserRequests/users-service';
 import axios from 'axios';
 import './UpdatUserModal.css';
+// mui below
+import CssBaseline from "@mui/material/CssBaseline";
+import { Input, Button, TextareaAutosize, Box} from "@mui/material";
+import { Container } from "@mui/system";
+
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
@@ -11,8 +16,9 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
   const [formData, setFormData] = useState ({
     firstname: user.firstname ,
     lastname: user.lastname,
+    username: user.username,
     email: user.email,
-     profilePicture: "",
+    profilePicture: "",
     about: user.about
   })
 
@@ -28,26 +34,27 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
      
   }
 
-  function handleSubmit(e) {
+    async function handleSubmit(e) {
      e.preventDefault()       
       try {          
-        const user = update(formData)     
-        setUser(user)
+        // const user =  update(formData)     
+        // setUser(user)
         const data = new FormData()
         data.append('file', selectedFile)      
-         if (selectedFile) {  
-       
+         if (selectedFile) {         
           axios.post(`/api/users/uploadPicture/${formData.email}`, data , {
             headers: {
             "Content-type": "multipart/form-data",
           },
             }).then(res=>setUser({...user, profilePicture:`https://ga-chatterbox.s3.ca-central-1.amazonaws.com/${selectedFile.name}`} ))
-          //  })
-        }
+            // })
+        }       
+        const user = await update(formData)     
+        setUser(user)
       } catch (error) {
         console.log ({error}) 
-     }
-     setModalOpened(false)
+     }     
+      setModalOpened(false)
   }
     
   return (
@@ -62,63 +69,130 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form onSubmit={handleSubmit} encType="multipart/form-data">
-      <div className="updateContainer">
-        <h1>CHATTER BOX</h1>
-        
-        <img className="profileImg" src={user.profilePicture} alt="profileimage" /> 
+
+      <Container
+        component="main"
+        sx={{
+          display: "flex",
+          height: "100vh",
+          width: "40vw",
+          flexDirection: "column",
+        }}
+      >
+        <CssBaseline />
+        <Box
+          component="form"
+          autoComplete="off"
+          onSubmit={handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <img className="profileImg" src={user.profilePicture} alt="profileimage" /> 
           <div>
-            <input
-              value={formData.firstname}
-              onChange={handleChange}
+
+            <Input
+              className="outlined-basic"
+              variant="outlined"
               type="text"
-              className="infoInput"
               name="firstname"
+              value={formData.firstname}
+              onChange={handleChange}         
               placeholder="First Name"
+              margin="normal"
+              fullWidth
+              required
+              autoFocus
+              disableUnderline
             />
             
-            <input
-              value={formData.lastname}
-              onChange={handleChange}
+            <Input
+              className="outlined-basic"
+              variant="outlined"
               type="text"
-              className="infoInput"
               name="lastname"
+              value={formData.lastname}
+              onChange={handleChange}           
               placeholder="Last Name"
+              margin="normal"
+              fullWidth
+              required
+              autoFocus
+              disableUnderline
             />
 
-              <input
-                value={formData.email}
-                onChange={handleChange}
+          <Input
+              className="outlined-basic"
+              variant="outlined"
+              type="text"
+              name="username"
+              value={formData.username}
+              onChange={handleChange}           
+              placeholder="Userame"
+              margin="normal"
+              fullWidth
+              required
+              autoFocus
+              disableUnderline
+            />
+
+
+            <Input
+                className="outlined-basic"
+                variant="outlined"
                 type="email"
-                className="infoInput"
                 name="email"
-                placeholder="Email"       
+                value={formData.email}
+                onChange={handleChange}          
+                placeholder="Email"  
+                margin="normal"
+                fullWidth
+                required
+                autoFocus
+                disableUnderline     
               />
         
-            <input
-              
-              onChange={handleFileSelect}
+          <Input    
+              className="outlined-basic custom-file-input"  
+              variant="outlined"  
               type="file"
-              className="infoInput custom-file-input"
-              name="profilePicture"
+              name="profilePicture"  
+              onChange={handleFileSelect}          
               placeholder="Profile Picture"
+              margin="normal"
+              fullWidth
+              autoFocus
+              disableUnderline
             />
             
-            <textarea
+            <TextareaAutosize
+              className="outlined-basic"
+              variant="outlined" 
+              type="text" 
+              name="about"
               value={formData.about}
               onChange={handleChange}
-              type="text"
-              className="infoInput"
-              rows="4" cols="40"
-              name="about"
               placeholder="About ..."
+              margin="normal"
+              fullWidth
+              autoFocus
+              disableUnderline
+              
+
             />
-            <button 
+          <Button
             type="submit"
-            className="submitBtn">Update</button>
-          </div>     
-      </div>
-      </form>
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2, borderRadius: "30px" }}
+            autoFocus
+          >
+            UPDATE
+          </Button>
+          </div>   
+        </Box>
+      </Container>
     </Modal>     
   );
 }
