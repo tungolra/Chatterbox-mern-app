@@ -15,9 +15,9 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages 
-// console.log("currentChat: ", currentChat)
-// console.log("messages: ", messages)
+  //state for chats with unread messages
+  // console.log("currentChat: ", currentChat)
+  // console.log("messages: ", messages)
 
   //get chat
   useEffect(() => {
@@ -36,37 +36,38 @@ export default function ChatList({ user }) {
   //connect to socket.io
   useEffect(() => {
     socket.current = io();
-    //to subscribe to specific event, we have to write emit
     socket.current.emit("new-user-add", user._id);
   }, [user]);
 
-  //listen on get users, receive, deleted...
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      // if their chat with the sender is open, set messages
-      console.log("1", data.chatId)
-      console.log("2", currentChat.chatId)
-      // if (data.chatId == currentChat.chatId){
-      // }
+      if (data.chatId == currentChat?._id) {
         setMessages((messages) => [...messages, data]);
+      }
     });
+    return () => {
+      socket.current.off("receive-message");
+    };
+  }, [currentChat]);
+  
+  useEffect(() => {
+    //listen on get users, deleted...
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
       setMessages((messages) =>
-        messages.filter((message) => message._id !== messageId)
+      messages.filter((message) => message._id !== messageId)
       );
     });
     socket.current.on("get-users", (users) => {
       setOnlineUsers(users);
     });
     return () => {
-      socket.current.off("receive-message");
       socket.current.off("deleted");
       socket.current.off("get-users");
       socket.current.disconnect();
     };
   }, []);
-  
+
   // get messages for chat
   useEffect(() => {
     const serverRoute = "api/messages";
@@ -80,9 +81,8 @@ export default function ChatList({ user }) {
     };
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
-  // function to get chat messages and setMessages
 
-  // get all chats 
+  // get all chats
 
   //set all users
   useEffect(() => {
@@ -171,9 +171,9 @@ export default function ChatList({ user }) {
                 }}
                 key={idx}
                 onClick={() => {
-                  setCurrentChat(chat)
-                  console.log("Chat: ", chat)
-                  }}
+                  setCurrentChat(chat);
+                  console.log("Chat: ", chat);
+                }}
               >
                 <Conversation
                   currentUserId={user._id}
