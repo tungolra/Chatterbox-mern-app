@@ -8,6 +8,13 @@ const userSchema = new mongoose.Schema(
     // add first name, last name, profile picture
     firstname: { type: String, required: true },
     lastname: { type: String, required: true },
+    username: {
+      type: String,
+      unique: true,
+      trim: true,
+      lowercase: true,
+      required: true,
+    },
     email: {
       type: String,
       unique: true,
