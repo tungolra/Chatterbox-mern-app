@@ -23,10 +23,10 @@ export default function Conversation({ currentUserId, chat, online }) {
     <Grid
       container
       spacing={2}
-      sx={{ padding: "5px", justifyContent: "center", alignItems: "center" }}
+      sx={{ width:"25vw",padding: "5px", justifyContent: "center", alignItems: "center" }}
     >
       <Grid item xs={2}>
-        <Avatar></Avatar>
+        <Avatar sx={{ margin: "auto", backgroundColor: "#A378FF",border: "3px solid #2f15d1" }}></Avatar>
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>

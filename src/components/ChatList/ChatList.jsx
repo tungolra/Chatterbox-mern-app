@@ -124,7 +124,11 @@ export default function ChatList({ user }) {
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
                 <Avatar
-                  sx={{ margin: "auto", backgroundColor: "#2f15d1" }}
+                  sx={{
+                    margin: "auto",
+                    backgroundColor: "#A378FF",
+                    border: "3px solid #2f15d1",
+                  }}
                 ></Avatar>
                 <br />
                 <p
