@@ -13,7 +13,8 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     firstname: user.firstname ,
     lastname: user.lastname,
     email: user.email,
-    profilePicture: user.profilePicture,
+    // profilePicture: user.profilePicture,
+    profilePicture: "",
     about: user.about
   })
 
