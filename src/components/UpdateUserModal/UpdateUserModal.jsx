@@ -13,8 +13,8 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     firstname: user.firstname ,
     lastname: user.lastname,
     email: user.email,
-    profilePicture: user.profilePicture,
-    // profilePicture: "",
+    //profilePicture: user.profilePicture,
+     profilePicture: "",
     about: user.about
   })
 
@@ -43,8 +43,9 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             headers: {
             "Content-type": "multipart/form-data",
           },
+            }).then(res=>setUser({...user, profilePicture:`${user.profilePicture}`} ))
           // }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
-           })
+          //  })
         }
       } catch (error) {
         console.log ({error}) 
