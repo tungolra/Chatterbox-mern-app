@@ -15,7 +15,9 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages
+  //state for chats with unread messages 
+console.log("currentChat: ", currentChat)
+// console.log("messages: ", messages)
 
   //get chat
   useEffect(() => {
@@ -41,7 +43,12 @@ export default function ChatList({ user }) {
   //listen on get users, receive, deleted...
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      setMessages((messages) => [...messages, data]);
+      // if their chat with the sender is open, set messages
+      console.log("1", data.chatId)
+      console.log("2", currentChat.chatId)
+      // if (data.chatId == currentChat.chatId){
+      // }
+        setMessages((messages) => [...messages, data]);
     });
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
@@ -59,7 +66,7 @@ export default function ChatList({ user }) {
       socket.current.disconnect();
     };
   }, []);
-
+  
   // get messages for chat
   useEffect(() => {
     const serverRoute = "api/messages";
@@ -74,6 +81,8 @@ export default function ChatList({ user }) {
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
   // function to get chat messages and setMessages
+
+  // get all chats 
 
   //set all users
   useEffect(() => {
@@ -161,7 +170,10 @@ export default function ChatList({ user }) {
                   justifyContent: "center",
                 }}
                 key={idx}
-                onClick={() => setCurrentChat(chat)}
+                onClick={() => {
+                  setCurrentChat(chat)
+                  console.log("Chat: ", chat)
+                  }}
               >
                 <Conversation
                   currentUserId={user._id}
