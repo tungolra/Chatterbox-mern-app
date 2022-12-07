@@ -38,20 +38,26 @@ export default function NavBar(props) {
             alignItems="center"
             spacing={3}
             justifyContent="center"
+            sx={{
+              width: "25vw",
+              border: "3px solid #2f15d1",
+              margin: "10px",
+              borderRadius: "30px",
+            }}
           >
             <IconButton alignItems="center">
               <Link color="secondary" to="/">
-                <PersonOutlineIcon color="secondary">Home</PersonOutlineIcon>
+                <PersonOutlineIcon color="primary">Home</PersonOutlineIcon>
               </Link>
             </IconButton>
             <IconButton>
               <Link to="/chats">
-                <ChatBubbleOutlineIcon color="secondary"></ChatBubbleOutlineIcon>
+                <ChatBubbleOutlineIcon color="primary"></ChatBubbleOutlineIcon>
               </Link>
             </IconButton>
             <IconButton>
               <Link to="" onClick={handleLogOut}>
-                <LogoutIcon color="secondary"></LogoutIcon>
+                <LogoutIcon color="primary"></LogoutIcon>
               </Link>
             </IconButton>
             <br></br>
