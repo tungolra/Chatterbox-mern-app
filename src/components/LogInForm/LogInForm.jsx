@@ -79,7 +79,13 @@ export default function LogInForm({ setUser, showSignUp, setShowSignUp }) {
               : "New around here? Sign Up!"}
           </Link>
           <Box>
-            <Button variant="contained" type="submit" fullWidth autoFocus>
+            <Button
+              variant="contained"
+              type="submit"
+              fullWidth
+              autoFocus
+              sx={{ borderRadius: " 30px" }}
+            >
               LOG IN
             </Button>
           </Box>
