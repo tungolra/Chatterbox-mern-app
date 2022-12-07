@@ -6,6 +6,7 @@ import './UpdatUserModal.css';
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
+  const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
   const [selectedFile, setSelectedFile] = React.useState(null);
   const theme = useMantineTheme();
   const [formData, setFormData] = useState ({
@@ -23,16 +24,17 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
    }
   
   function handleFileSelect (e) {
-     setFormData({...formData, [e.target.name]:e.target.value })  
+     //setFormData({...formData, [e.target.name]:e.target.value })  
      setSelectedFile(e.target.files[0]) 
+     
   }
 
   function handleSubmit(e) {
-
+console.log (user)
      e.preventDefault()       
       try {          
         const user = update(formData)     
-        // setUser(user)
+        setUser(user)
         const data = new FormData()
         data.append('file', selectedFile)      
          if (selectedFile) {  
@@ -41,12 +43,12 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             headers: {
             "Content-type": "multipart/form-data",
           },
-        })
+        }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
         }
       } catch (error) {
         console.log ({error}) 
      }
-     setUser(user)
+    //  setUser(user)
      setModalOpened(false)
   }
     
