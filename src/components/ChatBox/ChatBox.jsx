@@ -3,6 +3,7 @@ import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
 import { Button } from "@mui/material";
+import { Container } from "react-bootstrap";
 export default function ChatBox({
   currentChat,
   currentUserId,
@@ -56,7 +57,7 @@ export default function ChatBox({
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}
-          />
+            />
           <InputEmoji value={newMessage} onChange={handleChange} />
           <Button color="primary" onClick={handleSend}>
             Send

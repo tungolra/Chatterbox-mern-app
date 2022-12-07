@@ -4,7 +4,7 @@ import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
 import { Input, Grid, TextField, Box } from "@mui/material";
-import { Container } from "react-bootstrap";
+import { Container, Stack } from "@mui/material";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -108,6 +108,7 @@ export default function ChatList({ user }) {
 
   return (
     <>
+      {/* <Grid container direction="row" spacing={2}> */}
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <TextField
@@ -117,23 +118,37 @@ export default function ChatList({ user }) {
             type="text"
             placeholder="Search for a User"
           ></TextField>
-          <div style={{ border: "1px solid black" }}>
+
+          <Stack direction="row">
             {/* All existing Users in DB (not including logged in user) (To be
             replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
-                {friend.firstname} {friend.lastname}
+                Picture here
+                <br />
+                <p
+                  style={{
+                    color: "#2f15d1",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                    width: "8vw",
+                  }}
+                >
+                  {friend.firstname} {friend.lastname}
+                </p>
               </div>
             ))}
-          </div>
+          </Stack>
 
-          <div style={{ border: "1px solid black" }}>
+          <p>Click a Chat to Start Conversation</p>
+
+          <div>
             Active Chats:
             {chats.map((chat, idx) => (
               <div
                 style={{
                   border: "3px solid #2f15d1",
-                  borderRadius:"15px",
+                  borderRadius: "15px",
                   margin: "5px",
                   alignItems: "center",
                 }}
