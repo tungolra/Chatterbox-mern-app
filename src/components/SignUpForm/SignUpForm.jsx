@@ -29,7 +29,7 @@ export class SignUpForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = { ...this.state };
+      const formData = { ...this.state, profilePicture: "", about: "" };
       delete formData.error;
       delete formData.confirm;
 
