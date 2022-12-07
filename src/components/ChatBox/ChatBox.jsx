@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
-
+import { Button } from "@mui/material";
+import { Container } from "react-bootstrap";
 export default function ChatBox({
   currentChat,
   currentUserId,
@@ -48,9 +49,7 @@ export default function ChatBox({
   return (
     <>
       {currentChat ? (
-        <div style={{ border: "3px solid red", maxHeight: "100px" }}>
-          This ChatBox will render the container for a conversation the user
-          selects
+        <div>
           <hr />
           <Messages
             messages={messages}
@@ -58,9 +57,11 @@ export default function ChatBox({
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}
-          />
+            />
           <InputEmoji value={newMessage} onChange={handleChange} />
-          <button onClick={handleSend}>Send</button>
+          <Button color="primary" onClick={handleSend}>
+            Send
+          </Button>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
+import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input, Grid, TextField, Box } from "@mui/material";
-import { Container } from "react-bootstrap";
+import { Input, Grid, TextField, Box, Avatar } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -14,8 +15,7 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages 
-
+  //state for chats with unread messages
 
   //get chat
   useEffect(() => {
@@ -109,30 +109,57 @@ export default function ChatList({ user }) {
 
   return (
     <>
+      {/* <Grid container direction="row" spacing={2}> */}
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <TextField
-            sx={{ width: "25vw", border: "2px solid #2f15d1", margin: "10px" }}
+            sx={{ width: "25vw", border: "3px solid #2f15d1", margin: "10px" }}
             className="outlined-basic"
-            variant="outlined"
             type="text"
             placeholder="Search for a User"
           ></TextField>
-          <div style={{ border: "1px solid black" }}>
+
+          <Stack direction="row">
             {/* All existing Users in DB (not including logged in user) (To be
             replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
-                {friend.firstname} {friend.lastname}
+                <Avatar
+                  sx={{
+                    margin: "auto",
+                    backgroundColor: "#A378FF",
+                    border: "3px solid #2f15d1",
+                  }}
+                ></Avatar>
+                <br />
+                <p
+                  style={{
+                    color: "#2f15d1",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                    width: "8vw",
+                  }}
+                >
+                  {friend.firstname} {friend.lastname}
+                </p>
               </div>
             ))}
-          </div>
+          </Stack>
 
-          <div style={{ border: "1px solid black" }}>
+          <p>Click a Chat to Start Conversation</p>
+
+          <div>
             Active Chats:
             {chats.map((chat, idx) => (
               <div
-                style={{ border: "1px solid red" }}
+                style={{
+                  border: "3px solid #2f15d1",
+                  borderRadius: "30px",
+                  // width:"25vw",
+                  margin: "5px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
                 key={idx}
                 onClick={() => setCurrentChat(chat)}
               >
@@ -150,7 +177,6 @@ export default function ChatList({ user }) {
           item
           xs={8}
           sx={{
-            border: "solid 2px red",
             justifyContent: "center",
             height: "50px",
           }}

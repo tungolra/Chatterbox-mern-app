@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { Input, Grid, TextField } from "@mui/material";
 import "./Conversation.css";
 import axios from "axios";
-
+import { Grid, Avatar, Badge } from "@mui/material";
+import Stack from "@mui/material/Stack";
 
 export default function Conversation({ currentUserId, chat, online, user }) {
+
   const [userData, setUserData] = useState(null);
 
   //find all users but the current user
@@ -23,9 +25,13 @@ export default function Conversation({ currentUserId, chat, online, user }) {
   }, []);
 
   return (
-    <Grid container justify="flex-end" spacing={2}>
-      <Grid item xs={1}>
-        <img
+    <Grid
+      container
+      spacing={2}
+      sx={{ width:"25vw",padding: "5px", justifyContent: "center", alignItems: "center" }}
+    >
+      <Grid item xs={2}>
+                <img
           className="profileImg"
           src={
             userData?.profilePicture === ""
@@ -34,18 +40,11 @@ export default function Conversation({ currentUserId, chat, online, user }) {
           }
         />
       </Grid>
-      <Grid item xs={8}>
-        <div>{userData?.firstname} {userData?.profileImage}</div>
+      <Grid item xs={6}>
+        <span>{userData?.firstname}</span>
       </Grid>
       <Grid item xs={3}>
-        <img
-          className="statusIcon"
-          src={
-            online
-              ? "https://ga-chatterbox.s3.ca-central-1.amazonaws.com/online-icon.png"
-              : "https://ga-chatterbox.s3.ca-central-1.amazonaws.com/busy-icon.png"
-          }
-        />
+        Chat Member is: {online ? "online" : "offline"}
       </Grid>
     </Grid>
   );
