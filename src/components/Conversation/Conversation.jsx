@@ -30,6 +30,7 @@ export default function Conversation({ currentUserId, chat, online }) {
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>
+        
       </Grid>
       <Grid item xs={3}>
         Chat Member is: {online ? "online" : "offline"}

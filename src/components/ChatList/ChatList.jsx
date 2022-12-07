@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
+import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
@@ -126,8 +127,8 @@ export default function ChatList({ user }) {
                 <Avatar
                   sx={{
                     margin: "auto",
-                    // backgroundColor: "#A378FF",
-                    // border: "3px solid #2f15d1",
+                    backgroundColor: "#A378FF",
+                    border: "3px solid #2f15d1",
                   }}
                 ></Avatar>
                 <br />
