@@ -6,14 +6,12 @@ import './UpdatUserModal.css';
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
-  const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
   const [selectedFile, setSelectedFile] = React.useState(null);
   const theme = useMantineTheme();
   const [formData, setFormData] = useState ({
     firstname: user.firstname ,
     lastname: user.lastname,
     email: user.email,
-    //profilePicture: user.profilePicture,
      profilePicture: "",
     about: user.about
   })
@@ -44,13 +42,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             "Content-type": "multipart/form-data",
           },
             }).then(res=>setUser({...user, profilePicture:`https://ga-chatterbox.s3.ca-central-1.amazonaws.com/${selectedFile.name}`} ))
-          // }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
           //  })
         }
       } catch (error) {
         console.log ({error}) 
      }
-    //  setUser(user)
      setModalOpened(false)
   }
     
