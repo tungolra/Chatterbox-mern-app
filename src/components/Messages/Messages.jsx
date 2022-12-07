@@ -52,6 +52,7 @@ export default function Messages({
             setModalOpened={setModalOpened}
             setMessages={setMessages}
             messageId={messageId}
+            messages={messages}
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}

@@ -16,7 +16,7 @@ export default function ChatList({ user }) {
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   //state for chats with unread messages 
-console.log("currentChat: ", currentChat)
+// console.log("currentChat: ", currentChat)
 // console.log("messages: ", messages)
 
   //get chat
