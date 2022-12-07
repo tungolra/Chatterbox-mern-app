@@ -14,8 +14,7 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages 
-
+  //state for chats with unread messages
 
   //get chat
   useEffect(() => {
@@ -132,7 +131,11 @@ export default function ChatList({ user }) {
             Active Chats:
             {chats.map((chat, idx) => (
               <div
-                style={{ border: "1px solid red" }}
+                style={{
+                  border: "1px solid red",
+                  margin: "5px",
+                  alignItems: "center",
+                }}
                 key={idx}
                 onClick={() => setCurrentChat(chat)}
               >
@@ -150,7 +153,6 @@ export default function ChatList({ user }) {
           item
           xs={8}
           sx={{
-            border: "solid 2px red",
             justifyContent: "center",
             height: "50px",
           }}
