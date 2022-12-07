@@ -1,9 +1,11 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
+import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input } from "@mui/material"
+import { Input, Grid, TextField, Box, Avatar } from "@mui/material";
+import { Container, Stack } from "@mui/material";
 
 export default function ChatList({ user }) {
   const socket = useRef();
@@ -13,13 +15,14 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
+  //state for chats with unread messages
 
   //get chat
   useEffect(() => {
     const getUserChats = async () => {
       try {
         let payload = await axios.get(`/api/chats/${user._id}`);
-        if (!payload.status === 200) throw new Error("No response received")
+        if (!payload.status === 200) throw new Error("No response received");
         setChats(payload.data);
       } catch (error) {
         console.log(error);
@@ -30,7 +33,7 @@ export default function ChatList({ user }) {
 
   //connect to socket.io
   useEffect(() => {
-    socket.current = io("http://localhost:8800");
+    socket.current = io();
     //to subscribe to specific event, we have to write emit
     socket.current.emit("new-user-add", user._id);
   }, [user]);
@@ -106,43 +109,97 @@ export default function ChatList({ user }) {
 
   return (
     <>
-      <div style={{ border: "1px solid black" }}>
-        All existing Users in DB (not including logged in user) (To be replaced
-        with search box to find specific user):
-        <Input type="text" placeholder="Search for a User"></Input>
-        {allUsers.map((friend, idx) => (
-          <div key={idx} onClick={() => startChat(friend._id)}>
-            {friend.firstname} {friend.lastname}
-          </div>
-        ))}
-      </div>
+      {/* <Grid container direction="row" spacing={2}> */}
+      <Grid container spacing={2}>
+        <Grid item xs={4}>
+          <TextField
+            sx={{ width: "25vw", border: "3px solid #2f15d1", margin: "10px" }}
+            className="outlined-basic"
+            type="text"
+            placeholder="Search for a User"
+          ></TextField>
 
-      <div style={{ border: "1px solid black" }}>
-        Active Chats:
-        {chats.map((chat, idx) => (
-          <div
-            style={{ border: "1px solid red" }}
-            key={idx}
-            onClick={() => setCurrentChat(chat)}
-          >
-            <Conversation
-              currentUserId={user._id}
-              chat={chat}
-              online={isOnline(chat)}
-              user={user}
-            />
+          <Stack direction="row">
+            {/* All existing Users in DB (not including logged in user) (To be
+            replaced with search box to find specific user): */}
+            {allUsers.map((friend, idx) => (
+              <div key={idx} onClick={() => startChat(friend._id)}>
+                <Avatar
+                  sx={{
+                    margin: "auto",
+                    backgroundColor: "#A378FF",
+                    border: "3px solid #2f15d1",
+                  }}
+                ></Avatar>
+                <br />
+                <p
+                  style={{
+                    color: "#2f15d1",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                    width: "8vw",
+                  }}
+                >
+                  {friend.firstname} {friend.lastname}
+                </p>
+              </div>
+            ))}
+          </Stack>
+
+          <p>Click a Chat to Start Conversation</p>
+
+          <div>
+            Active Chats:
+            {chats.map((chat, idx) => (
+              <div
+                style={{
+                  border: "3px solid #2f15d1",
+                  borderRadius: "30px",
+                  // width:"25vw",
+                  margin: "5px",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+                key={idx}
+                onClick={() => setCurrentChat(chat)}
+              >
+                <Conversation
+                  currentUserId={user._id}
+                  chat={chat}
+                  online={isOnline(chat)}
+                  user={user}
+                />
+              </div>
+            ))}
           </div>
-        ))}
-      </div>
-      <ChatBox
-        currentChat={currentChat}
-        currentUserId={user._id}
-        setMessages={setMessages}
-        setNewMessage={setNewMessage}
-        messages={messages}
-        newMessage={newMessage}
-        socket={socket}
-      />
+        </Grid>
+        <Grid
+          item
+          xs={8}
+          sx={{
+            justifyContent: "center",
+            height: "50px",
+          }}
+        >
+          <Container
+            sx={{
+              justifyContent: "bottom",
+              position: "fixed",
+              maxWidth: "100vw",
+            }}
+          >
+            <ChatBox
+              currentChat={currentChat}
+              currentUserId={user._id}
+              setMessages={setMessages}
+              setNewMessage={setNewMessage}
+              messages={messages}
+              newMessage={newMessage}
+              socket={socket}
+            />
+          </Container>
+        </Grid>
+      </Grid>
     </>
   );
 }

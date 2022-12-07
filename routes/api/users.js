@@ -7,7 +7,7 @@ const ensureLoggedIn = require("../../config/ensureLoggedIn");
 router.post("/register", usersCtrl.create);
 router.post("/login", usersCtrl.login);
 router.post("/update", usersCtrl.update)
-router.post("/uploadPicture", usersCtrl.uploadPicture)
+router.post("/uploadPicture/:email", usersCtrl.uploadPicture)
 router.get("/check-token", ensureLoggedIn, usersCtrl.checkToken);
 //getAllUsers
 router.get("/", usersCtrl.getAllUsers);

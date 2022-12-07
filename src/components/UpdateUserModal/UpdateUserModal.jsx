@@ -6,44 +6,52 @@ import './UpdatUserModal.css';
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
+  const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
   const [selectedFile, setSelectedFile] = React.useState(null);
   const theme = useMantineTheme();
   const [formData, setFormData] = useState ({
     firstname: user.firstname ,
     lastname: user.lastname,
     email: user.email,
-    profilePicture: user.profilePicture,
+    //profilePicture: user.profilePicture,
+     profilePicture: "",
     about: user.about
   })
-  //  const theme = useMantineTheme();
-  
+
+       
 
   function handleChange(e) {     
-    setFormData({...formData, [e.target.name]:e.target.value })
+    setFormData({...formData, [e.target.name]:e.target.value })  
    }
   
   function handleFileSelect (e) {
-    setFormData({...formData, selectedFile: e.target.files[0]})
-    setSelectedFile(e.target.files[0])
+      setFormData({...formData, [e.target.name]:e.target.value })  
+     setSelectedFile(e.target.files[0]) 
+     
   }
 
   function handleSubmit(e) {
-     e.preventDefault()
-      const data = new FormData()
-      data.append ('file', selectedFile)       
+     e.preventDefault()       
       try {          
         const user = update(formData)     
         setUser(user)
-        if (data) {      
-          axios.post('/api/users/uploadPicture', data , {
+        const data = new FormData()
+        data.append('file', selectedFile)      
+         if (selectedFile) {  
+       
+          axios.post(`/api/users/uploadPicture/${formData.email}`, data , {
             headers: {
             "Content-type": "multipart/form-data",
           },
-        })
+            }).then(res=>setUser({...user, profilePicture:`${user.profilePicture}`} ))
+          // }).then(res=>setUser({...user, profilePicture:`${base_URL}/${selectedFile.name}`} ))
+          //  })
         }
       } catch (error) {
         console.log ({error}) 
      }
+    //  setUser(user)
+     setModalOpened(false)
   }
     
   return (
@@ -58,11 +66,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <form onSubmit={handleSubmit}  encType="multipart/form-data">
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
       <div className="updateContainer">
         <h1>CHATTER BOX</h1>
         
-        <img className="profileImg" src={formData.profilePicture} alt="profileimage" />
+        <img className="profileImg" src={user.profilePicture} alt="profileimage" /> 
           <div>
             <input
               value={formData.firstname}

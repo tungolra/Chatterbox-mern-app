@@ -1,12 +1,11 @@
 const User = require("../../models/user");
 const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
-// const uuid = require("uuid");
-// const S3 = require("react-aws-s3")
-let aws = require("aws-sdk");
+let aws = require('aws-sdk')
 
-// aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
-// var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
+aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
+const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
 
 async function create(req, res) {
   try {
@@ -32,26 +31,31 @@ async function login(req, res) {
   }
 }
 
-async function updateUser(req, res) {
-  try {
-    const user = await User.findOneAndUpdate(
-      { email: req.body.email },
-      req.body
-    );
-    if (!user) throw new Error();
+
+async function updateUser(req,res) {
+  try {   
+    const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
+    if (!user) throw new Error();   
   } catch (error) {
     return res.status(400).json(error);
   }
 }
 
-async function uploadPicture(req, res) {
-  if (req.files.file) console.log(`uploading image ${req.files.name} start. `);
-  try {
-    uploadFileOnS3(req.files.file.name, req.files.file);
-    res.status(200).json("SENT");
-  } catch (error) {
-    return res.status(400).json(error);
-  }
+async function uploadPicture(req,res) {
+  const user = await User.findOne({ email: req.params.email });
+  user.profilePicture = `${base_URL}/${req.files.file.name}`
+  user.save()
+if (req.files.file) 
+    console.log (`uploading image ${req.files.file.name} start. `)
+    try {   
+      let response = await uploadFileOnS3(req.files.file.name, req.files.file)
+      console.log (response)
+      // res.status(200).json(response)
+      res.status(200).json(user)
+    }    
+    catch(error) {
+      return res.status(400).json(error); 
+    }
 }
 
 function uploadFileOnS3(fileName, fileData) {

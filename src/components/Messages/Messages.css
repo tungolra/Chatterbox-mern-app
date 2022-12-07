@@ -1,0 +1,29 @@
+.messages-container {
+  display: flex;
+  flex-direction: column;
+  height: 60vh;
+  overflow-y: scroll;
+  justify-items: right;
+}
+
+.message {
+  text-align: left;
+  background-color: #1165eb;
+  border-radius: 25px;
+  max-width: 30vw;
+  padding: 15px;
+  color: white;
+}
+
+.own {
+  text-align: right;
+  background-color: #a378ff;
+}
+.message-data {
+  color: #1165eb;
+}
+.sender-text {
+  font-weight: bold;
+  justify-content: left;
+  color: white;
+}

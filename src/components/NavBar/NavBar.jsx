@@ -1,8 +1,13 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import * as userService from "../../utilities/UserRequests/users-service";
-import { AppBar } from "@mui/material";
-import Button from "@mui/material/Button";
+import { AppBar, Grid, IconButton, Button } from "@mui/material";
+import PersonIcon from "@mui/icons-material/Person";
+import Stack from "@mui/material/Stack";
+import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
+import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
+import LogoutIcon from "@mui/icons-material/Logout";
+import { Container } from "react-bootstrap";
 
 export default function NavBar(props) {
   function handleLogOut() {
@@ -10,27 +15,55 @@ export default function NavBar(props) {
     props.setUser(null);
   }
   return (
-    <AppBar
-      boxShadow="none"
-      position="static"
-      color="transparent"
-      sx={{ zIndex: "0" }}
-    >
-      <nav style={{ border: "1px solid blue" }}>
-        {" "}
-        {/* Add own links */}
+    <Grid container spacing={2}>
+      <Grid item xs={4}>
         <h1 className="logo">chatter[box]</h1>
-        <br></br>
-        <Link color="secondary" to="/">
-          Home&nbsp;
-        </Link>
-        <Link to="/chats">Chats&nbsp;</Link>
-        <Link to="" onClick={handleLogOut}>
-          Log Out&nbsp;
-        </Link>
-        <br></br>
-        {props.user && <span>Welcome, {props.user?.firstname}!</span>}
-      </nav>
-    </AppBar>
+        <Container>
+          {props.user && <span>Welcome, {props.user?.firstname}!</span>}
+        </Container>
+        <AppBar
+          position="static"
+          color="transparent"
+          sx={{
+            zIndex: "0",
+            justifyContent: "center",
+            alignItems: "center",
+            boxShadow: "0",
+          }}
+        >
+          {" "}
+          <br></br>
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={3}
+            justifyContent="center"
+            sx={{
+              width: "25vw",
+              border: "3px solid #2f15d1",
+              margin: "10px",
+              borderRadius: "30px",
+            }}
+          >
+            <IconButton alignItems="center">
+              <Link color="secondary" to="/">
+                <PersonOutlineIcon color="primary">Home</PersonOutlineIcon>
+              </Link>
+            </IconButton>
+            <IconButton>
+              <Link to="/chats">
+                <ChatBubbleOutlineIcon color="primary"></ChatBubbleOutlineIcon>
+              </Link>
+            </IconButton>
+            <IconButton>
+              <Link to="" onClick={handleLogOut}>
+                <LogoutIcon color="primary"></LogoutIcon>
+              </Link>
+            </IconButton>
+            <br></br>
+          </Stack>
+        </AppBar>
+      </Grid>
+    </Grid>
   );
 }

@@ -13,6 +13,8 @@ import NavBar from "../../components/NavBar/NavBar";
 //styles
 import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material";
+import LogInForm from "../../components/LogInForm/LogInForm";
+import SignUpForm from "../../components/SignUpForm/SignUpForm";
 
 export const themeOptions = createTheme({
   palette: {
@@ -36,11 +38,6 @@ export const themeOptions = createTheme({
 function App() {
   const [user, setUser] = useState(getUser());
 
-  useEffect(() => {
-    localStorage.removeItem("token");
-    setUser(null);
-  }, []);
-
   return (
     <main className="App">
       <ThemeProvider theme={themeOptions}>
@@ -51,6 +48,14 @@ function App() {
               <Route
                 path="/"
                 element={<HomePage user={user} setUser={setUser} />}
+              />
+              <Route
+                path="/signup"
+                element={<SignUpForm user={user} setUser={setUser} />}
+              />
+              <Route
+                path="/login"
+                element={<LogInForm user={user} setUser={setUser} />}
               />
               <Route path="/chats" element={<ChatPage user={user} />} />
               <Route path="/check-token" element={<CheckTokenPage />} />

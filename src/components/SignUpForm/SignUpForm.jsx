@@ -1,8 +1,13 @@
 import React, { Component } from "react";
 import { signUp } from "../../utilities/UserRequests/users-service";
+import "./SignUpForm.css";
 // mui below
-import { TextField } from "@mui/material";
-import Button from "@mui/material/Button";
+
+import CssBaseline from "@mui/material/CssBaseline";
+import Grid from "@mui/material/Grid";
+import Box from "@mui/material/Box";
+import { TextField, Input, Button, Link } from "@mui/material";
+import { Container } from "@mui/system";
 
 export class SignUpForm extends Component {
   state = {
@@ -14,7 +19,6 @@ export class SignUpForm extends Component {
     confirm: "",
     error: "",
   };
-
   handleChange = (e) => {
     this.setState({
       [e.target.name]: e.target.value,
@@ -25,7 +29,7 @@ export class SignUpForm extends Component {
   handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const formData = { ...this.state };
+      const formData = { ...this.state, profilePicture: "", about: "" };
       delete formData.error;
       delete formData.confirm;
 
@@ -38,66 +42,121 @@ export class SignUpForm extends Component {
   render() {
     const disable = this.state.password !== this.state.confirm;
     return (
-      <div>
-        <div className="form-container">
-          <form autoComplete="off" onSubmit={this.handleSubmit}>
-            <label>First Name</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="text"
-              name="firstname"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Last Name</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="text"
-              name="lastname"
-              value={this.state.name}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Email</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="email"
-              name="email"
-              value={this.state.email}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Password</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="password"
-              name="password"
-              value={this.state.password}
-              onChange={this.handleChange}
-              required
-            />
-            <label>Confirm</label>
-            <TextField
-              className="outlined-basic"
-              variant="outlined"
-              type="password"
-              name="confirm"
-              value={this.state.confirm}
-              onChange={this.handleChange}
-              required
-            />
-            <Button variant="contained" type="submit" disabled={disable}>
-              SIGN UP
-            </Button>
-          </form>
-        </div>
-        <p className="error-message">&nbsp;{this.state.error}</p>
-      </div>
+      <Container
+        sx={{
+          display: "flex",
+          height: "100vh",
+          width: "60vw",
+          flexDirection: "column",
+        }}
+      >
+        <CssBaseline />
+        <Box
+          component="form"
+          autoComplete="off"
+          onSubmit={this.handleSubmit}
+          sx={{
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          <h1 className="logo">chatter[box]</h1>
+          <h3> Welcome! Create an account to start chatting! </h3>
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="text"
+            name="firstname"
+            value={this.state.name}
+            onChange={this.handleChange}
+            placeholder="First Name"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="text"
+            name="lastname"
+            value={this.state.name}
+            onChange={this.handleChange}
+            placeholder="Last Name"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="email"
+            name="email"
+            value={this.state.email}
+            onChange={this.handleChange}
+            placeholder="Email"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="password"
+            name="password"
+            value={this.state.password}
+            onChange={this.handleChange}
+            placeholder="Password"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="password"
+            name="confirm"
+            value={this.state.confirm}
+            onChange={this.handleChange}
+            placeholder="Confirm Password"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2, borderRadius: "30px" }}
+            disabled={disable}
+            autoFocus
+          >
+            START CHATTING
+          </Button>
+          <Link
+            variant="contained"
+            onClick={() => this.props.setShowSignUp(!this.props.showSignUp)}
+          >
+            {this.props.showSignUp
+              ? "Already have an account? Log In!"
+              : "Don't have an account? Sign Up!"}
+          </Link>
+          <p className="error-message">&nbsp;{this.state.error}</p>
+        </Box>
+      </Container>
     );
   }
 }
