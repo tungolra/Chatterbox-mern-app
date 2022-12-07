@@ -2,6 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 import "./Messages.css";
+import Linkify from 'react-linkify';
 
 export default function Messages({
   messages,
@@ -35,7 +36,7 @@ export default function Messages({
               setModalOpened(true);
             }}
           >
-            {message.text} - {message._id}
+            <Linkify>{message.text}</Linkify>
             <br />
             Sent: {format(message.createdAt)}
             <br />
