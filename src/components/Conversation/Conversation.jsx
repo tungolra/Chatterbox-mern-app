@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import { Grid } from "@mui/material";
+import { Grid, Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
 export default function Conversation({ currentUserId, chat, online }) {
   const [userData, setUserData] = useState(null);
@@ -23,10 +23,10 @@ export default function Conversation({ currentUserId, chat, online }) {
     <Grid
       container
       spacing={2}
-      sx={{ justifyContent: "center", alignItems: "center" }}
+      sx={{ padding: "5px", justifyContent: "center", alignItems: "center" }}
     >
       <Grid item xs={2}>
-        Image here
+        <Avatar>N</Avatar>
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>
