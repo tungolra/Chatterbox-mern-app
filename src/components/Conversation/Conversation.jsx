@@ -3,6 +3,7 @@ import { Input, Grid, TextField } from "@mui/material";
 import "./Conversation.css";
 import axios from "axios";
 
+
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
 
@@ -27,14 +28,14 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         <img
           className="profileImg"
           src={
-            userData?.profileImage === null
-              ? "https://ga-chatterbox.s3.ca-central-1.amazonaws.com/user.png"
+            user?.profilePicture === ""
+              ? "/logo192.png"
               : userData?.profilePicture
           }
         />
       </Grid>
       <Grid item xs={8}>
-        <div>{userData?.firstname} </div>
+        <div>{userData?.firstname} {userData?.profileImage}</div>
       </Grid>
       <Grid item xs={3}>
         <img
