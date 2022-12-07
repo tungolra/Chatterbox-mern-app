@@ -26,7 +26,7 @@ export default function Conversation({ currentUserId, chat, online }) {
       sx={{ padding: "5px", justifyContent: "center", alignItems: "center" }}
     >
       <Grid item xs={2}>
-        <Avatar>N</Avatar>
+        <Avatar></Avatar>
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>

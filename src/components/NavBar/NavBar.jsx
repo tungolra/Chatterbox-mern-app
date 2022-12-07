@@ -39,6 +39,12 @@ export default function NavBar(props) {
             alignItems="center"
             spacing={3}
             justifyContent="center"
+            sx={{
+              width: "25vw",
+              border: "3px solid #2f15d1",
+              margin: "10px",
+              borderRadius: "30px",
+            }}
           >
             <IconButton alignItems="center">
               <Link color="secondary" to="/">

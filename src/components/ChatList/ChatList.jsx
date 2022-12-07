@@ -3,7 +3,7 @@ import ChatBox from "../ChatBox/ChatBox";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input, Grid, TextField, Box } from "@mui/material";
+import { Input, Grid, TextField, Box, Avatar } from "@mui/material";
 import { Container, Stack } from "@mui/material";
 
 export default function ChatList({ user }) {
@@ -112,9 +112,8 @@ export default function ChatList({ user }) {
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <TextField
-            sx={{ width: "25vw", border: "2px solid #2f15d1", margin: "10px" }}
+            sx={{ width: "25vw", border: "3px solid #2f15d1", margin: "10px" }}
             className="outlined-basic"
-            variant="outlined"
             type="text"
             placeholder="Search for a User"
           ></TextField>
@@ -124,7 +123,9 @@ export default function ChatList({ user }) {
             replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
-                Picture here
+                <Avatar
+                  sx={{ margin: "auto", backgroundColor: "#2f15d1" }}
+                ></Avatar>
                 <br />
                 <p
                   style={{
@@ -148,9 +149,11 @@ export default function ChatList({ user }) {
               <div
                 style={{
                   border: "3px solid #2f15d1",
-                  borderRadius: "15px",
+                  borderRadius: "30px",
+                  // width:"25vw",
                   margin: "5px",
                   alignItems: "center",
+                  justifyContent: "center",
                 }}
                 key={idx}
                 onClick={() => setCurrentChat(chat)}
