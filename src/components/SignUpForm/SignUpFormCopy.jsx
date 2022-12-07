@@ -26,7 +26,7 @@ export default function SignUpFormCopy({ setUser }) {
     error: "",
   };
   const [formData, setFormData] = useState([formProperties]);
-  
+
   const handleChange = (e) => {
     setFormData({
       firstname: e.target.name,

@@ -2,8 +2,10 @@ import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import axios from "axios";
-import { Button } from "@mui/material";
-import { Container } from "react-bootstrap";
+import { Button, IconButton } from "@mui/material";
+import { Stack } from "@mui/system";
+import SendIcon from "@mui/icons-material/Send";
+
 export default function ChatBox({
   currentChat,
   currentUserId,
@@ -57,11 +59,25 @@ export default function ChatBox({
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}
+          />
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={3}
+            justifyContent="center"
+            sx={{ width: "50vw", justifyItems:"center", margin:"auto" }}
+          >
+            <InputEmoji
+              color="seceondary"
+              value={newMessage}
+              onChange={handleChange}
             />
-          <InputEmoji value={newMessage} onChange={handleChange} />
-          <Button color="primary" onClick={handleSend}>
-            Send
-          </Button>
+            <IconButton>
+              <SendIcon color="secondary" onClick={handleSend}>
+                Send
+              </SendIcon>
+            </IconButton>
+          </Stack>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>

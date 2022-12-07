@@ -3,7 +3,7 @@
   flex-direction: column;
   height: 60vh;
   overflow-y: scroll;
-  justify-items: right;
+  justify-items: left;
 }
 
 .message {
@@ -17,6 +17,8 @@
 
 .own {
   text-align: right;
+  justify-items: right;
+  justify-content: right;
   background-color: #a378ff;
 }
 .message-data {
