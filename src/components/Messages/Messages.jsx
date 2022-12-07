@@ -52,6 +52,7 @@ export default function Messages({
           </p>
         ))}
         {/* take out T using for loop */}
+        {/* second slice formatted w time to hopefully not get military time*/}
 
         <DeleteMessageModal
           modalOpened={modalOpened}
