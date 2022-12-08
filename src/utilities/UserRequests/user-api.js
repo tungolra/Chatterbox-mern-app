@@ -8,9 +8,8 @@ export async function logIn(credentials) {
   return sendRequest(`${BASE_URL}/login`, "POST", credentials);
 }
 
-export async function update(credentials) {
-  console.log (credentials)
-  return sendRequest(`${BASE_URL}/update`, "POST", credentials);
+export async function update(userData) {
+  return sendRequest(`${BASE_URL}/update`, "POST", userData);
 }
 
 

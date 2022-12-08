@@ -34,8 +34,14 @@ async function login(req, res) {
 
 async function updateUser(req,res) {
   try {   
-    const user = await User.findOneAndUpdate({ email: req.body.email }, req.body);
+    const user = await User.findOne({ email: req.body.email });
+    user.firstname = req.body.firstname
+    user.lastname = req.body.lastname
+    user.username = req.body.username
+    user.about = req.body.about
+    user.save()
     if (!user) throw new Error();   
+    res.status(200).json(user)
   } catch (error) {
     return res.status(400).json(error);
   }
