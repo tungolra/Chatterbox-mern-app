@@ -1,6 +1,6 @@
 //react toolkit
 import { useState, useEffect } from "react";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Navigate } from "react-router-dom";
 //utilities
 import { getUser } from "../../utilities/UserRequests/users-service";
 //pages
@@ -45,8 +45,9 @@ function App() {
           <>
             <NavBar user={user} setUser={setUser} />
             <Routes>
+              <Route path="/chats" element={<ChatPage user={user} />} />
               <Route
-                path="/"
+                path="/profile"
                 element={<ProfilePage user={user} setUser={setUser} />}
               />
               <Route
@@ -57,7 +58,7 @@ function App() {
                 path="/login"
                 element={<LogInForm user={user} setUser={setUser} />}
               />
-              <Route path="/chats" element={<ChatPage user={user} />} />
+              <Route path="/*" element={<Navigate to="/chats" />} />
               <Route path="/check-token" element={<CheckTokenPage />} />
             </Routes>
           </>
