@@ -35,20 +35,36 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       }}
     >
       <Grid item xs={2}>
-        <img
-          className="profileImg"
-          src={
-            userData?.profilePicture === ""
-              ? "/logo192.png"
-              : userData?.profilePicture
-          }
-        />
+        {online ? (
+          <Badge color="#50FC86" badgeContent=" ">
+            <img
+              className="profileImg"
+              src={
+                userData?.profilePicture === ""
+                  ? "/logo192.png"
+                  : userData?.profilePicture
+              }
+            />
+          </Badge>
+        ) : (
+          "offline"
+          // <Badge color="#FC6F50" badgeContent=" ">
+          //   <img
+          //     className="profileImg"
+          //     src={
+          //       userData?.profilePicture === ""
+          //         ? "/logo192.png"
+          //         : userData?.profilePicture
+          //     }
+          //   />
+          // </Badge>
+        )}
       </Grid>
       <Grid item xs={6}>
         <span>{userData?.firstname}</span>
       </Grid>
       <Grid item xs={3}>
-        Chat Member is: {online ? "online" : "offline"}
+        {/* notification goes here */}
       </Grid>
     </Grid>
   );
