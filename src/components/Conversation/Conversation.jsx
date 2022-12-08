@@ -4,6 +4,18 @@ import "./Conversation.css";
 import axios from "axios";
 import { Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
+// testing
+import { styled } from "@mui/material/styles";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
+// testing
 
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
@@ -27,12 +39,12 @@ export default function Conversation({ currentUserId, chat, online, user }) {
     <Grid
       container
       spacing={3}
-      sx={{
-        width: "25vw",
-        padding: "5px",
-
-        alignItems: "center",
-      }}
+      sx={
+        {
+          // padding: "5px", goes here
+          // alignItems:center goes here
+        }
+      }
     >
       <Grid item xs={1}>
         {online ? (
@@ -47,10 +59,16 @@ export default function Conversation({ currentUserId, chat, online, user }) {
             />
           </Badge>
         ) : (
-          "offline"
+          <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            variant="dot"
+          >
+            <Avatar color="primary">N</Avatar>
+          </StyledBadge>
         )}
       </Grid>
-      <Grid item xs={2}>
+      <Grid item xs={7}>
         <span>
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
