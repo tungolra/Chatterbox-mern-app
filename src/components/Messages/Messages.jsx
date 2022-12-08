@@ -1,11 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
-import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 import "./Messages.css";
 import Linkify from "react-linkify";
 import { Button } from "@mui/material";
 import ChatBox from "../ChatBox/ChatBox";
-import axios from "axios";
+import moment from "moment";
 
 export default function Messages({
   messages,
@@ -20,6 +19,10 @@ export default function Messages({
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
   const [receiverData, setReceiverData] = useState({});
+
+  let newDate = new Date();
+  let sentDate = `${newDate.toLocaleTimeString()}`;
+  // let moment = moment(newDate).format()
 
   // scroll to last message
   useEffect(() => {
@@ -71,8 +74,7 @@ export default function Messages({
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
-              Sent: {format(message.createdAt)}
-              <br />
+              {moment(message.createdAt).format("LLL").slice(0, -12)}
             </p>
           ))}
           <DeleteMessageModal
