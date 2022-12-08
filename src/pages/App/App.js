@@ -6,7 +6,7 @@ import { getUser } from "../../utilities/UserRequests/users-service";
 //pages
 import AuthPage from "../AuthPage/AuthPage";
 import CheckTokenPage from "../CheckTokenPage/CheckTokenPage";
-import HomePage from "../HomePage/HomePage";
+import ProfilePage from "../ProfilePage/ProfilePage";
 import ChatPage from "../ChatPage/ChatPage";
 //components
 import NavBar from "../../components/NavBar/NavBar";
@@ -47,7 +47,7 @@ function App() {
             <Routes>
               <Route
                 path="/"
-                element={<HomePage user={user} setUser={setUser} />}
+                element={<ProfilePage user={user} setUser={setUser} />}
               />
               <Route
                 path="/signup"
