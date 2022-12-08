@@ -5,6 +5,7 @@ import axios from "axios";
 import { Button, IconButton } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
+import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 
 export default function ChatBox({
   currentChat,
@@ -14,10 +15,12 @@ export default function ChatBox({
   messages,
   newMessage,
   socket,
+  user,
 }) {
   const [userData, setUserData] = useState(null);
+  const [modalOpened, setModalOpened] = useState(false);
 
-  // get chat member data
+  // get receiver data
   useEffect(() => {
     const userId = currentChat?.members?.find((id) => id !== currentUserId);
     setUserData(userId);
@@ -50,9 +53,27 @@ export default function ChatBox({
 
   return (
     <>
+      {/* chatmembermodal here */}
       {currentChat ? (
         <div>
           <hr />
+<div
+  style={{
+    border: "1px solid black",
+    display: "flex",
+    flexDirection: "row",
+  }}
+  onClick={() => {
+    setModalOpened(true);
+  }}
+>
+  <div style={{ border: "1px solid black" }}>Profile Pic</div>
+  Friend: {userData}
+</div>
+<ChatMemberModal
+  modalOpened={modalOpened}
+  setModalOpened={setModalOpened}
+/>
           <Messages
             messages={messages}
             setMessages={setMessages}

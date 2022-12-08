@@ -19,9 +19,6 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages
-  // console.log("currentChat: ", currentChat)
-  // console.log("messages: ", messages)
 
   //get chat
   useEffect(() => {
@@ -43,6 +40,7 @@ export default function ChatList({ user }) {
     socket.current.emit("new-user-add", user._id);
   }, [user]);
 
+  //update messages if receiver has sender's chat open
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
       if (data.chatId == currentChat?._id) {
@@ -54,8 +52,8 @@ export default function ChatList({ user }) {
     };
   }, [currentChat]);
 
+  //listen on get users, deleted...
   useEffect(() => {
-    //listen on get users, deleted...
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
       setMessages((messages) =>
@@ -83,19 +81,17 @@ export default function ChatList({ user }) {
         console.log(error);
       }
     };
-    if (currentChat !== null) getChatMessages();
+    if (currentChat !== null) {
+      getChatMessages();
+    }
   }, [currentChat]);
-
-  // get all chats
 
   //set all users
   useEffect(() => {
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
-        // do not include logged in user
         data = data.filter((users) => users._id != user._id);
-        // do not include users with already active chats
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -107,7 +103,10 @@ export default function ChatList({ user }) {
   //start chat
   async function startChat(friendId) {
     try {
-      await axios.post(`api/chats/create/${user._id}/${friendId}`);
+      const newChat = await axios.post(
+        `api/chats/create/${user._id}/${friendId}`
+      );
+      setChats((chats) => [...chats, newChat.data]);
     } catch (error) {
       console.log(error);
     }
@@ -120,62 +119,68 @@ export default function ChatList({ user }) {
     return online ? true : false;
   }
 
+  // set currentChat
+  function setChat(chat) {
+    setCurrentChat(chat);
+    updateMessageStatus(chat._id);
+  }
+  // create function that calls back to setCurrentChat, pass it into Conversations
+  function updateReadMessages(cb) {
+    // updateMessageStatus(chatId)
+  }
+  // separate setCurrentChat
+  // update message readstatus to true
+  // currently, if a new msg is sent, then unread msgs will show after refresh
+  // second, even if sender sends msg, after refresh, unread msgs will show in
+  // their chatbox with the receiver
+  // third, if sender clicks back into convo with receiver, then that will
+  // clear the receiver's unread messages
+  const updateMessageStatus = async (chatId) => {
+    try {
+      await axios.put(`api/messages/status/${chatId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   return (
     <>
       <Grid container spacing={2}>
         <Grid item xs={4}>
-          <Box
-            sx={{
-              justifyContent: "center",
-              border: "3px solid red",
-              borderRadius: "25px",
-            }}
-          >
-            {/* All existing Users in DB (not including logged in user) (To be
-            replaced with search box to find specific user): */}
+          <TextField
+            sx={{ width: "25vw", border: "3px solid #2f15d1", margin: "10px" }}
+            className="outlined-basic"
+            type="text"
+            placeholder="Search for a User"
+          ></TextField>
+
+          <Stack direction="row">
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
-                <p style={{ color: "#2f15d1" }}>
-                  {friend.firstname}&nbsp;{friend.lastname}
+                <Avatar
+                  sx={{
+                    margin: "auto",
+                    backgroundColor: "#A378FF",
+                    border: "3px solid #2f15d1",
+                  }}
+                ></Avatar>
+                <br />
+                <p
+                  style={{
+                    color: "#2f15d1",
+                    fontWeight: "bold",
+                    justifyContent: "center",
+                    width: "8vw",
+                  }}
+                >
+                  {friend?.firstname} {friend?.lastname}
                 </p>
               </div>
             ))}
+          </Stack>
 
-            <p className="section-heading">
-              Find a Friend to Start Conversation
-            </p>
-            <FormControl
-              fullWidth
-              sx={{ border: "3px solid blue", borderRadius: "50px" }}
-            >
-              <InputLabel id="demo-simple-select-label">
-                Find Friends
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // below is for user
-                value=""
-                label="Age"
-                // below is for setting action.
-                onChange=""
-              >
-                <MenuItem value={""}>
-                  <TextField
-                    sx={{
-                      width: "25vw",
-                      border: "3px solid #2f15d1",
-                      margin: "10px",
-                    }}
-                    className="outlined-basic"
-                    type="text"
-                    placeholder="Search for a User"
-                  ></TextField>
-                </MenuItem>
-                <MenuItem value={""}></MenuItem>
-                <MenuItem value={""}></MenuItem>
-              </Select>
-            </FormControl>
+          <p>Click a Chat to Start Conversation</p>
+          <Box>
             <div>
               <p className="section-heading">Active Chats:</p>
               {chats.map((chat, idx) => (
@@ -223,6 +228,7 @@ export default function ChatList({ user }) {
               messages={messages}
               newMessage={newMessage}
               socket={socket}
+              user={user}
             />
           </Container>
         </Grid>

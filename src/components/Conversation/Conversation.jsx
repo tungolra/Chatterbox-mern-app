@@ -19,6 +19,7 @@ const StyledBadge = styled(Badge)(({ theme }) => ({
 
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
+  const [unreadMessages, setUnreadMessages] = useState(null);
 
   //find all users but the current user
   useEffect(() => {
@@ -34,6 +35,25 @@ export default function Conversation({ currentUserId, chat, online, user }) {
     }
     getUserData();
   }, []);
+
+  //still working on this
+  useEffect(() => {
+    const countUnreadMessages = async () => {
+      try {
+        let count = 0;
+        let { data } = await axios.get(`api/messages/${chat._id}`);
+        data.forEach((message) => {
+          if (message.readStatus === null) {
+            count++;
+          }
+        });
+        setUnreadMessages(count);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    countUnreadMessages();
+  }, [unreadMessages]);
 
   return (
     <Grid
@@ -83,6 +103,9 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       >
         {/* notification goes here */}
         <Badge color="primary" variant="dot"></Badge>
+      </Grid>
+      <Grid item xs={1}>
+        {unreadMessages === 0 ? "" : <strong>{unreadMessages}</strong>}
       </Grid>
     </Grid>
   );

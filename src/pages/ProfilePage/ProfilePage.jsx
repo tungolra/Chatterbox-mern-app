@@ -9,6 +9,7 @@ export default function Home({ user, setUser }) {
   console.log(user);
   return (
     <>
+      <div>Profile Page</div>
       <div>
         <Stack>
           <div>{user?.firstname}</div>

@@ -58,3 +58,9 @@ h1 {
 .custom-file-input:hover::before {
   color: rgb(212, 215, 215);
 }
+
+.profileImg {
+  margin:auto;
+  height:200px;
+  width:200px;
+}
