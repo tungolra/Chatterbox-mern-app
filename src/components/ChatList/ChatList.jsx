@@ -164,7 +164,16 @@ export default function ChatList({ user }) {
                 onChange=""
               >
                 <MenuItem value={""}>
-              
+                  <TextField
+                    sx={{
+                      width: "25vw",
+                      border: "3px solid #2f15d1",
+                      margin: "10px",
+                    }}
+                    className="outlined-basic"
+                    type="text"
+                    placeholder="Search for a User"
+                  ></TextField>
                 </MenuItem>
                 <MenuItem value={""}></MenuItem>
                 <MenuItem value={""}></MenuItem>
