@@ -1,7 +1,8 @@
 import { useState } from "react";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
-import { Button, IconButton } from "@mui/material";
-import { Stack } from "react-bootstrap";
+import { Button, IconButton, Link } from "@mui/material";
+import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
+import Stack from "@mui/material/Stack";
 
 export default function Home({ user, setUser }) {
   const [modalOpened, setModalOpened] = useState(false);
@@ -16,8 +17,10 @@ export default function Home({ user, setUser }) {
           <div>{user?.profilePicture} PROFILE PICTURE HERE</div>
           <div>{user?.bio} BIO HERE</div>
         </Stack>
-        <IconButton onClick={() => setModalOpened(true)}>
-          Edit Profile
+        <IconButton>
+          <Link onClick={() => setModalOpened(true)}>
+            <SettingsOutlinedIcon color="primary"></SettingsOutlinedIcon>
+          </Link>
         </IconButton>
         <UpdateUserModal
           modalOpened={modalOpened}

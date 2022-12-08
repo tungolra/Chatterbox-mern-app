@@ -129,34 +129,31 @@ export default function ChatList({ user }) {
             sx={{
               width: "25vw",
               justifyContent: "center",
-              border: "3px blue solid",
+              border: "3px solid red",
               borderRadius: "25px",
             }}
           >
-            <TextField
-              sx={{
-                width: "25vw",
-                border: "3px solid #2f15d1",
-                margin: "10px",
-              }}
-              className="outlined-basic"
-              type="text"
-              placeholder="Search for a User"
-            ></TextField>
-
             {/* All existing Users in DB (not including logged in user) (To be
             replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
                 <p style={{ color: "#2f15d1" }}>
-                  {friend.firstname}
-                  {friend.lastname}
+                  {friend.firstname}&nbsp;{friend.lastname}
                 </p>
               </div>
             ))}
 
-            <FormControl fullWidth>
-              <InputLabel id="demo-simple-select-label">Age</InputLabel>
+            <p className="section-heading">
+              Find a Friend to Start Conversation
+            </p>
+            <FormControl
+              fullWidth
+              className="outlined-basic"
+              sx={{ border: "2px solid blue", borderRadius: "50px" }}
+            >
+              <InputLabel id="demo-simple-select-label">
+                Find Friends
+              </InputLabel>
               <Select
                 labelId="demo-simple-select-label"
                 id="demo-simple-select"
@@ -166,12 +163,22 @@ export default function ChatList({ user }) {
                 // below is for setting action.
                 onChange=""
               >
-                <MenuItem value={""}></MenuItem>
+                <MenuItem value={""}>
+                  <TextField
+                    sx={{
+                      width: "25vw",
+                      border: "3px solid #2f15d1",
+                      margin: "10px",
+                    }}
+                    className="outlined-basic"
+                    type="text"
+                    placeholder="Search for a User"
+                  ></TextField>
+                </MenuItem>
                 <MenuItem value={""}></MenuItem>
                 <MenuItem value={""}></MenuItem>
               </Select>
             </FormControl>
-            <p>Click a Chat to Start Conversation</p>
             <div>
               <p className="section-heading">Active Chats:</p>
               {chats.map((chat, idx) => (
