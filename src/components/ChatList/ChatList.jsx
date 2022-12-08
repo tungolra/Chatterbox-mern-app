@@ -15,7 +15,6 @@ export default function ChatList({ user }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
-  //state for chats with unread messages
 
   //get chat
   useEffect(() => {
@@ -78,7 +77,9 @@ export default function ChatList({ user }) {
         console.log(error);
       }
     };
-    if (currentChat !== null) getChatMessages();
+    if (currentChat !== null) {
+      getChatMessages();
+    }
   }, [currentChat]);
 
   //set all users
@@ -101,7 +102,7 @@ export default function ChatList({ user }) {
       const newChat = await axios.post(
         `api/chats/create/${user._id}/${friendId}`
       );
-      setChats((chats) => [...chats, newChat.data])
+      setChats((chats) => [...chats, newChat.data]);
     } catch (error) {
       console.log(error);
     }
@@ -115,22 +116,17 @@ export default function ChatList({ user }) {
   }
 
   // set currentChat and update message readstatus to true
-  function setChat (chat){
-    console.log(chat._id)
-    setCurrentChat(chat)
-    const updateMessageStatus = async () => { 
+  function setChat(chat) {
+    setCurrentChat(chat);
+    const updateMessageStatus = async () => {
       try {
-        await axios.put(`api/messages/status/${chat._id}`)
+        await axios.put(`api/messages/status/${chat._id}`);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
-    updateMessageStatus()
+    };
+    updateMessageStatus();
   }
-
-  // get all messages and count all messages with readstatus null/false
-  // if there are null/false msgs in a chat, bolden what's being rendered
-
 
   return (
     <>
@@ -193,6 +189,7 @@ export default function ChatList({ user }) {
                   chat={chat}
                   online={isOnline(chat)}
                   user={user}
+                  // countUnreadMessages={countUnreadMessages}
                 />
               </div>
             ))}
