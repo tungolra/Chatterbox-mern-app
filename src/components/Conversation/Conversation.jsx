@@ -4,6 +4,18 @@ import "./Conversation.css";
 import axios from "axios";
 import { Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
+// testing
+import { styled } from "@mui/material/styles";
+
+const StyledBadge = styled(Badge)(({ theme }) => ({
+  "& .MuiBadge-badge": {
+    right: -3,
+    top: 13,
+    border: `2px solid ${theme.palette.background.paper}`,
+    padding: "0 4px",
+  },
+}));
+// testing
 
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
@@ -46,35 +58,51 @@ export default function Conversation({ currentUserId, chat, online, user }) {
   return (
     <Grid
       container
-      spacing={2}
-      sx={{
-        width: "25vw",
-        padding: "5px",
-        justifyContent: "center",
-        alignItems: "center",
-      }}
+      spacing={3}
+      sx={
+        {
+          // padding: "5px", goes here
+          // alignItems:center goes here
+        }
+      }
     >
-      <Grid item xs={2}>
-        <img
-          className="profileImg"
-          src={
-            userData?.profilePicture === ""
-              ? "/logo192.png"
-              : userData?.profilePicture
-          }
-        />
-      </Grid>
-      <Grid item xs={6}>
-        {unreadMessages === 0 ? (
-          <span>{userData?.firstname}</span>
+      <Grid item xs={4}>
+        {online ? (
+          <Badge color="#50FC86" badgeContent=" ">
+            <img
+              className="profileImg"
+              src={
+                userData?.profilePicture === ""
+                  ? "/logo192.png"
+                  : userData?.profilePicture
+              }
+            />
+          </Badge>
         ) : (
-          <span>
-            <strong>{userData?.firstname}</strong>
-          </span>
+          <StyledBadge
+            overlap="circular"
+            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
+            variant="dot"
+            color="primary"
+          >
+            <Avatar color="primary">N</Avatar>
+          </StyledBadge>
         )}
       </Grid>
-      <Grid item xs={3}>
-        Chat Member is: {online ? "online" : "offline"}
+      <Grid item xs={4}>
+        <span>
+          {userData?.firstname}&nbsp;{userData?.lastname}
+        </span>
+      </Grid>
+      <Grid
+        item
+        xs={4}
+        sx={{
+          justifyContent: "right",
+        }}
+      >
+        {/* notification goes here */}
+        <Badge color="primary" variant="dot"></Badge>
       </Grid>
       <Grid item xs={1}>
         {unreadMessages === 0 ? "" : <strong>{unreadMessages}</strong>}
