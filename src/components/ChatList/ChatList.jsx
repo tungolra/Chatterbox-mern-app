@@ -4,7 +4,7 @@ import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
-import { Input, Grid, TextField, Box, Avatar } from "@mui/material";
+import { Input, Grid, TextField, Box, Avatar, Menu } from "@mui/material";
 import { Container, Stack } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -53,13 +53,13 @@ export default function ChatList({ user }) {
       socket.current.off("receive-message");
     };
   }, [currentChat]);
-  
+
   useEffect(() => {
     //listen on get users, deleted...
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
       setMessages((messages) =>
-      messages.filter((message) => message._id !== messageId)
+        messages.filter((message) => message._id !== messageId)
       );
     });
     socket.current.on("get-users", (users) => {
@@ -146,28 +146,14 @@ export default function ChatList({ user }) {
 
             {/* All existing Users in DB (not including logged in user) (To be
             replaced with search box to find specific user): */}
-            {/* {allUsers.map((friend, idx) => (
+            {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
-                <Avatar
-                  sx={{
-                    margin: "auto",
-                    backgroundColor: "#A378FF",
-                    border: "3px solid #2f15d1",
-                  }}
-                ></Avatar>
-                <p
-                  style={{
-                    color: "#2f15d1",
-                    fontWeight: "bold",
-                    justifyContent: "center",
-                    width: "8vw",
-                  }}
-                >
+                <p style={{ color: "#2f15d1" }}>
                   {friend.firstname}
-                  <br /> {friend.lastname}
+                  {friend.lastname}
                 </p>
               </div>
-            ))} */}
+            ))}
 
             <FormControl fullWidth>
               <InputLabel id="demo-simple-select-label">Age</InputLabel>
@@ -180,13 +166,12 @@ export default function ChatList({ user }) {
                 // below is for setting action.
                 onChange=""
               >
-                <MenuItem value="">Username here</MenuItem>
+                <MenuItem value={""}></MenuItem>
+                <MenuItem value={""}></MenuItem>
+                <MenuItem value={""}></MenuItem>
               </Select>
             </FormControl>
-            <p >
-              Click a Chat to Start Conversation
-            </p>
-
+            <p>Click a Chat to Start Conversation</p>
             <div>
               <p className="section-heading">Active Chats:</p>
               {chats.map((chat, idx) => (

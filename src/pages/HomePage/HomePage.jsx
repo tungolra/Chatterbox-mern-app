@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
-import { Button } from "@mui/material";
+import { Button, IconButton } from "@mui/material";
 import { Stack } from "react-bootstrap";
 
 export default function Home({ user, setUser }) {
@@ -16,7 +16,9 @@ export default function Home({ user, setUser }) {
           <div>{user?.profilePicture} PROFILE PICTURE HERE</div>
           <div>{user?.bio} BIO HERE</div>
         </Stack>
-        <Button onClick={() => setModalOpened(true)}>Edit Profile</Button>
+        <IconButton onClick={() => setModalOpened(true)}>
+          Edit Profile
+        </IconButton>
         <UpdateUserModal
           modalOpened={modalOpened}
           setModalOpened={setModalOpened}
