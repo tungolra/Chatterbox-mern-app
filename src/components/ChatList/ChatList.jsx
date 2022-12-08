@@ -206,6 +206,7 @@ export default function ChatList({ user }) {
               messages={messages}
               newMessage={newMessage}
               socket={socket}
+              user={user}
             />
           </Container>
         </Grid>

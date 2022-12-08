@@ -12,8 +12,10 @@ export default function ChatBox({
   messages,
   newMessage,
   socket,
+  user
 }) {
   const [userData, setUserData] = useState(null);
+  
 
   // get chat member data
   useEffect(() => {
@@ -49,20 +51,25 @@ export default function ChatBox({
   return (
     <>
       {currentChat ? (
-        <div>
-          <hr />
-          <Messages
-            messages={messages}
-            setMessages={setMessages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
+        <>
+          <div style={{border:"1px solid black"}}>Friend: {userData}</div>
+          <div>
+            <hr />
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
+              user={user}
+              receiverId={userData}
             />
-          <InputEmoji value={newMessage} onChange={handleChange} />
-          <Button color="primary" onClick={handleSend}>
-            Send
-          </Button>
-        </div>
+            <InputEmoji value={newMessage} onChange={handleChange} />
+            <Button color="primary" onClick={handleSend}>
+              Send
+            </Button>
+          </div>
+        </>
       ) : (
         <span>Click a Chat to Start Conversation</span>
       )}
