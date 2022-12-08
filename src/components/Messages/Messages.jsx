@@ -5,7 +5,7 @@ import Linkify from "react-linkify";
 import { Button } from "@mui/material";
 import ChatBox from "../ChatBox/ChatBox";
 import moment from "moment";
-import axios from "axios"
+import axios from "axios";
 
 export default function Messages({
   messages,
@@ -37,9 +37,8 @@ export default function Messages({
         // if (receiverId) {
         let payload = await axios.get(`api/users/${receiverId}`);
         console.log(payload);
-        if (payload.status === 200){ 
+        if (payload.status === 200) {
           setReceiverData(payload.data);
-
         }
         // if (data) {
         // }
@@ -78,6 +77,7 @@ export default function Messages({
               {moment(message.createdAt).format("LLL").slice(0, -12)}
             </p>
           ))}
+        </div>
           <DeleteMessageModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
@@ -88,7 +88,6 @@ export default function Messages({
             currentChat={currentChat}
             currentUserId={currentUserId}
           />
-        </div>
       </div>
     </>
   );
