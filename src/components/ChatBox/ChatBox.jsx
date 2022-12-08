@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
+import "./ChatBox.css";
 import axios from "axios";
-import { Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
@@ -73,6 +74,7 @@ console.log(messages)
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
+
           />
           <Messages
             messages={messages}
@@ -81,7 +83,18 @@ console.log(messages)
             currentChat={currentChat}
             currentUserId={currentUserId}
             user={user}
+
           />
+          <div className="messages-container">
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
+              user={user}
+            />
+          </div>
 
           <Stack
             direction="row"

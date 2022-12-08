@@ -205,28 +205,22 @@ export default function ChatList({ user }) {
           item
           xs={8}
           sx={{
-            justifyContent: "center",
+            // justifyContent: "center",
             height: "50px",
           }}
         >
-          <Container
-            sx={{
-              justifyContent: "bottom",
-              position: "fixed",
-              maxWidth: "100vw",
-            }}
-          >
-            <ChatBox
-              currentChat={currentChat}
-              currentUserId={user._id}
-              setMessages={setMessages}
-              setNewMessage={setNewMessage}
-              messages={messages}
-              newMessage={newMessage}
-              socket={socket}
-              user={user}
-            />
-          </Container>
+          {/* <Container className="messages-container"> */}
+          <ChatBox
+            currentChat={currentChat}
+            currentUserId={user._id}
+            setMessages={setMessages}
+            setNewMessage={setNewMessage}
+            messages={messages}
+            newMessage={newMessage}
+            socket={socket}
+            user={user}
+          />
+          {/* </Container> */}
         </Grid>
       </Grid>
     </>
