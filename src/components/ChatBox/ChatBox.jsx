@@ -4,6 +4,7 @@ import InputEmoji from "react-input-emoji";
 import axios from "axios";
 import { Button } from "@mui/material";
 import { Container } from "react-bootstrap";
+import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 export default function ChatBox({
   currentChat,
   currentUserId,
@@ -12,10 +13,10 @@ export default function ChatBox({
   messages,
   newMessage,
   socket,
-  user
+  user,
 }) {
   const [userData, setUserData] = useState(null);
-  
+  const [modalOpened, setModalOpened] = useState(false);
 
   // get chat member data
   useEffect(() => {
@@ -50,9 +51,26 @@ export default function ChatBox({
 
   return (
     <>
+      {/* chatmembermodal here */}
       {currentChat ? (
         <>
-          <div style={{border:"1px solid black"}}>Friend: {userData}</div>
+          <div
+            style={{
+              border: "1px solid black",
+              display: "flex",
+              flexDirection: "row",
+            }}
+            onClick={() => {
+              setModalOpened(true);
+            }}
+          >
+            <div style={{ border: "1px solid black" }}>Profile Pic</div>
+            Friend: {userData}
+          </div>
+          <ChatMemberModal
+            modalOpened={modalOpened}
+            setModalOpened={setModalOpened}
+          />
           <div>
             <hr />
             <Messages
