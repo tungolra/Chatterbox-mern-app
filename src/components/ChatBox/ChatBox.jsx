@@ -76,15 +76,6 @@ console.log(messages)
             setModalOpened={setModalOpened}
 
           />
-          <Messages
-            messages={messages}
-            setMessages={setMessages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
-            user={user}
-
-          />
           <div className="messages-container">
             <Messages
               messages={messages}
