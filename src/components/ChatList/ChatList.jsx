@@ -143,6 +143,7 @@ export default function ChatList({ user }) {
   return (
     <>
       <Grid container spacing={2}>
+      
         <Grid item xs={4}>
           <TextField
             sx={{ width: "25vw", border: "3px solid #2f15d1", margin: "10px" }}
@@ -225,6 +226,7 @@ export default function ChatList({ user }) {
               messages={messages}
               newMessage={newMessage}
               socket={socket}
+              user={user}
             />
           </Container>
         </Grid>
