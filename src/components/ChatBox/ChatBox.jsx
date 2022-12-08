@@ -15,7 +15,7 @@ export default function ChatBox({
 }) {
   const [userData, setUserData] = useState(null);
 
-  // get chat member data
+  // get receiver data
   useEffect(() => {
     const userId = currentChat?.members?.find((id) => id !== currentUserId);
     setUserData(userId);
