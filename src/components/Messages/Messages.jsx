@@ -78,15 +78,16 @@ export default function Messages({
             </p>
           ))}
         </div>
-        <DeleteMessageModal
-          modalOpened={modalOpened}
-          setModalOpened={setModalOpened}
-          setMessages={setMessages}
-          messageId={messageId}
-          messages={messages}
-          socket={socket}
-          currentChat={currentChat}
-        />
+          <DeleteMessageModal
+            modalOpened={modalOpened}
+            setModalOpened={setModalOpened}
+            setMessages={setMessages}
+            messageId={messageId}
+            messages={messages}
+            socket={socket}
+            currentChat={currentChat}
+            currentUserId={currentUserId}
+          />
       </div>
     </>
   );
