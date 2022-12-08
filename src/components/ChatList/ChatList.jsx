@@ -117,13 +117,13 @@ export default function ChatList({ user }) {
       }
     };
     getAllChats()
-  }, []);
+  }, [] ); //setting to "chats" creates infinite renders, but works... 
 
   //start chat
   async function startChat(friendId) {
     try {
       const newChat = await axios.post(`api/chats/create/${user._id}/${friendId}`);
-      setChats([...chats, newChat])
+      // setChats([...chats, newChat])
     } catch (error) {
       console.log(error);
     }
