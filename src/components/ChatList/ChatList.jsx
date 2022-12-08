@@ -76,7 +76,6 @@ export default function ChatList({ user }) {
     const getChatMessages = async () => {
       try {
         let { data } = await axios.get(`${serverRoute}/${currentChat._id}`);
-        console.log("Current Chat Id: ", currentChat._id);
         setMessages(data);
       } catch (error) {
         console.log(error);
@@ -92,7 +91,6 @@ export default function ChatList({ user }) {
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
-        console.log("Get All User: ", data);
         data = data.filter((users) => users._id != user._id);
         setAllUsers(data);
       } catch (error) {
@@ -123,7 +121,6 @@ export default function ChatList({ user }) {
 
   // set currentChat
   function setChat(chat) {
-    console.log(chat);
     setCurrentChat(chat);
     updateMessageStatus(chat);
   }
@@ -205,28 +202,22 @@ export default function ChatList({ user }) {
           item
           xs={8}
           sx={{
-            justifyContent: "center",
+            // justifyContent: "center",
             height: "50px",
           }}
         >
-          <Container
-            sx={{
-              justifyContent: "bottom",
-              position: "fixed",
-              maxWidth: "100vw",
-            }}
-          >
-            <ChatBox
-              currentChat={currentChat}
-              currentUserId={user._id}
-              setMessages={setMessages}
-              setNewMessage={setNewMessage}
-              messages={messages}
-              newMessage={newMessage}
-              socket={socket}
-              user={user}
-            />
-          </Container>
+          {/* <Container className="messages-container"> */}
+          <ChatBox
+            currentChat={currentChat}
+            currentUserId={user._id}
+            setMessages={setMessages}
+            setNewMessage={setNewMessage}
+            messages={messages}
+            newMessage={newMessage}
+            socket={socket}
+            user={user}
+          />
+          {/* </Container> */}
         </Grid>
       </Grid>
     </>

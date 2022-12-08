@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
+import "./ChatBox.css";
 import axios from "axios";
-import { Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
@@ -19,11 +20,11 @@ export default function ChatBox({
 }) {
   const [userData, setUserData] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
-
+  const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
   // get receiver data
   useEffect(() => {
-    const userId = currentChat?.members?.find((id) => id !== currentUserId);
-    setUserData(userId);
+    // const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+    setUserData(receiverId);
   }, [currentChat, currentUserId]);
 
   //handle functions
@@ -37,7 +38,7 @@ export default function ChatBox({
       senderId: currentUserId,
       text: newMessage,
     };
-    const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+    // const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
     try {
       let newMessage = await axios.post(`api/messages`, messageInfo);
       socket.current.emit("send-message", {
@@ -50,7 +51,6 @@ export default function ChatBox({
       console.log(error);
     }
   }
-console.log(messages)
   return (
     <>
       {/* chatmembermodal here */}
@@ -73,15 +73,19 @@ console.log(messages)
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
+
           />
-          <Messages
-            messages={messages}
-            setMessages={setMessages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
-            user={user}
-          />
+          <div className="messages-container">
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
+              user={user}
+              receiverId={userData}
+            />
+          </div>
 
           <Stack
             direction="row"
