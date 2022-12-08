@@ -4,7 +4,7 @@ import { Button, IconButton, Link } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import Stack from "@mui/material/Stack";
 
-export default function Home({ user, setUser }) {
+export default function ProfilePage({user,setUser}) {
   const [modalOpened, setModalOpened] = useState(false);
   console.log(user);
   return (
