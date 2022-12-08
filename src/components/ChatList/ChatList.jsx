@@ -178,7 +178,41 @@ export default function ChatList({ user }) {
               </div>
             ))}
           </Stack>
-
+<p className="section-heading">
+              Find a Friend to Start Conversation
+            </p>
+            <FormControl
+              fullWidth
+              sx={{ border: "3px solid blue", borderRadius: "50px" }}
+            >
+              <InputLabel id="demo-simple-select-label">
+                Find Friends
+              </InputLabel>
+              <Select
+                labelId="demo-simple-select-label"
+                id="demo-simple-select"
+                // below is for user
+                value=""
+                label="Age"
+                // below is for setting action.
+                onChange=""
+              >
+                <MenuItem value={""}>
+                  <TextField
+                    sx={{
+                      width: "25vw",
+                      border: "3px solid #2f15d1",
+                      margin: "10px",
+                    }}
+                    className="outlined-basic"
+                    type="text"
+                    placeholder="Search for a User"
+                  ></TextField>
+                </MenuItem>
+                <MenuItem value={""}></MenuItem>
+                <MenuItem value={""}></MenuItem>
+              </Select>
+            </FormControl>
           <p>Click a Chat to Start Conversation</p>
           <Box>
             <div>
