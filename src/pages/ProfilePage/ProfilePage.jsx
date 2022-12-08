@@ -6,7 +6,6 @@ import Stack from "@mui/material/Stack";
 
 export default function ProfilePage({user,setUser}) {
   const [modalOpened, setModalOpened] = useState(false);
-  console.log(user);
   return (
     <>
       <div>Profile Page</div>
