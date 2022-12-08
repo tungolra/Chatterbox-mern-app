@@ -180,13 +180,12 @@ export default function ChatList({ user }) {
               {chats.map((chat, idx) => (
                 <div
                   style={{
-                    // width:"25vw",
                     margin: "5px",
                     alignItems: "center",
                     justifyContent: "center",
                   }}
                   key={idx}
-                  onClick={() => setCurrentChat(chat)}
+                  onClick={() => setChat(chat._id)}
                 >
                   <Conversation
                     currentUserId={user._id}
