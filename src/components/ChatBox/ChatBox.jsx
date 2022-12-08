@@ -80,6 +80,7 @@ export default function ChatBox({
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}
+            user={user}
           />
 
           <Stack

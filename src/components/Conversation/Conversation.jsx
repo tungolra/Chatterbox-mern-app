@@ -7,14 +7,14 @@ import Stack from "@mui/material/Stack";
 // testing
 import { styled } from "@mui/material/styles";
 
-const StyledBadge = styled(Badge)(({ theme }) => ({
-  "& .MuiBadge-badge": {
-    right: -3,
-    top: 13,
-    border: `2px solid ${theme.palette.background.paper}`,
-    padding: "0 4px",
-  },
-}));
+// const StyledBadge = styled(Badge)(({ theme }) => ({
+//   "& .MuiBadge-badge": {
+//     right: -3,
+//     top: 13,
+//     border: `2px solid ${theme.palette.background.paper}`,
+//     padding: "0 4px",
+//   },
+// }));
 // testing
 
 export default function Conversation({ currentUserId, chat, online, user }) {
@@ -28,7 +28,6 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       try {
         const { data } = await axios.get(`api/users/${friendId}`);
         setUserData(data);
-        console.log(data);
       } catch (error) {
         console.log(error);
       }
@@ -67,27 +66,13 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       }
     >
       <Grid item xs={4}>
-        {online ? (
-          <Badge color="#50FC86" badgeContent=" ">
-            <img
-              className="profileImg"
-              src={
-                userData?.profilePicture === ""
-                  ? "/logo192.png"
-                  : userData?.profilePicture
-              }
-            />
-          </Badge>
+        {online ? ( "online"
+         
         ) : (
-          <StyledBadge
-            overlap="circular"
-            anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
-            variant="dot"
-            color="primary"
-          >
-            <Avatar color="primary">N</Avatar>
-          </StyledBadge>
-        )}
+          
+          "offline"
+        )
+        }
       </Grid>
       <Grid item xs={4}>
         <span>
