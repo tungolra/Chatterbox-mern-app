@@ -17,7 +17,6 @@ export default function ChatList({ user }) {
   const [allUsers, setAllUsers] = useState([]);
   //state for chats with unread messages
 
-
   //get chat
   useEffect(() => {
     const getUserChats = async () => {
@@ -101,13 +100,18 @@ export default function ChatList({ user }) {
   }, []);
 
   //update active chats when new chat is created
-  useEffect(()=> {
-    try {
-      
-    } catch (error) {
-      console.log(error)
-    }
-  }, [chats])
+  useEffect(() => {
+    console.log(user._id);
+    const getAllChats = async () => {
+      try {
+        const allChats = await axios.get(`api/chats/${user._id}`);
+        setChats(allChats.data)
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    getAllChats()
+  }, [chats]);
 
   //start chat
   async function startChat(friendId) {
