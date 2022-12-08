@@ -36,9 +36,8 @@ export default function Messages({
         // if (receiverId) {
         let payload = await axios.get(`api/users/${receiverId}`);
         console.log(payload);
-        if (payload.status === 200){ 
+        if (payload.status === 200) {
           setReceiverData(payload.data);
-
         }
         // if (data) {
         // }
@@ -74,7 +73,7 @@ export default function Messages({
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
-              {moment(message.createdAt).format("LLL").slice(0, -12)}
+              {moment(message.createdAt).format("LLL").slice(0)}
             </p>
           ))}
           <DeleteMessageModal
