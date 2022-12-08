@@ -115,22 +115,33 @@ export default function ChatList({ user }) {
     return online ? true : false;
   }
 
-  // set currentChat and update message readstatus to true
+  // set currentChat 
   function setChat(chat) {
     setCurrentChat(chat);
-    const updateMessageStatus = async () => {
-      try {
-        await axios.put(`api/messages/status/${chat._id}`);
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    updateMessageStatus();
+    updateMessageStatus(chat._id);
   }
-
+  // create function that calls back to setCurrentChat, pass it into Conversations
+  function updateReadMessages(cb){
+    // updateMessageStatus(chatId)
+  }
+  // separate setCurrentChat
+  // update message readstatus to true
+  // currently, if a new msg is sent, then unread msgs will show after refresh
+  // second, even if sender sends msg, after refresh, unread msgs will show in
+  // their chatbox with the receiver
+  // third, if sender clicks back into convo with receiver, then that will
+  // clear the receiver's unread messages
+  const updateMessageStatus = async (chatId) => {
+    try {
+      await axios.put(`api/messages/status/${chatId}`);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+  
+  
   return (
     <>
-      {/* <Grid container direction="row" spacing={2}> */}
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <TextField
@@ -141,8 +152,6 @@ export default function ChatList({ user }) {
           ></TextField>
 
           <Stack direction="row">
-            {/* All existing Users in DB (not including logged in user) (To be
-            replaced with search box to find specific user): */}
             {allUsers.map((friend, idx) => (
               <div key={idx} onClick={() => startChat(friend._id)}>
                 <Avatar
@@ -176,7 +185,6 @@ export default function ChatList({ user }) {
                 style={{
                   border: "3px solid #2f15d1",
                   borderRadius: "30px",
-                  // width:"25vw",
                   margin: "5px",
                   alignItems: "center",
                   justifyContent: "center",
@@ -189,7 +197,6 @@ export default function ChatList({ user }) {
                   chat={chat}
                   online={isOnline(chat)}
                   user={user}
-                  // countUnreadMessages={countUnreadMessages}
                 />
               </div>
             ))}
