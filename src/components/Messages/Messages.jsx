@@ -18,6 +18,7 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
+  const [receiverData, setReceiverData] = useState({});
 
   let newDate = new Date();
   let sentDate = `${newDate.toLocaleTimeString()}`;
