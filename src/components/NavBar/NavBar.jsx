@@ -19,7 +19,7 @@ export default function NavBar(props, user, setUser) {
     props.setUser(null);
   }
   return (
-    <Grid container spacing={2} sx={{ justifyItems: "center" }}>
+    <Grid container spacing={2}>
       <Grid item xs={4}>
         <h1 className="logo">chatter[box]</h1>
         <Container>

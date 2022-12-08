@@ -122,7 +122,6 @@ export default function ChatList({ user }) {
 
   return (
     <>
-      {/* <Grid container direction="row" spacing={2}> */}
       <Grid container spacing={2}>
         <Grid item xs={4}>
           <Box
