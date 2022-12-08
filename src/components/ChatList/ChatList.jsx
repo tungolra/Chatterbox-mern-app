@@ -19,7 +19,6 @@ export default function ChatList({ user }) {
 
   //get chat
   useEffect(() => {
-    console.log("get current chat use effect ran");
     const getUserChats = async () => {
       try {
         let payload = await axios.get(`/api/chats/${user._id}`);
@@ -34,14 +33,12 @@ export default function ChatList({ user }) {
 
   //connect to socket.io
   useEffect(() => {
-    console.log("connect to socket use effect ran");
     socket.current = io();
     socket.current.emit("new-user-add", user._id);
   }, [user]);
 
   //update messages if receiver has sender's chat open
   useEffect(() => {
-    console.log("receive message use effect ran");
     socket.current.on("receive-message", (data) => {
       if (data.chatId == currentChat?._id) {
         setMessages((messages) => [...messages, data]);
@@ -52,9 +49,8 @@ export default function ChatList({ user }) {
     };
   }, [currentChat]);
 
+  //listen on get users, deleted...
   useEffect(() => {
-    console.log("listen on msg delete/get-users use effect ran");
-    //listen on get users, deleted...
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
       setMessages((messages) =>
@@ -73,7 +69,6 @@ export default function ChatList({ user }) {
 
   // get messages for chat
   useEffect(() => {
-    console.log("get messages use effect ran");
     const serverRoute = "api/messages";
     const getChatMessages = async () => {
       try {
@@ -86,11 +81,8 @@ export default function ChatList({ user }) {
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
 
-  // get all chats
-
   //set all users
   useEffect(() => {
-    console.log("get all users use effect ran");
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
@@ -105,25 +97,14 @@ export default function ChatList({ user }) {
     getAllUsers();
   }, []);
 
-  //update active chats when new chat is created
-  useEffect(() => {
-    console.log("get active chats use effect ran");
-    const getAllChats = async () => {
-      try {
-        const allChats = await axios.get(`api/chats/${user._id}`);
-        setChats(allChats.data)
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    getAllChats()
-  }, [] ); //setting to "chats" creates infinite renders, but works... 
-
   //start chat
   async function startChat(friendId) {
     try {
-      const newChat = await axios.post(`api/chats/create/${user._id}/${friendId}`);
-      // setChats([...chats, newChat])
+      const newChat = await axios.post(
+        `api/chats/create/${user._id}/${friendId}`
+      );
+      console.log(newChat.data)
+      setChats((chats) => [...chats, newChat.data])
     } catch (error) {
       console.log(error);
     }
