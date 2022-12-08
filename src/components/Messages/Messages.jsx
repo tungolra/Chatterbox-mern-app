@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-import { format } from "timeago.js";
 import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 import "./Messages.css";
 import Linkify from "react-linkify";
@@ -74,7 +73,6 @@ export default function Messages({
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
-              (moment) Created at:{" "}
               {moment(message.createdAt).format("LLL").slice(0, -12)}
             </p>
           ))}
@@ -93,4 +91,3 @@ export default function Messages({
     </>
   );
 }
-// loop through string and cut out characters
