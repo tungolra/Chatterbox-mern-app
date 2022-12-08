@@ -50,30 +50,30 @@ export default function ChatBox({
       console.log(error);
     }
   }
-
+console.log(messages)
   return (
     <>
       {/* chatmembermodal here */}
       {currentChat ? (
         <div>
           <hr />
-<div
-  style={{
-    border: "1px solid black",
-    display: "flex",
-    flexDirection: "row",
-  }}
-  onClick={() => {
-    setModalOpened(true);
-  }}
->
-  <div style={{ border: "1px solid black" }}>Profile Pic</div>
-  Friend: {userData}
-</div>
-<ChatMemberModal
-  modalOpened={modalOpened}
-  setModalOpened={setModalOpened}
-/>
+          <div
+            style={{
+              border: "1px solid black",
+              display: "flex",
+              flexDirection: "row",
+            }}
+            onClick={() => {
+              setModalOpened(true);
+            }}
+          >
+            <div style={{ border: "1px solid black" }}>Profile Pic</div>
+            Friend: {userData}
+          </div>
+          <ChatMemberModal
+            modalOpened={modalOpened}
+            setModalOpened={setModalOpened}
+          />
           <Messages
             messages={messages}
             setMessages={setMessages}
@@ -90,7 +90,6 @@ export default function ChatBox({
             justifyContent="center"
             sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-            
             <InputEmoji
               color="secondary"
               value={newMessage}
