@@ -154,65 +154,48 @@ export default function ChatList({ user }) {
             placeholder="Search for a User"
           ></TextField>
 
-          <Stack direction="row">
-            {allUsers.map((friend, idx) => (
-              <div key={idx} onClick={() => startChat(friend._id)}>
-                <Avatar
-                  sx={{
-                    margin: "auto",
-                    backgroundColor: "#A378FF",
-                    border: "3px solid #2f15d1",
-                  }}
-                ></Avatar>
-                <br />
-                <p
-                  style={{
-                    color: "#2f15d1",
-                    fontWeight: "bold",
-                    justifyContent: "center",
-                    width: "8vw",
-                  }}
-                >
-                  {friend?.firstname} {friend?.lastname}
-                </p>
+          {/* below needs to be populated in select drop down below */}
+          {allUsers.map((friend, idx) => (
+            <div key={idx} onClick={() => startChat(friend._id)}>
+              <br />
+              <div>
+                {friend?.firstname} {friend?.lastname}
               </div>
-            ))}
-          </Stack>
-<p className="section-heading">
-              Find a Friend to Start Conversation
-            </p>
-            <FormControl
-              fullWidth
-              sx={{ border: "3px solid blue", borderRadius: "50px" }}
+            </div>
+          ))}
+          {/* bottom of note */}
+
+          <p className="section-heading">Find a Friend to Start Conversation</p>
+          <FormControl
+            fullWidth
+            sx={{ border: "3px solid blue", borderRadius: "50px" }}
+          >
+            <InputLabel id="demo-simple-select-label">Find Friends</InputLabel>
+            <Select
+              labelId="demo-simple-select-label"
+              id="demo-simple-select"
+              // below is for user
+              value=""
+              label="Age"
+              // below is for setting action.
+              onChange=""
             >
-              <InputLabel id="demo-simple-select-label">
-                Find Friends
-              </InputLabel>
-              <Select
-                labelId="demo-simple-select-label"
-                id="demo-simple-select"
-                // below is for user
-                value=""
-                label="Age"
-                // below is for setting action.
-                onChange=""
-              >
-                <MenuItem value={""}>
-                  <TextField
-                    sx={{
-                      width: "25vw",
-                      border: "3px solid #2f15d1",
-                      margin: "10px",
-                    }}
-                    className="outlined-basic"
-                    type="text"
-                    placeholder="Search for a User"
-                  ></TextField>
-                </MenuItem>
-                <MenuItem value={""}></MenuItem>
-                <MenuItem value={""}></MenuItem>
-              </Select>
-            </FormControl>
+              <MenuItem value={""}>
+                <TextField
+                  sx={{
+                    width: "25vw",
+                    border: "3px solid #2f15d1",
+                    margin: "10px",
+                  }}
+                  className="outlined-basic"
+                  type="text"
+                  placeholder="Search for a User"
+                ></TextField>
+              </MenuItem>
+              <MenuItem value={""}></MenuItem>
+              <MenuItem value={""}></MenuItem>
+            </Select>
+          </FormControl>
           <p>Click a Chat to Start Conversation</p>
           <Box>
             <div>
