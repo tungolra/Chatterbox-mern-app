@@ -126,7 +126,6 @@ export default function ChatList({ user }) {
         <Grid item xs={4}>
           <Box
             sx={{
-              width: "25vw",
               justifyContent: "center",
               border: "3px solid red",
               borderRadius: "25px",
