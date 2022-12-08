@@ -51,7 +51,7 @@ export default function ChatBox({
       console.log(error);
     }
   }
-
+console.log(messages)
   return (
     <>
       {/* chatmembermodal here */}
@@ -75,16 +75,14 @@ export default function ChatBox({
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
           />
-          <div className="messages-container">
-            <Messages
-              messages={messages}
-              setMessages={setMessages}
-              socket={socket}
-              currentChat={currentChat}
-              currentUserId={currentUserId}
-              user={user}
-            />
-          </div>
+          <Messages
+            messages={messages}
+            setMessages={setMessages}
+            socket={socket}
+            currentChat={currentChat}
+            currentUserId={currentUserId}
+            user={user}
+          />
 
           <Stack
             direction="row"
