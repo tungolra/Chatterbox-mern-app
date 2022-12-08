@@ -32,11 +32,11 @@
   /* display: flex; */
   background-color: #a378ff;
   text-align: right;
-  justify-items: right;
+  justify-items: flex-end;
   align-items: flex-end;
-  align-content: right;
-  justify-self: right;
-  align-self: right;
+  align-content: flex-end;
+  justify-self: flex-end;
+  align-self: flex-end;
   margin-right: 0;
 
   /* flex-basis: 40%; */
