@@ -91,7 +91,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
         >
           <img 
             className="profileImg" 
-            src={user.profilePicture} alt="profileimage"
+            src={user?.profilePicture === "" ? "./logo192.png" : user?.profilePicture} alt="profileimage"
             style={{margin:"auto", height:"120px", width:"120px"}} /> 
  
 
@@ -177,6 +177,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
               value={formData.about}
               onChange={handleChange}
               placeholder="About ..."
+              maxlength="200"
               margin="normal"
               fullWidth
               autoFocus
