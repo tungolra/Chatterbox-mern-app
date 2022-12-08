@@ -20,11 +20,11 @@ export default function ChatBox({
 }) {
   const [userData, setUserData] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
-
+  const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
   // get receiver data
   useEffect(() => {
-    const userId = currentChat?.members?.find((id) => id !== currentUserId);
-    setUserData(userId);
+    // const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+    setUserData(receiverId);
   }, [currentChat, currentUserId]);
 
   //handle functions
@@ -38,7 +38,7 @@ export default function ChatBox({
       senderId: currentUserId,
       text: newMessage,
     };
-    const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+    // const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
     try {
       let newMessage = await axios.post(`api/messages`, messageInfo);
       socket.current.emit("send-message", {

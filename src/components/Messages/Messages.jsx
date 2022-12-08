@@ -19,7 +19,7 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
-  const [receiverData, setReceiverData] = useState({});
+  const [receiverData, setReceiverData] = useState([]);
 
   // scroll to last message
   useEffect(() => {
@@ -30,7 +30,8 @@ export default function Messages({
   useEffect(() => {
     async function getReceiverData() {
       try {
-        let payload = await axios.get(`api/users/${receiverId}`);
+        console.log(receiverId) //receiver id undefined on first click into active chat
+        const payload = await axios.get(`api/users/${receiverId}`);
         if (payload.status === 200) {
           setReceiverData(payload.data);
         }
@@ -39,7 +40,7 @@ export default function Messages({
       }
     }
     getReceiverData();
-  }, []);
+  }, [currentChat]);
 
   return (
     <>
