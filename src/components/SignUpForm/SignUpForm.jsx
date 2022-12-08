@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { signUp } from "../../utilities/UserRequests/users-service";
 import "./SignUpForm.css";
 // mui below
-
 import CssBaseline from "@mui/material/CssBaseline";
 import Grid from "@mui/material/Grid";
 import Box from "@mui/material/Box";
@@ -14,6 +13,7 @@ export class SignUpForm extends Component {
     // add first name, last name
     firstname: "",
     lastname: "",
+    username: "",
     email: "",
     password: "",
     confirm: "",
@@ -85,6 +85,21 @@ export class SignUpForm extends Component {
             value={this.state.name}
             onChange={this.handleChange}
             placeholder="Last Name"
+            margin="normal"
+            fullWidth
+            required
+            autoFocus
+            disableUnderline
+          />
+
+          <Input
+            className="outlined-basic"
+            variant="outlined"
+            type="text"
+            name="username"
+            value={this.state.username}
+            onChange={this.handleChange}
+            placeholder="Username"
             margin="normal"
             fullWidth
             required

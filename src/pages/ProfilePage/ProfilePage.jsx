@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
-import { Button } from "@mui/material";
+import { Input, Grid, Button } from "@mui/material";
 
-export default function Home({ user, setUser }) {
+export default function ProfilePage({ user, setUser }) {
   const [modalOpened, setModalOpened] = useState(false);
 
   return (
     <>
+      <div>Profile Page</div>
       <div>
         <Button onClick={() => setModalOpened(true)}>Edit Profile</Button>
         <UpdateUserModal
