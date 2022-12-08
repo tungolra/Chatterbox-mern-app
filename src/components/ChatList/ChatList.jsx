@@ -86,9 +86,7 @@ export default function ChatList({ user }) {
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
-        // do not include logged in user
         data = data.filter((users) => users._id != user._id);
-        // do not include users with already active chats
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -103,7 +101,6 @@ export default function ChatList({ user }) {
       const newChat = await axios.post(
         `api/chats/create/${user._id}/${friendId}`
       );
-      console.log(newChat.data)
       setChats((chats) => [...chats, newChat.data])
     } catch (error) {
       console.log(error);
@@ -116,6 +113,24 @@ export default function ChatList({ user }) {
     const online = onlineUsers.find((user) => user.userId === chatMember);
     return online ? true : false;
   }
+
+  // set currentChat and update message readstatus to true
+  function setChat (chat){
+    console.log(chat._id)
+    setCurrentChat(chat)
+    const updateMessageStatus = async () => { 
+      try {
+        await axios.put(`api/messages/status/${chat._id}`)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+    updateMessageStatus()
+  }
+
+  // get all messages and count all messages with readstatus null/false
+  // if there are null/false msgs in a chat, bolden what's being rendered
+
 
   return (
     <>
@@ -171,7 +186,7 @@ export default function ChatList({ user }) {
                   justifyContent: "center",
                 }}
                 key={idx}
-                onClick={() => setCurrentChat(chat)}
+                onClick={() => setChat(chat)}
               >
                 <Conversation
                   currentUserId={user._id}
