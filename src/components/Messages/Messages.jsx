@@ -13,6 +13,8 @@ export default function Messages({
   socket,
   currentChat,
   currentUserId,
+  user,
+  receiverId,
 }) {
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
@@ -26,6 +28,27 @@ export default function Messages({
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
+
+  // get receiver data
+  useEffect(() => {
+    async function getReceiverData() {
+      try {
+        // if (receiverId) {
+        let payload = await axios.get(`api/users/${receiverId}`);
+        console.log(payload);
+        if (payload.status === 200){ 
+          setReceiverData(payload.data);
+
+        }
+        // if (data) {
+        // }
+      } catch (error) {
+        console.log(error);
+      }
+      // }
+    }
+    getReceiverData();
+  }, []);
 
   return (
     <>
@@ -43,7 +66,11 @@ export default function Messages({
                 setModalOpened(true);
               }}
             >
-              <span className="sender-text">{message.senderId}</span>
+              <span className="sender-text">
+                {user._id === message.senderId
+                  ? user?.firstname
+                  : receiverData?.firstname}
+              </span>
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
@@ -56,6 +83,7 @@ export default function Messages({
             setModalOpened={setModalOpened}
             setMessages={setMessages}
             messageId={messageId}
+            messages={messages}
             socket={socket}
             currentChat={currentChat}
             currentUserId={currentUserId}
