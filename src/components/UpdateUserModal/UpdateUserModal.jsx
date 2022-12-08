@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Modal, useMantineTheme } from "@mantine/core";
 import { update } from '../../utilities/UserRequests/users-service';
 import axios from 'axios';
-import './UpdatUserModal.css';
+
 // mui below
 import CssBaseline from "@mui/material/CssBaseline";
 import { Input, Button, TextareaAutosize, Box} from "@mui/material";
 import { Container } from "@mui/system";
-
+import './UpdatUserModal.css';
 
 
 export default function UpdateUserModal({ user, setUser, modalOpened, setModalOpened }) {
@@ -37,8 +37,6 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
     async function handleSubmit(e) {
      e.preventDefault()       
       try {          
-        // const user =  update(formData)     
-        // setUser(user)
         const data = new FormData()
         data.append('file', selectedFile)      
          if (selectedFile) {         
@@ -68,15 +66,17 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
       overlayBlur={3}
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
+      maxWidth="sm"
     >
 
       <Container
         component="main"
+        spacing={2}
         sx={{
           display: "flex",
           height: "100vh",
-          width: "40vw",
           flexDirection: "column",
+          margin:"5px",
         }}
       >
         <CssBaseline />
@@ -89,8 +89,11 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             flexDirection: "column",
           }}
         >
-          <img className="profileImg" src={user.profilePicture} alt="profileimage" /> 
-          <div>
+          <img 
+            className="profileImg" 
+            src={user.profilePicture} alt="profileimage"
+            style={{margin:"auto", height:"120px", width:"120px"}} /> 
+ 
 
             <Input
               className="outlined-basic"
@@ -189,8 +192,7 @@ export default function UpdateUserModal({ user, setUser, modalOpened, setModalOp
             autoFocus
           >
             UPDATE
-          </Button>
-          </div>   
+          </Button>  
         </Box>
       </Container>
     </Modal>     
