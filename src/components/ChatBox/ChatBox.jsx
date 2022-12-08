@@ -20,11 +20,11 @@ export default function ChatBox({
 }) {
   const [userData, setUserData] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
-
+  const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
   // get receiver data
   useEffect(() => {
-    const userId = currentChat?.members?.find((id) => id !== currentUserId);
-    setUserData(userId);
+    console.log("receiveId", receiverId);
+    setUserData(receiverId);
   }, [currentChat, currentUserId]);
 
   //handle functions
@@ -38,7 +38,7 @@ export default function ChatBox({
       senderId: currentUserId,
       text: newMessage,
     };
-    const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+
     try {
       let newMessage = await axios.post(`api/messages`, messageInfo);
       socket.current.emit("send-message", {
@@ -51,7 +51,6 @@ export default function ChatBox({
       console.log(error);
     }
   }
-console.log(messages)
   return (
     <>
       {/* chatmembermodal here */}
@@ -75,14 +74,17 @@ console.log(messages)
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
           />
-          <Messages
-            messages={messages}
-            setMessages={setMessages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
-            user={user}
-          />
+          <div className="messages-container">
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
+              user={user}
+              receiverId={userData}
+            />
+          </div>
 
           <Stack
             direction="row"
@@ -91,16 +93,18 @@ console.log(messages)
             justifyContent="center"
             sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-            <InputEmoji
-              color="secondary"
-              value={newMessage}
-              onChange={handleChange}
-            />
-            <IconButton>
-              <SendIcon color="secondary" onClick={handleSend}>
-                Send
-              </SendIcon>
-            </IconButton>
+            <form onSubmit={handleSend}>
+              <InputEmoji
+                color="secondary"
+                value={newMessage}
+                onChange={handleChange}
+              />
+
+              <button type="submit">
+                <IconButton>SEND </IconButton>
+              </button>
+              <SendIcon color="secondary">Send</SendIcon>
+            </form>
           </Stack>
         </div>
       ) : (
