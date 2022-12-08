@@ -30,7 +30,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       sx={{
         width: "25vw",
         padding: "5px",
-        justifyContent: "center",
+
         alignItems: "center",
       }}
     >
@@ -48,23 +48,22 @@ export default function Conversation({ currentUserId, chat, online, user }) {
           </Badge>
         ) : (
           "offline"
-          // <Badge color="#FC6F50" badgeContent=" ">
-          //   <img
-          //     className="profileImg"
-          //     src={
-          //       userData?.profilePicture === ""
-          //         ? "/logo192.png"
-          //         : userData?.profilePicture
-          //     }
-          //   />
-          // </Badge>
         )}
       </Grid>
-      <Grid item xs={6}>
-        <span>{userData?.firstname}</span>
-      </Grid>
       <Grid item xs={3}>
+        <span>
+          {userData?.firstname}&nbsp;{userData?.lastname}
+        </span>
+      </Grid>
+      <Grid
+        item
+        xs={3}
+        sx={{
+          justifyContent: "right",
+        }}
+      >
         {/* notification goes here */}
+        <Badge color="primary" variant="dot"></Badge>
       </Grid>
     </Grid>
   );
