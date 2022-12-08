@@ -1,8 +1,9 @@
 import React, { useEffect, useState } from "react";
 import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
+import "./ChatBox.css";
 import axios from "axios";
-import { Button, IconButton } from "@mui/material";
+import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
@@ -74,22 +75,29 @@ export default function ChatBox({
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
           />
-          <Messages
-            messages={messages}
-            setMessages={setMessages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
-          />
+          <Container
+            className="messages-container"
+            sx={{ overflow: "scroll", border: "3px solid red" }}
+          >
+            <Messages
+              messages={messages}
+              setMessages={setMessages}
+              socket={socket}
+              currentChat={currentChat}
+              currentUserId={currentUserId}
+              user={user}
+            />
+          </Container>
+
           <Stack
             direction="row"
             alignItems="center"
             spacing={3}
             justifyContent="center"
-            sx={{ width: "50vw", justifyItems:"center", margin:"auto" }}
+            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
             <InputEmoji
-              color="seceondary"
+              color="secondary"
               value={newMessage}
               onChange={handleChange}
             />
