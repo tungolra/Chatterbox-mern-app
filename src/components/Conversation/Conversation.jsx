@@ -93,6 +93,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         <span>
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
+{/* message preview goes here */}
       </Grid>
       <Grid
         item
