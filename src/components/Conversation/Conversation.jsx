@@ -46,7 +46,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         }
       }
     >
-      <Grid item xs={1}>
+      <Grid item xs={4}>
         {online ? (
           <Badge color="#50FC86" badgeContent=" ">
             <img
@@ -63,19 +63,20 @@ export default function Conversation({ currentUserId, chat, online, user }) {
             overlap="circular"
             anchorOrigin={{ vertical: "bottom", horizontal: "right" }}
             variant="dot"
+            color="primary"
           >
             <Avatar color="primary">N</Avatar>
           </StyledBadge>
         )}
       </Grid>
-      <Grid item xs={7}>
+      <Grid item xs={4}>
         <span>
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
       </Grid>
       <Grid
         item
-        xs={3}
+        xs={4}
         sx={{
           justifyContent: "right",
         }}
