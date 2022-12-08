@@ -75,10 +75,7 @@ export default function ChatBox({
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
           />
-          <Container
-            className="messages-container"
-            sx={{ overflow: "scroll", border: "3px solid red" }}
-          >
+          <div className="messages-container">
             <Messages
               messages={messages}
               setMessages={setMessages}
@@ -87,7 +84,7 @@ export default function ChatBox({
               currentUserId={currentUserId}
               user={user}
             />
-          </Container>
+          </div>
 
           <Stack
             direction="row"

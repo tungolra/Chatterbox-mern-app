@@ -52,8 +52,12 @@ export default function Messages({
 
   return (
     <>
-      <Container className="messages-container">
-        {messages.map((message, idx) => (
+      {messages.map((message, idx) => (
+        <div
+          className={
+            message.senderId === currentUserId ? "message own" : "message"
+          }
+        >
           <p
             className={
               message.senderId === currentUserId ? "message own" : "message"
@@ -75,19 +79,19 @@ export default function Messages({
             <br />
             {moment(message.createdAt).format("LLL").slice(0)}
           </p>
-        ))}
+        </div>
+      ))}
 
-        <DeleteMessageModal
-          modalOpened={modalOpened}
-          setModalOpened={setModalOpened}
-          setMessages={setMessages}
-          messageId={messageId}
-          messages={messages}
-          socket={socket}
-          currentChat={currentChat}
-          currentUserId={currentUserId}
-        />
-      </Container>
+      <DeleteMessageModal
+        modalOpened={modalOpened}
+        setModalOpened={setModalOpened}
+        setMessages={setMessages}
+        messageId={messageId}
+        messages={messages}
+        socket={socket}
+        currentChat={currentChat}
+        currentUserId={currentUserId}
+      />
     </>
   );
 }

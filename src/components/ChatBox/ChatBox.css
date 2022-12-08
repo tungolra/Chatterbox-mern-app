@@ -1,26 +1,6 @@
-/* .message {
-  text-align: left;
-  background-color: #1165eb;
-  border-radius: 25px;
-  padding: 15px;
-  color: white;
-  flex: none;
-  align-items: left; */
-
-  /* max-width: 50px; */
-  /* justify-content: left; */
-  /* justify-items: left; */
-/* }
-
-.own {
-  text-align: right;
-  justify-items: right;
-  align-items: right;
-  background-color: #a378ff;
-  align-content: right;
-}
 .messages-container {
   display: flex;
-  flex-direction: column;
-
-} */
+  flex-flow: column;
+  flex-direction: column !important;
+  margin: 2px;
+}
