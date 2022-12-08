@@ -146,8 +146,7 @@ export default function ChatList({ user }) {
             </p>
             <FormControl
               fullWidth
-              className="outlined-basic"
-              sx={{ border: "2px solid blue", borderRadius: "50px" }}
+              sx={{ border: "3px solid blue", borderRadius: "50px" }}
             >
               <InputLabel id="demo-simple-select-label">
                 Find Friends
