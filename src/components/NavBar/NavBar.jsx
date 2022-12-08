@@ -50,7 +50,7 @@ export default function NavBar(props, user, setUser) {
             }}
           >
             <IconButton alignItems="center">
-              <Link color="secondary" to="/">
+              <Link color="secondary" to="/profile">
                 <PersonOutlineIcon color="primary"></PersonOutlineIcon>
               </Link>
             </IconButton>
