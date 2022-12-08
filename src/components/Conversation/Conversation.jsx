@@ -26,7 +26,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
   return (
     <Grid
       container
-      spacing={2}
+      spacing={3}
       sx={{
         width: "25vw",
         padding: "5px",
@@ -34,7 +34,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         alignItems: "center",
       }}
     >
-      <Grid item xs={2}>
+      <Grid item xs={1}>
         {online ? (
           <Badge color="#50FC86" badgeContent=" ">
             <img
@@ -50,7 +50,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
           "offline"
         )}
       </Grid>
-      <Grid item xs={3}>
+      <Grid item xs={2}>
         <span>
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
