@@ -16,8 +16,6 @@ export default function ChatList({ user }) {
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
   //state for chats with unread messages
-  // console.log("currentChat: ", currentChat)
-  // console.log("messages: ", messages)
 
   //get chat
   useEffect(() => {
@@ -39,6 +37,7 @@ export default function ChatList({ user }) {
     socket.current.emit("new-user-add", user._id);
   }, [user]);
 
+  //update messages if receiver has sender's chat open
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
       if (data.chatId == currentChat?._id) {
@@ -49,13 +48,13 @@ export default function ChatList({ user }) {
       socket.current.off("receive-message");
     };
   }, [currentChat]);
-  
+
+  //listen on get users, deleted...
   useEffect(() => {
-    //listen on get users, deleted...
     socket.current.on("deleted", (data) => {
       const { messageId } = data;
       setMessages((messages) =>
-      messages.filter((message) => message._id !== messageId)
+        messages.filter((message) => message._id !== messageId)
       );
     });
     socket.current.on("get-users", (users) => {
@@ -82,8 +81,6 @@ export default function ChatList({ user }) {
     if (currentChat !== null) getChatMessages();
   }, [currentChat]);
 
-  // get all chats
-
   //set all users
   useEffect(() => {
     const getAllUsers = async () => {
@@ -103,7 +100,11 @@ export default function ChatList({ user }) {
   //start chat
   async function startChat(friendId) {
     try {
-      await axios.post(`api/chats/create/${user._id}/${friendId}`);
+      const newChat = await axios.post(
+        `api/chats/create/${user._id}/${friendId}`
+      );
+      console.log(newChat.data)
+      setChats((chats) => [...chats, newChat.data])
     } catch (error) {
       console.log(error);
     }
@@ -149,7 +150,7 @@ export default function ChatList({ user }) {
                     width: "8vw",
                   }}
                 >
-                  {friend.firstname} {friend.lastname}
+                  {friend?.firstname} {friend?.lastname}
                 </p>
               </div>
             ))}
@@ -170,10 +171,7 @@ export default function ChatList({ user }) {
                   justifyContent: "center",
                 }}
                 key={idx}
-                onClick={() => {
-                  setCurrentChat(chat);
-                  console.log("Chat: ", chat);
-                }}
+                onClick={() => setCurrentChat(chat)}
               >
                 <Conversation
                   currentUserId={user._id}
