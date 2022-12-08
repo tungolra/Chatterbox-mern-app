@@ -51,7 +51,6 @@ export default function ChatBox({
       console.log(error);
     }
   }
-console.log(messages)
   return (
     <>
       {/* chatmembermodal here */}
@@ -84,6 +83,7 @@ console.log(messages)
               currentChat={currentChat}
               currentUserId={currentUserId}
               user={user}
+              receiverId={userData}
             />
           </div>
 

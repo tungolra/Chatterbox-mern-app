@@ -21,10 +21,6 @@ export default function Messages({
   const [messageId, setMessageId] = useState(null);
   const [receiverData, setReceiverData] = useState({});
 
-  let newDate = new Date();
-  let sentDate = `${newDate.toLocaleTimeString()}`;
-  // let moment = moment(newDate).format()
-
   // scroll to last message
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
@@ -34,18 +30,13 @@ export default function Messages({
   useEffect(() => {
     async function getReceiverData() {
       try {
-        // if (receiverId) {
         let payload = await axios.get(`api/users/${receiverId}`);
-        console.log(payload);
         if (payload.status === 200) {
           setReceiverData(payload.data);
         }
-        // if (data) {
-        // }
       } catch (error) {
         console.log(error);
       }
-      // }
     }
     getReceiverData();
   }, []);
