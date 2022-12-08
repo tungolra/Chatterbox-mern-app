@@ -74,7 +74,7 @@ export default function Messages({
               <br />
               <Linkify>{message.text}</Linkify>
               <br />
-              {moment(message.createdAt).format("LLL").slice(0, -12)}
+              {moment(message.createdAt).format("LLL").slice(0)}
             </p>
           ))}
         </div>
