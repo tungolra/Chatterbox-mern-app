@@ -53,33 +53,27 @@ export default function Messages({
   return (
     <>
       {messages.map((message, idx) => (
-        <div
+        <p
           className={
             message.senderId === currentUserId ? "message own" : "message"
           }
+          ref={scroll}
+          key={idx}
+          onClick={() => {
+            setMessageId(message._id);
+            setModalOpened(true);
+          }}
         >
-          <p
-            className={
-              message.senderId === currentUserId ? "message own" : "message"
-            }
-            ref={scroll}
-            key={idx}
-            onClick={() => {
-              setMessageId(message._id);
-              setModalOpened(true);
-            }}
-          >
-            <span className="sender-text">
-              {user._id === message.senderId
-                ? user?.firstname
-                : receiverData?.firstname}
-            </span>
-            <br />
-            <Linkify>{message.text}</Linkify>
-            <br />
-            {moment(message.createdAt).format("LLL").slice(0)}
-          </p>
-        </div>
+          <span className="sender-text">
+            {user._id === message.senderId
+              ? user?.firstname
+              : receiverData?.firstname}
+          </span>
+          <br />
+          <Linkify>{message.text}</Linkify>
+          <br />
+          {moment(message.createdAt).format("LLL").slice(0)}
+        </p>
       ))}
 
       <DeleteMessageModal
