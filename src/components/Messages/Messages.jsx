@@ -16,7 +16,6 @@ export default function Messages({
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
-  
 
   // scroll to last message
   useEffect(() => {
@@ -25,9 +24,9 @@ export default function Messages({
 
   return (
     <>
-      <div className="message-data">
-        <div >
-          {messages.map((message, idx) => (
+      <div className="messages-container">
+        {messages.map((message, idx) => (
+          <div className="message-data">
             <p
               className={
                 message.senderId === currentUserId ? "message own" : "message"
@@ -46,18 +45,17 @@ export default function Messages({
               Sent: {format(message.createdAt)}
               <br />
             </p>
-          ))}
-          <DeleteMessageModal
-            modalOpened={modalOpened}
-            setModalOpened={setModalOpened}
-            setMessages={setMessages}
-            messageId={messageId}
-            messages={messages}
-            socket={socket}
-            currentChat={currentChat}
-            currentUserId={currentUserId}
-          />
-        </div>
+          </div>
+        ))}
+        <DeleteMessageModal
+          modalOpened={modalOpened}
+          setModalOpened={setModalOpened}
+          setMessages={setMessages}
+          messageId={messageId}
+          messages={messages}
+          socket={socket}
+          currentChat={currentChat}
+        />
       </div>
     </>
   );

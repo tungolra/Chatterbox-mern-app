@@ -60,15 +60,17 @@ export default function ChatBox({
             currentChat={currentChat}
             currentUserId={currentUserId}
           />
+
           <Stack
             direction="row"
             alignItems="center"
             spacing={3}
             justifyContent="center"
-            sx={{ width: "50vw", justifyItems:"center", margin:"auto" }}
+            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
+            
             <InputEmoji
-              color="seceondary"
+              color="secondary"
               value={newMessage}
               onChange={handleChange}
             />

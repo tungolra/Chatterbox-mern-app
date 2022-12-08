@@ -8,9 +8,8 @@ export async function signUp(userData) {
 }
 
 export async function update(userData) {
-  const token = await usersAPI.update(userData);
-  localStorage.setItem("token", token);
-  return getUser();
+  const user = await usersAPI.update(userData);
+  return user;
 }
 
 export function getToken() {
