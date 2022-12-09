@@ -91,7 +91,7 @@ export default function ChatBox({
                 width: "90px",
                 borderRadius: "3px",
               }}
-              src={receiverData?.profilePicture}
+              src={receiverData?.profilePicture === "" ? './logo192.png' : receiverData?.profilePicture}
             />
             <br />
             <div className="section-heading">
