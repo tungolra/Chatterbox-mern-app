@@ -70,7 +70,6 @@ export default function ChatBox({
   }
   return (
     <>
-      {/* chatmembermodal here */}
       {currentChat ? (
         <div className="chat-container">
           <div
@@ -131,7 +130,7 @@ export default function ChatBox({
               onChange={handleChange}
               cleanOnEnter
               onEnter={handleSend}
-              placeholder="Type a message..."
+              placeholder="Press Enter to Send..."
             />
             {/* </form> */}
           </Stack>

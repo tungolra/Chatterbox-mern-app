@@ -4,18 +4,9 @@ import "./Conversation.css";
 import axios from "axios";
 import { Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
-// testing
 import { styled } from "@mui/material/styles";
-
-// const StyledBadge = styled(Badge)(({ theme }) => ({
-//   "& .MuiBadge-badge": {
-//     right: -3,
-//     top: 13,
-//     border: `2px solid ${theme.palette.background.paper}`,
-//     padding: "0 4px",
-//   },
-// }));
-// testing
+import CircleIcon from "@mui/icons-material/Circle";
+import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
@@ -58,12 +49,12 @@ export default function Conversation({ currentUserId, chat, online, user }) {
     <Grid
       container
       spacing={3}
-      sx={
-        {
-          // padding: "5px", goes here
-          // alignItems:center goes here
-        }
-      }
+      sx={{
+        paddingLeft: "5px",
+        alignItems: "center",
+        // overflow: "scroll",
+        textAlign: "center",
+      }}
     >
       <Grid item xs={4}>
         {online ? (
@@ -74,7 +65,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
                 ? "./logo192.png"
                 : userData?.profilePicture
             }
-            style={{border: "4px solid green"}}
+            style={{ border: "4px solid green" }}
           />
         ) : (
           <img
@@ -91,7 +82,6 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         <span>
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
-        {/* message preview goes here */}
       </Grid>
       <Grid
         item
@@ -100,14 +90,16 @@ export default function Conversation({ currentUserId, chat, online, user }) {
           justifyContent: "right",
         }}
       >
-        {/* notification goes here */}
-
         {unreadMessages === 0 ? (
           ""
         ) : (
-          <div style={{ border: "1px solid black" }}>
-            <strong>{unreadMessages}</strong>
-          </div>
+          <Badge
+            className="badge"
+            color="secondary"
+            badgeContent={unreadMessages}
+          >
+            <MailOutlineIcon color="primary"></MailOutlineIcon>
+          </Badge>
         )}
       </Grid>
     </Grid>

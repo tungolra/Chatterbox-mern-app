@@ -147,7 +147,7 @@ export default function ChatList({ user, setUser }) {
   return (
     <>
       <Grid container spacing={2}>
-      <Grid item xl={1}></Grid>
+        <Grid item xl={1}></Grid>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
           <div>
             <NavBar user={user} setUser={setUser} />
@@ -155,20 +155,24 @@ export default function ChatList({ user, setUser }) {
           <p className="section-heading">Find a Friend to Start Conversation</p>
           <FormControl
             fullWidth
+            variant="standard"
             sx={{
-              border: "3px solid blue",
               border: "3px solid #2f15d1",
               borderRadius: "50px",
               disableUnderline: "true",
               paddingLeft: "20px",
               paddingRight: "20px",
-              width:"70%",
+              width: "70%",
+            }}
+            InputProps={{
+              disableUnderline: true,
             }}
           >
-            <InputLabel sx={{ border: "none" }}>Find Friends</InputLabel>
-            <Select style={{backgroundColor:"#ffffff"}}>
-              <MenuItem value={""}>
-              </MenuItem>
+            <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
+              Find a friend...
+            </InputLabel>
+            <Select style={{ backgroundColor: "#ffffff" }}>
+              <MenuItem value={""}></MenuItem>
               {allUsers.map((friend, idx) => (
                 <MenuItem key={idx} onClick={() => startChat(friend._id)}>
                   {friend?.firstname} {friend?.lastname}
@@ -202,11 +206,15 @@ export default function ChatList({ user, setUser }) {
           </Box>
         </Grid>
         <Grid
-          item
-          xs={8}
+             item
+          xs={12}
+          sm={12}
+          md={8}
+          lg={6}
+          xl={6}
           sx={{
-            // justifyContent: "center",
-            // height: "50px",
+            justifyContent: "center",
+            height: "50px",
           }}
         >
           <ChatBox
@@ -219,8 +227,8 @@ export default function ChatList({ user, setUser }) {
             socket={socket}
             user={user}
           />
-          {/* </Container> */}
         </Grid>
+        <Grid item xl={1}></Grid>
       </Grid>
     </>
   );

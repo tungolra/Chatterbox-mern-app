@@ -19,12 +19,30 @@ export default function NavBar(props) {
     props.setUser(null);
   }
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
+    <Grid container>
+      <Grid item xs={12} md={12} lg={12} xl={12}>
         <h1 className="logo">chatter[box]</h1>
-        <Container>
-          {props.user && <span>Welcome, {props.user?.firstname}!</span>}
-        </Container>
+        <img
+          className="profileImg"
+          src={
+            props.user?.profilePicture === ""
+              ? "./logo192.png"
+              : props.user?.profilePicture
+          }
+          alt="profileimage"
+          style={{
+            margin: "auto",
+            height: "90px",
+            width: "90px",
+            borderRadius: "3px",
+          }}
+        />
+        <div className="section-heading">
+          {props.user && (
+            <span>Welcome, {props.user?.firstname}! &nbsp;&nbsp;&nbsp;</span>
+          )}
+        </div>
+
         <AppBar
           position="static"
           color="transparent"
@@ -36,18 +54,17 @@ export default function NavBar(props) {
             width: "100%",
           }}
         >
-
+          <br></br>
           <Stack
             direction="row"
             alignItems="center"
             spacing={2}
             justifyContent="center"
-            fullWidth
             sx={{
-              width: "70%",
               border: "3px solid #2f15d1",
               margin: "10px",
               borderRadius: "30px",
+              width: "70%",
             }}
           >
             <IconButton alignItems="center">
