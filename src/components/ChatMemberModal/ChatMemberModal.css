@@ -1,0 +1,17 @@
+.chatmember-modal { 
+    height: 50vw;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
+    monospace;
+    background-color: #EAE7FA;
+}
+
+.chatmember-img { 
+    margin-top: 3vmin;
+}
+.chatmember { 
+    margin: 0 2vmin;
+
+}

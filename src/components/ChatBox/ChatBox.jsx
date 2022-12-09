@@ -72,9 +72,9 @@ export default function ChatBox({
     <>
       {/* chatmembermodal here */}
       {currentChat ? (
-        <div>
+        <div className="chat-container">
           <div
-            className="chat-container"
+            
             onClick={() => {
               setModalOpened(true);
             }}

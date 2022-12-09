@@ -203,10 +203,9 @@ export default function ChatList({ user }) {
           xs={8}
           sx={{
             // justifyContent: "center",
-            height: "50px",
+            // height: "50px",
           }}
         >
-          {/* <Container className="messages-container"> */}
           <ChatBox
             currentChat={currentChat}
             currentUserId={user._id}
