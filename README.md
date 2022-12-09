@@ -7,16 +7,16 @@
 # Technologies Used
 
 1. React
-2. Mongoose database
-3. socket io
+2. Mongoose Database
+3. socket.io
 4. Amazon Web Services (aws-sdk)
 
 # Getting Started
 
 Link to Heroku -
 Link to Notion Board - https://www.notion.so/Project-4-116573c35df34573aec91b1e92c04118
-Link to ERD -
-Link to Wireframes -
+Link to ERD - https://lucid.app/lucidchart/a4f7bc41-de4d-4864-b5cb-280d8ba4388d/edit?viewport_loc=357%2C-530%2C939%2C1075%2C0_0&invitationId=inv_5697f7c8-49fa-4ec2-917e-00c9753884d3
+Link to Wireframes - https://www.figma.com/file/sokWtK9ITMAuoRqUsckBqL/Daily-UI-013%2C-Direct-Messaging-(Community)?node-id=125%3A237&t=IMPmfOoZNcz5d72m-1
 
 # Next Steps:
 
