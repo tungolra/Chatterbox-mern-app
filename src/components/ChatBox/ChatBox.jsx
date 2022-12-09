@@ -20,10 +20,26 @@ export default function ChatBox({
 }) {
   const [userData, setUserData] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
+  const [receiverData, setReceiverData] = useState([]);
   const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
+
+  useEffect(() => {
+    async function getReceiverData() {
+      try {
+        const rId = currentChat?.members?.find((id) => id !== currentUserId);
+        const payload = await axios.get(`api/users/${rId}`);
+        if (payload.status === 200) {
+          setReceiverData(payload.data);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    }
+    getReceiverData();
+  }, [currentChat]);
+
   // get receiver data
   useEffect(() => {
-    console.log("receiveId", receiverId);
     setUserData(receiverId);
   }, [currentChat, currentUserId]);
 
@@ -67,12 +83,13 @@ export default function ChatBox({
               setModalOpened(true);
             }}
           >
-            <div style={{ border: "1px solid black" }}>Profile Pic</div>
-            Friend: {userData}
+            <img className="profileImg" src={receiverData?.profilePicture} />
+            Friend: {receiverData?.firstname}
           </div>
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
+            receiverData={receiverData}
           />
           <div className="messages-container">
             <Messages
@@ -83,6 +100,7 @@ export default function ChatBox({
               currentUserId={currentUserId}
               user={user}
               receiverId={userData}
+              receiverData={receiverData}
             />
           </div>
 
