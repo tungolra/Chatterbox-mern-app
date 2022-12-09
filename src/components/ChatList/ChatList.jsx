@@ -150,9 +150,19 @@ export default function ChatList({ user }) {
           <p className="section-heading">Find a Friend to Start Conversation</p>
           <FormControl
             fullWidth
-            sx={{ border: "3px solid blue", borderRadius: "50px" }}
+            variant="standard"
+            sx={{
+              border: "3px solid blue",
+              borderRadius: "50px",
+              disableUnderline: "true",
+              paddingLeft:"20px",
+              paddingRight:"20px"
+            }}
+            InputProps={{
+              disableUnderline: true,
+            }}
           >
-            <InputLabel sx={{ border: "none" }}>Find Friends</InputLabel>
+            <InputLabel sx={{ border: "none", paddingLeft:"30px" }}>Find Friends</InputLabel>
             <Select>
               <MenuItem value={""}>
                 {/* <TextField
