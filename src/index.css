@@ -142,6 +142,7 @@ input {
   color: #2f15d1;
   font-style: italic;
   text-align: center;
+  width: 40vh;
 }
 .email {
   text-align: left;
@@ -161,5 +162,5 @@ input {
   flex-direction: column;
   justify-content: center;
   gap: 3px;
-  width: 50px;
+  align-items: center;
 }

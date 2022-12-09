@@ -29,10 +29,7 @@ export default function ProfileCard({ user }) {
           <strong>Username:&nbsp;</strong>@{user?.username}
         </div>
         <div className="bio-text">
-          <strong>
-            Bio:
-            <br />
-          </strong>
+          <strong>Bio:&nbsp;</strong>
           {user?.about}
         </div>
       </div>
