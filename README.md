@@ -1,4 +1,4 @@
-# CHATTER BOX
+# <img src="https://i.imgur.com/18SZnto.png">
 
 # Team Members
 1. Ralph Tungol
@@ -33,12 +33,6 @@
 - [X] Socket io 
 - [X] Amazon Web Services (aws-sdk)
 
-# Next Step
-- [ ] I should be able to create a group chat
-- [ ] I should only see in my users list, contacts I’ve accepted
-- [ ] I should be able to search messages within a chatbox
-- [ ] I should see when a user is typing
-- [ ] and ...
 # Next Steps:
 
 Going forward, some early stage icebox additions we have planned include:
