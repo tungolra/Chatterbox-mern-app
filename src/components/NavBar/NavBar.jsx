@@ -2,13 +2,11 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import * as userService from "../../utilities/UserRequests/users-service";
-import { AppBar, Grid, IconButton, Button } from "@mui/material";
-import PersonIcon from "@mui/icons-material/Person";
+import { AppBar, Grid, IconButton } from "@mui/material";
 import Stack from "@mui/material/Stack";
 import PersonOutlineIcon from "@mui/icons-material/PersonOutline";
 import ChatBubbleOutlineIcon from "@mui/icons-material/ChatBubbleOutline";
 import LogoutIcon from "@mui/icons-material/Logout";
-import { Container } from "react-bootstrap";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
 

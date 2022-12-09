@@ -97,7 +97,7 @@ export default function ChatList({ user, setUser }) {
       }
     };
     getAllUsers();
-  }, []);
+  }, [user._id]);
 
   //start chat
   async function startChat(friendId) {

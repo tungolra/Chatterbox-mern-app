@@ -35,12 +35,12 @@ export default function ChatBox({
       }
     }
     getReceiverData();
-  }, [currentChat]);
+  }, [currentChat, currentUserId]);
 
   // get receiver data
   useEffect(() => {
     setUserData(receiverId);
-  }, [currentChat, currentUserId]);
+  }, [currentChat, currentUserId, receiverId]);
 
   //handle functions
   function handleChange(inputText) {
@@ -78,7 +78,7 @@ export default function ChatBox({
           >
 
             <div className="section-heading chatmember-container">
-            <img
+            <img alt="profile-image"
               className="profileImg chatmember-image"
               src={
                 receiverData?.profilePicture === ""

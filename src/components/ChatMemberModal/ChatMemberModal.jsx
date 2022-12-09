@@ -24,6 +24,7 @@ export default function ChatMemberModal({
       <div className="chatmember-modal">
         <div className="chatmember-img">
           <img
+          alt="image"
             src={
               receiverData?.profilePicture === ""
                 ? "./logo192.png"

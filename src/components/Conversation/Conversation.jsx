@@ -21,7 +21,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       }
     }
     getUserData();
-  }, []);
+  }, [chat.members, currentUserId]);
 
   //still working on this
   useEffect(() => {
@@ -40,7 +40,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       }
     };
     countUnreadMessages();
-  }, [unreadMessages]);
+  }, [unreadMessages, chat._id]);
 
   return (
     <Grid
@@ -54,7 +54,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
     >
       <Grid item xs={4}>
         {online ? (
-          <img
+          <img alt="img"
             className="profileImg"
             src={
               userData?.profilePicture === ""
@@ -64,7 +64,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
             style={{ border: "4px solid green" }}
           />
         ) : (
-          <img
+          <img alt="img"
             className="profileImg"
             src={
               userData?.profilePicture === ""

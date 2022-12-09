@@ -46,7 +46,7 @@ export default function DeleteMessageModal({
       <div className="container">
         <div>
           <span className="DeleteTitle" style={{ verticalAlign: "middle" }}>
-            <img
+            <img alt="img"
               src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/2234003.png"
               style={{ margin: "auto", height: "20px", width: "20px" }}
             />{" "}

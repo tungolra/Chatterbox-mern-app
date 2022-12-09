@@ -3,7 +3,7 @@ import React from "react";
 export default function ProfileCard({ user }) {
   return (
     <>
-      <img
+      <img alt="img"
         className="profileImg"
         style={{
           margin: "auto",
