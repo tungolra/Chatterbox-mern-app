@@ -78,7 +78,7 @@ export default function ChatBox({
           >
 
             <div className="section-heading chatmember-container">
-            <img alt="profile-image"
+            <img alt="profile"
               className="profileImg chatmember-image"
               src={
                 receiverData?.profilePicture === ""
