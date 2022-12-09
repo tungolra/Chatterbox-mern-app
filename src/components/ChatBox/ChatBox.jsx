@@ -75,7 +75,6 @@ export default function ChatBox({
           <hr />
           <div
             style={{
-
               display: "flex",
               flexDirection: "row",
             }}
@@ -86,7 +85,7 @@ export default function ChatBox({
             <img className="profileImg" src={receiverData?.profilePicture} />
             {receiverData?.firstname}
           </div>
-            <hr />
+          <hr />
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
@@ -105,26 +104,25 @@ export default function ChatBox({
             />
           </div>
 
-          <Stack
-            direction="row"
-            alignItems="center"
-            spacing={3}
-            justifyContent="center"
-            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
-          >
-            <form onSubmit={handleSend}>
+          <form onSubmit={handleSend}>
+            <Stack
+              direction="row"
+              alignItems="center"
+              spacing={3}
+              justifyContent="center"
+              sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
+            >
               <InputEmoji
                 color="secondary"
                 value={newMessage}
                 onChange={handleChange}
               />
 
-              <button type="submit">
-                <IconButton>SEND </IconButton>
-              </button>
+              <IconButton>SEND </IconButton>
+
               <SendIcon color="secondary">Send</SendIcon>
-            </form>
-          </Stack>
+            </Stack>
+          </form>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>
