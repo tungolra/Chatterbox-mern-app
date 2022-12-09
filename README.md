@@ -1,14 +1,16 @@
 # <img src="https://i.imgur.com/18SZnto.png">
 
 # Introduction 
-CHATTER[BOX] hopes to join the likes of Facebook Messenger, WhatsApp, and other similar instant messaging apps! CHATTER[BOX] specifically looks to target smaller niche audiences that may need to use an instant messaging program separate from their private personal social media. Think Messenger but for a workplace and its employees or WhatsApp but with a friendlier and customizable User Interface (UI). Using our app allows you to maintain that same level of communication but without having to use private preexisting profiles. Start anew and begin messaging friends, peers, coworkers, superiors, etc., without concern of surrendering your own personal life to do so, all in the spirit of maintaining professionalism! 
+CHATTER[BOX] hopes to join the likes of Facebook Messenger, WhatsApp, and other similar instant messaging apps! CHATTER[BOX] specifically looks to target smaller niche audiences that may need to use an instant messaging program separate from their private personal social media. Think Messenger but for a workplace and its employees or WhatsApp but with a friendlier and customizable User Interface (UI). 
+
+Using our app allows you to maintain that same level of communication but without having to use private preexisting profiles. Start anew and begin messaging friends, peers, coworkers, superiors, etc., without concern of surrendering your own personal life to do so, all in the spirit of maintaining professionalism! 
 
 # Getting Started 
 
-[Link to Heroku](https://chatterbox-sei-55.herokuapp.com/)
-[Link to Notion Board](https://www.notion.so/Project-4-116573c35df34573aec91b1e92c04118)
-[Link to ERD](https://lucid.app/lucidchart/a4f7bc41-de4d-4864-b5cb-280d8ba4388d/edit?viewport_loc=357%2C-530%2C939%2C1075%2C0_0&invitationId=inv_5697f7c8-49fa-4ec2-917e-00c9753884d3)
-[Link to Wireframes](https://www.figma.com/file/sokWtK9ITMAuoRqUsckBqL/Daily-UI-013%2C-Direct-Messaging-(Community)?node-id=125%3A237&t=IMPmfOoZNcz5d72m-1)
+- [Link to Heroku](https://chatterbox-sei-55.herokuapp.com/)
+- [Link to Notion Board](https://www.notion.so/Project-4-116573c35df34573aec91b1e92c04118)
+- [Link to ERD](https://lucid.app/lucidchart/a4f7bc41-de4d-4864-b5cb-280d8ba4388d/edit?viewport_loc=357%2C-530%2C939%2C1075%2C0_0&invitationId=inv_5697f7c8-49fa-4ec2-917e-00c9753884d3)
+- [Link to Wireframes](https://www.figma.com/file/sokWtK9ITMAuoRqUsckBqL/Daily-UI-013%2C-Direct-Messaging-(Community)?node-id=125%3A237&t=IMPmfOoZNcz5d72m-1)
 
 
 # Screen Shot
@@ -22,13 +24,13 @@ CHATTER[BOX] hopes to join the likes of Facebook Messenger, WhatsApp, and other 
 <img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/Screen+Shot+2022-12-09+at+2.07.40+AM.png">
 
 # Technologies Used
-- [X] React
+- [X] MongoDB
 - [X] Express
 - [X] React
 - [X] Node
-- [X] Mongoose database
-- [X] Socket io 
-- [X] Amazon Web Services (aws-sdk)
+- [X] Mongoose
+- [X] Socket.io 
+- [X] Amazon Web Services
 
 # Next Steps:
 
