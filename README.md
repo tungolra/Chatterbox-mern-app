@@ -1,5 +1,7 @@
 # CHATTER BOX
 
+# Screenshots
+
 # Technologies Used
 
 1. React
@@ -15,21 +17,6 @@ Link to ERD -
 Link to Wireframes -
 
 # Next Steps:
-
-# Steps to follow
-
-1. Create the AWS S3 bucket as mentioned here
-2. Create a .env file at the root of the repository and add the details in the following format
-
-# Installation
-
-npm install
-Upload F
-npm i aws-sdk
-
-# References
-
-https://www.npmjs.com/package/react-upload-to-s3
 
 # Contributors
 
