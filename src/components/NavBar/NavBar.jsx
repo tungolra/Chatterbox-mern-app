@@ -19,8 +19,8 @@ export default function NavBar(props) {
     props.setUser(null);
   }
   return (
-    <Grid container spacing={2}>
-      <Grid item xs={4}>
+    <Grid container>
+      <Grid item xs={12} md={12} lg={12} xl={12}>
         <h1 className="logo">chatter[box]</h1>
         <img
           className="profileImg"

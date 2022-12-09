@@ -149,7 +149,9 @@ export default function ChatList({ user, setUser }) {
       <Grid container spacing={2}>
         <Grid item xl={1}></Grid>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-          <NavBar user={user} setUser={setUser} />
+          <div>
+            <NavBar user={user} setUser={setUser} />
+          </div>
           <p className="section-heading">Find a Friend to Start Conversation</p>
           <FormControl
             fullWidth
