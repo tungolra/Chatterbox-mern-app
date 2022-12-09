@@ -84,7 +84,7 @@ export default function ChatBox({
             }}
           >
             <img className="profileImg" src={receiverData?.profilePicture} />
-            Friend: {receiverData?.firstname}
+            {receiverData?.firstname}
           </div>
           <ChatMemberModal
             modalOpened={modalOpened}
