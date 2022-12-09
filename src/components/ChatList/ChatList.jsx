@@ -4,6 +4,7 @@ import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
+import NavBar from "../NavBar/NavBar";
 import { Input, Grid, TextField, Box, Avatar, Menu } from "@mui/material";
 import { Container, Stack } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
@@ -11,7 +12,7 @@ import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
 
-export default function ChatList({ user }) {
+export default function ChatList({ user, setUser }) {
   const socket = useRef();
   const [chats, setChats] = useState([]);
   const [onlineUsers, setOnlineUsers] = useState([]);
@@ -146,25 +147,27 @@ export default function ChatList({ user }) {
   return (
     <>
       <Grid container spacing={2}>
-        <Grid item xs={4}>
+      <Grid item xl={1}></Grid>
+        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
+          <div>
+            <NavBar user={user} setUser={setUser} />
+          </div>
           <p className="section-heading">Find a Friend to Start Conversation</p>
           <FormControl
             fullWidth
-            sx={{ border: "3px solid blue", borderRadius: "50px" }}
+            sx={{
+              border: "3px solid blue",
+              border: "3px solid #2f15d1",
+              borderRadius: "50px",
+              disableUnderline: "true",
+              paddingLeft: "20px",
+              paddingRight: "20px",
+              width:"70%",
+            }}
           >
             <InputLabel sx={{ border: "none" }}>Find Friends</InputLabel>
-            <Select>
+            <Select style={{backgroundColor:"#ffffff"}}>
               <MenuItem value={""}>
-                {/* <TextField
-                  sx={{
-                    width: "25vw",
-                    border: "3px solid #2f15d1",
-                    margin: "10px",
-                  }}
-                  className="outlined-basic"
-                  type="text"
-                  placeholder="Search for a User"
-                ></TextField> */}
               </MenuItem>
               {allUsers.map((friend, idx) => (
                 <MenuItem key={idx} onClick={() => startChat(friend._id)}>
