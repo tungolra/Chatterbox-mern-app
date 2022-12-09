@@ -33,6 +33,7 @@ export default function NavBar(props) {
             justifyContent: "center",
             alignItems: "center",
             boxShadow: "0",
+            width: "100%",
           }}
         >
           {" "}
@@ -42,6 +43,7 @@ export default function NavBar(props) {
             alignItems="center"
             spacing={2}
             justifyContent="center"
+            fullWidth
             sx={{
               width: "25vw",
               border: "3px solid #2f15d1",
