@@ -157,11 +157,12 @@ export default function ChatList({ user, setUser }) {
             fullWidth
             variant="standard"
             sx={{
-              border: "3px solid blue",
+              border: "3px solid #2f15d1",
               borderRadius: "50px",
               disableUnderline: "true",
               paddingLeft: "20px",
               paddingRight: "20px",
+              width:"70%",
             }}
             InputProps={{
               disableUnderline: true,
@@ -170,18 +171,9 @@ export default function ChatList({ user, setUser }) {
             <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
               Find Friends
             </InputLabel>
-            <Select>
+            <Select style={{backgroundColor:"#ffffff"}}>
               <MenuItem value={""}>
-                {/* <TextField
-                  sx={{
-                    width: "25vw",
-                    border: "3px solid #2f15d1",
-                    margin: "10px",
-                  }}
-                  className="outlined-basic"
-                  type="text"
-                  placeholder="Search for a User"
-                ></TextField> */}
+               
               </MenuItem>
               {allUsers.map((friend, idx) => (
                 <MenuItem key={idx} onClick={() => startChat(friend._id)}>

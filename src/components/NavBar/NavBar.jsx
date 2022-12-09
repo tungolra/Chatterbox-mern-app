@@ -61,7 +61,7 @@ export default function NavBar(props) {
             spacing={2}
             justifyContent="center"
             sx={{
-              width: "25vw",
+              width: "70%",
               border: "3px solid #2f15d1",
               margin: "10px",
               borderRadius: "30px",
