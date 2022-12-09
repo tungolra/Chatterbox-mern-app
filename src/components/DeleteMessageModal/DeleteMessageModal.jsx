@@ -1,4 +1,5 @@
 import { Modal, useMantineTheme } from "@mantine/core";
+import { Button } from "@mui/material";
 import axios from "axios";
 
 export default function DeleteMessageModal({
@@ -26,7 +27,7 @@ export default function DeleteMessageModal({
     } catch (error) {
       console.log(error);
     }
-    setMessages(messages.filter(msg => msg._id !== messageId))
+    setMessages(messages.filter((msg) => msg._id !== messageId));
     setModalOpened(false);
   }
 
@@ -42,8 +43,20 @@ export default function DeleteMessageModal({
       opened={modalOpened}
       onClose={() => setModalOpened(false)}
     >
-      <p>Delete Message?</p>
-      <button onClick={() => handleDelete(messageId)}>Delete</button>
+      <div className="container">
+        <div>
+          <span className="DeleteTitle" style={{ verticalAlign: "middle" }}>
+            <img
+              src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/2234003.png"
+              style={{ margin: "auto", height: "20px", width: "20px" }}
+            />{" "}
+            &nbsp; Delete Message
+          </span>
+        </div>
+
+        <p>Are you sure you want to delete this message?</p>
+        <Button onClick={() => handleDelete(messageId)}>Delete</Button>
+      </div>
     </Modal>
   );
 }
