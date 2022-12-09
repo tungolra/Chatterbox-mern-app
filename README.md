@@ -1,5 +1,12 @@
 # CHATTER BOX
-# SCREEN SHOT
+
+# Team Members
+1. Ralph Tungol
+2. Kendra Yoshizawa
+3. Farnaz Towhidi
+4. Tyler Ro
+
+# Screen Shot
 
 <img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/login.png">
 
@@ -7,13 +14,16 @@
 
 <img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/profileUpdate.png">
 
-<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/Screen+Shot+2022-12-09+at+2.07.40+AM.png">
+<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/Screen+Shot+2022-12-09+at+2.48.17+AM.png">
 
-# USED TECHNOLOGIES
-1. React
-2. Mongoose database
-3. socket io 
-4. Amazon Web Services (aws-sdk)
+# Used Technologies
+- [X] React
+- [X] Express
+- [X] React
+- [X] Node
+- [X] Mongoose database
+- [X] Socket io 
+- [X] Amazon Web Services (aws-sdk)
 
 # Steps to follow
 
