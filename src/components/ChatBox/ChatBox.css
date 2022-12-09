@@ -2,7 +2,7 @@
   display: flex;
   flex-flow: column;
   flex-direction: column !important;
-  background-color: rgb(249, 248, 248);
+  background-color: #EAE7FA;
   border-radius: 25px;
 }
 .receiver-data { 
