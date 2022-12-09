@@ -2,10 +2,38 @@
   display: flex;
   flex-flow: column;
   flex-direction: column !important;
-  background-color: #EAE7FA;
+  border-top: 3px solid #2f15d1;
+  border-bottom: 3px solid #2f15d1;
+
+  
+}
+.chat-container { 
+  margin-top: 7vmin;
+  border: 3px solid #2f15d1;
   border-radius: 25px;
+}
+.chatmember-container { 
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 3vmin;
+}
+
+.chatmember-image { 
+  align-items: flex-start;
+}
+.searchIcon { 
+  display: flex;
+  align-items: center;
+  font-size: 4vmin;
+
 }
 .receiver-data { 
   height: 10vmin; 
   width:10
+}
+
+.space {
+  height: 80px;
 }
