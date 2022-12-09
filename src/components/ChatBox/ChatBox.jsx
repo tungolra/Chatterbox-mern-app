@@ -7,6 +7,7 @@ import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function ChatBox({
   currentChat,
@@ -69,37 +70,35 @@ export default function ChatBox({
   }
   return (
     <>
-      {/* chatmembermodal here */}
       {currentChat ? (
-        <div>
-          <div className="space"></div>
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "column",
-              justifyContent: "center",
-            }}
-            onClick={() => {
-              setModalOpened(true);
-            }}
-          >
-            <img
-              className="profileImg"
-              style={{
-                margin: "auto",
-                height: "90px",
-                width: "90px",
-                borderRadius: "3px",
-              }}
-              src={receiverData?.profilePicture === "" ? './logo192.png' : receiverData?.profilePicture}
-            />
-            <br />
-            <div className="section-heading">
-              {receiverData?.firstname}
-              <br />
+        <div
+          className="chat-container"
+          onClick={() => {
+            setModalOpened(true);
+          }}
+        >
+          <div className="chatmember-container">
+            <div>
+              <img
+                className="profileImg chatmember-image" 
+                src={
+                  receiverData?.profilePicture === ""
+                    ? "./logo192.png"
+                    : receiverData?.profilePicture
+                }
+              />
             </div>
-          </div>
 
+            <div className="section-heading ">
+              <h2 className="chatmember-name">
+                {`${receiverData?.firstname} ${receiverData?.lastname}`}
+              </h2>
+              <h4 className="section-heading chatmember-name">
+                @{`${receiverData?.username}`}
+              </h4>
+            </div>
+            <SearchIcon fontSizeLarge className="section-heading searchIcon" />
+          </div>
 
           <ChatMemberModal
             modalOpened={modalOpened}
@@ -124,23 +123,25 @@ export default function ChatBox({
             alignItems="center"
             spacing={3}
             justifyContent="center"
-            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
+            // sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-              <InputEmoji
-                color="secondary"
-                value={newMessage}
-                onChange={handleChange}
-                cleanOnEnter
-                onEnter={handleSend}
-                placeholder="Type a message"
-              />
-              <SendIcon id="sendmsg" color="secondary" onClick={handleSend}>
-                Send
-              </SendIcon>
+
+
+            <InputEmoji
+              color="secondary"
+              value={newMessage}
+              onChange={handleChange}
+              cleanOnEnter
+              onEnter={handleSend}
+              placeholder="Type a message..."
+            />
+            {/* <SendIcon hidden id="sendmsg" color="secondary" onClick={handleSend}>
+              Send
+            </SendIcon> */}
           </Stack>
         </div>
       ) : (
-        <span>Click a Chat to Start Conversation</span>
+        ""
       )}
     </>
   );

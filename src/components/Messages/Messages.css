@@ -18,14 +18,12 @@
   border-bottom-left-radius: 0;
   padding: 15px;
   color: white;
-  /* max-width: 20vw; */
-  /* width: 100%; */
   width: 70%;
   margin: 1vmin 2vmin;
 }
 
 .own {
-  background-color: #aba1ed;
+  background-color: #4c39c9;
   text-align: right;
   justify-items: flex-end;
   align-items: flex-end;
