@@ -20,7 +20,7 @@ export default function ProfileCard({ user }) {
           {user?.firstname}&nbsp;{user?.lastname}
         </div>
         <p>{user?.email}</p>
-        <div className="bio-text">{user?.about} BIO HERE</div>
+        <div className="bio-text">{user?.about === "" ?  "BIO HERE" : user?.about}</div>
       </div>
     </>
   );
