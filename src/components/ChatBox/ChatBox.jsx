@@ -72,7 +72,6 @@ export default function ChatBox({
       {/* chatmembermodal here */}
       {currentChat ? (
         <div>
-          <hr />
           <div
             style={{
               display: "flex",
@@ -82,10 +81,23 @@ export default function ChatBox({
               setModalOpened(true);
             }}
           >
-            <img className="profileImg" src={receiverData?.profilePicture} />
-            {receiverData?.firstname}
+            <img
+              className="profileImg"
+              style={{
+                margin: "auto",
+                height: "90px",
+                width: "90px",
+                borderRadius: "3px",
+              }}
+              src={receiverData?.profilePicture}
+            />
+            <br/>
+            <div className="section-heading">
+              <span>{receiverData?.firstname}</span>
+              <br/>
+            </div>
           </div>
-          <hr />
+
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
