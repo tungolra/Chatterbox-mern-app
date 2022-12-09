@@ -15,7 +15,7 @@
   justify-items: left;
   background-color: #8576e5;
   border-radius: 25px;
-  /* border-bottom-left-radius: 0; */
+  border-bottom-left-radius: 0;
   padding: 15px;
   color: white;
   /* max-width: 20vw; */
@@ -33,6 +33,7 @@
   justify-self: flex-end;
   align-self: flex-end;
   border-radius: 25px;
+  border-bottom-right-radius: 0;
 }
 .sender-text {
   font-weight: bold;

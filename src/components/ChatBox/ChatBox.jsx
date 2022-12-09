@@ -100,6 +100,7 @@ export default function ChatBox({
             </div>
           </div>
 
+
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}

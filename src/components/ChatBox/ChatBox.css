@@ -2,7 +2,8 @@
   display: flex;
   flex-flow: column;
   flex-direction: column !important;
-  /* margin: 2px; */
+  background-color: rgb(249, 248, 248);
+  border-radius: 25px;
 }
 .receiver-data { 
   height: 10vmin; 
