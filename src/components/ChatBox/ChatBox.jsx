@@ -118,15 +118,14 @@ export default function ChatBox({
             />
           </div>
 
-          <form onSubmit={handleSend}>
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={3}
-              justifyContent="center"
-              sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
-            >
-                        <InputEmoji
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={3}
+            justifyContent="center"
+            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
+          >
+              <InputEmoji
                 color="secondary"
                 value={newMessage}
                 onChange={handleChange}
@@ -137,8 +136,7 @@ export default function ChatBox({
               <SendIcon id="sendmsg" color="secondary" onClick={handleSend}>
                 Send
               </SendIcon>
-            </Stack>
-          </form>
+          </Stack>
         </div>
       ) : (
         <span>Click a Chat to Start Conversation</span>
