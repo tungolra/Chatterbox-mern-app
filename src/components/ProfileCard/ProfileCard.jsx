@@ -1,7 +1,4 @@
 import React from "react";
-import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import Stack from "@mui/material/Stack";
-import { Button, IconButton, Link } from "@mui/material";
 
 export default function ProfileCard({ user }) {
   return (

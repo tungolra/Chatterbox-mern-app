@@ -1,8 +1,7 @@
 import { useState } from "react";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
-import { Button, IconButton, Link, Grid } from "@mui/material";
+import { Button, Link, Grid } from "@mui/material";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
-import Stack from "@mui/material/Stack";
 import ProfileCard from "../../components/ProfileCard/ProfileCard";
 import NavBar from "../../components/NavBar/NavBar";
 

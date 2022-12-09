@@ -1,12 +1,10 @@
 import React, { useEffect, useRef, useState } from "react";
 import ChatBox from "../ChatBox/ChatBox";
-import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
 import NavBar from "../NavBar/NavBar";
-import { Input, Grid, TextField, Box, Avatar, Menu } from "@mui/material";
-import { Container, Stack } from "@mui/material";
+import { Grid, Box } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
@@ -44,7 +42,7 @@ export default function ChatList({ user, setUser }) {
   //update messages if receiver has sender's chat open
   useEffect(() => {
     socket.current.on("receive-message", (data) => {
-      if (data.chatId == currentChat?._id) {
+      if (data.chatId === currentChat?._id) {
         setMessages((messages) => [...messages, data]);
       }
     });
@@ -92,7 +90,7 @@ export default function ChatList({ user, setUser }) {
     const getAllUsers = async () => {
       try {
         let { data } = await axios.get(`api/users`);
-        data = data.filter((users) => users._id != user._id);
+        data = data.filter((users) => users._id !== user._id);
         setAllUsers(data);
       } catch (error) {
         console.log(error);
@@ -126,9 +124,9 @@ export default function ChatList({ user, setUser }) {
     updateMessageStatus(chat);
   }
   // create function that calls back to setCurrentChat, pass it into Conversations
-  function updateReadMessages(cb) {
+  // function updateReadMessages(cb) {
     // updateMessageStatus(chatId)
-  }
+  // }
   // separate setCurrentChat
   // update message readstatus to true
   // currently, if a new msg is sent, then unread msgs will show after refresh

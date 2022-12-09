@@ -1,11 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Input, Grid, TextField } from "@mui/material";
+import { Grid } from "@mui/material";
 import "./Conversation.css";
 import axios from "axios";
-import { Avatar, Badge } from "@mui/material";
-import Stack from "@mui/material/Stack";
-import { styled } from "@mui/material/styles";
-import CircleIcon from "@mui/icons-material/Circle";
+import { Badge } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
 export default function Conversation({ currentUserId, chat, online, user }) {

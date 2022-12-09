@@ -3,9 +3,7 @@ import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import "./ChatBox.css";
 import axios from "axios";
-import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
-import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 import SearchIcon from "@mui/icons-material/Search";
 
