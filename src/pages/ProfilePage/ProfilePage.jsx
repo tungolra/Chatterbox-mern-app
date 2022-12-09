@@ -50,7 +50,7 @@ export default function ProfilePage({ user, setUser }) {
           </Button>
           <div
             style={{
-              margin: "10px",
+              margin: "auto",
               alignContent: "center",
             }}
           >
