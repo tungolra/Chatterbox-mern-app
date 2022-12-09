@@ -80,7 +80,7 @@ export default function ChatBox({
           <div className="chatmember-container">
             <div>
               <img
-                className="profileImg chatmember-image" 
+                className="profileImg chatmember-image"
                 src={
                   receiverData?.profilePicture === ""
                     ? "./logo192.png"
@@ -125,15 +125,13 @@ export default function ChatBox({
             justifyContent="center"
             // sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-
-
             <InputEmoji
               color="secondary"
               value={newMessage}
               onChange={handleChange}
               cleanOnEnter
               onEnter={handleSend}
-              placeholder="Type a message..."
+              placeholder="Press Enter to Send..."
             />
             {/* <SendIcon hidden id="sendmsg" color="secondary" onClick={handleSend}>
               Send

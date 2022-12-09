@@ -61,11 +61,11 @@ export default function NavBar(props) {
             alignItems="center"
             spacing={2}
             justifyContent="center"
-            fullWidth
             sx={{
               border: "3px solid #2f15d1",
               margin: "10px",
               borderRadius: "30px",
+              width: "70%",
             }}
           >
             <IconButton alignItems="center">

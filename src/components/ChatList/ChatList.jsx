@@ -162,13 +162,14 @@ export default function ChatList({ user, setUser }) {
               disableUnderline: "true",
               paddingLeft: "20px",
               paddingRight: "20px",
+              width: "70%",
             }}
             InputProps={{
               disableUnderline: true,
             }}
           >
             <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
-              Find Friends
+              Find a friend...
             </InputLabel>
             <Select>
               <MenuItem value={""}>
