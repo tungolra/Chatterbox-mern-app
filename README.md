@@ -25,16 +25,8 @@
 - [X] Socket io 
 - [X] Amazon Web Services (aws-sdk)
 
-# Steps to follow
-
-1. Create the AWS S3 bucket as mentioned here
-2. Create a .env file at the root of the repository and add the details in the following format
-
 # Installation
 npm install
-Upload F
-npm i aws-sdk
-
 
 # Next Step
 - [ ] I should be able to create a group chat
@@ -42,6 +34,3 @@ npm i aws-sdk
 - [ ] I should be able to search messages within a chatbox
 - [ ] I should see when a user is typing
 - [ ] and ...
-
-# References
-https://www.npmjs.com/package/react-upload-to-s3
