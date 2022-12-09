@@ -48,7 +48,7 @@ export default function ChatBox({
     setNewMessage(inputText);
   }
   async function handleSend(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const messageInfo = {
       chatId: currentChat._id,
       senderId: currentUserId,
@@ -126,15 +126,17 @@ export default function ChatBox({
               justifyContent="center"
               sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
             >
-              <InputEmoji
+                        <InputEmoji
                 color="secondary"
                 value={newMessage}
                 onChange={handleChange}
+                cleanOnEnter
+                onEnter={handleSend}
+                placeholder="Type a message"
               />
-
-              <IconButton>SEND </IconButton>
-
-              <SendIcon color="secondary">Send</SendIcon>
+              <SendIcon id="sendmsg" color="secondary" onClick={handleSend}>
+                Send
+              </SendIcon>
             </Stack>
           </form>
         </div>
