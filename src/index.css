@@ -141,14 +141,25 @@ input {
 .bio-text {
   color: #2f15d1;
   font-style: italic;
+  text-align: center;
+}
+.email {
+  text-align: left;
 }
 .text-secondary {
   color: #2f15d1;
-  font-size: smaller;
 }
 .text-name {
   font-size: x-large;
   color: #2f15d1;
   font-weight: bold;
   padding: 20px;
+}
+.user-info {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  gap: 3px;
+  width: 50px;
 }
