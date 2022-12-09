@@ -72,10 +72,12 @@ export default function ChatBox({
       {/* chatmembermodal here */}
       {currentChat ? (
         <div>
+          <div className="space"></div>
           <div
             style={{
               display: "flex",
-              flexDirection: "row",
+              flexDirection: "column",
+              justifyContent: "center",
             }}
             onClick={() => {
               setModalOpened(true);
@@ -91,10 +93,10 @@ export default function ChatBox({
               }}
               src={receiverData?.profilePicture}
             />
-            <br/>
+            <br />
             <div className="section-heading">
-              <span>{receiverData?.firstname}</span>
-              <br/>
+              {receiverData?.firstname}
+              <br />
             </div>
           </div>
 
