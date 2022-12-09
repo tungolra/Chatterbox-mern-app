@@ -7,6 +7,7 @@ import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function ChatBox({
   currentChat,
@@ -48,7 +49,7 @@ export default function ChatBox({
     setNewMessage(inputText);
   }
   async function handleSend(e) {
-    e.preventDefault();
+    // e.preventDefault();
     const messageInfo = {
       chatId: currentChat._id,
       senderId: currentUserId,
@@ -69,23 +70,36 @@ export default function ChatBox({
   }
   return (
     <>
-      {/* chatmembermodal here */}
       {currentChat ? (
-        <div>
-          <hr />
-          <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-            }}
-            onClick={() => {
-              setModalOpened(true);
-            }}
-          >
-            <img className="profileImg" src={receiverData?.profilePicture} />
-            {receiverData?.firstname}
+        <div
+          className="chat-container"
+          onClick={() => {
+            setModalOpened(true);
+          }}
+        >
+          <div className="chatmember-container">
+            <div>
+              <img
+                className="profileImg chatmember-image" 
+                src={
+                  receiverData?.profilePicture === ""
+                    ? "./logo192.png"
+                    : receiverData?.profilePicture
+                }
+              />
+            </div>
+
+            <div className="section-heading ">
+              <h2 className="chatmember-name">
+                {`${receiverData?.firstname} ${receiverData?.lastname}`}
+              </h2>
+              <h4 className="section-heading chatmember-name">
+                @{`${receiverData?.username}`}
+              </h4>
+            </div>
+            <SearchIcon fontSizeLarge className="section-heading searchIcon" />
           </div>
-          <hr />
+
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
@@ -104,28 +118,30 @@ export default function ChatBox({
             />
           </div>
 
-          <form onSubmit={handleSend}>
-            <Stack
-              direction="row"
-              alignItems="center"
-              spacing={3}
-              justifyContent="center"
-              sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
-            >
-              <InputEmoji
-                color="secondary"
-                value={newMessage}
-                onChange={handleChange}
-              />
+          <Stack
+            direction="row"
+            alignItems="center"
+            spacing={3}
+            justifyContent="center"
+            // sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
+          >
 
-              <IconButton>SEND </IconButton>
 
-              <SendIcon color="secondary">Send</SendIcon>
-            </Stack>
-          </form>
+            <InputEmoji
+              color="secondary"
+              value={newMessage}
+              onChange={handleChange}
+              cleanOnEnter
+              onEnter={handleSend}
+              placeholder="Type a message..."
+            />
+            {/* <SendIcon hidden id="sendmsg" color="secondary" onClick={handleSend}>
+              Send
+            </SendIcon> */}
+          </Stack>
         </div>
       ) : (
-        <span>Click a Chat to Start Conversation</span>
+        ""
       )}
     </>
   );
