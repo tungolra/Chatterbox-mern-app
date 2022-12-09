@@ -27,10 +27,13 @@ Using our app allows you to maintain that same level of communication but withou
 - [X] MongoDB
 - [X] Express
 - [X] React
-- [X] Node
+- [X] Node.js
 - [X] Mongoose
 - [X] Socket.io 
 - [X] Amazon Web Services
+- [X] Material UI
+- [X] CSS
+- [X] JSX/HTML
 
 # Next Steps:
 
