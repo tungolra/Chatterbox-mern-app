@@ -83,6 +83,7 @@ export default function ProfilePageDetails({ user }) {
       </Grid>
       {/* Right Side End */}
       {/* </Grid> */}
+      <Grid item xs={2}></Grid>
     </>
   );
 }

@@ -12,7 +12,7 @@ import { Container } from "react-bootstrap";
 import SettingsOutlinedIcon from "@mui/icons-material/SettingsOutlined";
 import UpdateUserModal from "../../components/UpdateUserModal/UpdateUserModal";
 
-export default function NavBar(props, user, setUser) {
+export default function NavBar(props) {
   const [modalOpened, setModalOpened] = useState(false);
   function handleLogOut() {
     userService.logOut();
@@ -72,8 +72,8 @@ export default function NavBar(props, user, setUser) {
             <UpdateUserModal
               modalOpened={modalOpened}
               setModalOpened={setModalOpened}
-              user={user}
-              setUser={setUser}
+              user={props.user}
+              setUser={props.setUser}
             />
             <br></br>
           </Stack>

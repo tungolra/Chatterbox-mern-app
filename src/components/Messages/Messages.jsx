@@ -3,9 +3,8 @@ import DeleteMessageModal from "../DeleteMessageModal/DeleteMessageModal";
 import "./Messages.css";
 import Linkify from "react-linkify";
 import { Button, Container } from "@mui/material";
-import ChatBox from "../ChatBox/ChatBox";
 import moment from "moment";
-import axios from "axios";
+
 
 export default function Messages({
   messages,
@@ -14,33 +13,17 @@ export default function Messages({
   currentChat,
   currentUserId,
   user,
-  receiverId,
+  receiverData
 }) {
   const scroll = useRef();
   const [modalOpened, setModalOpened] = useState(false);
   const [messageId, setMessageId] = useState(null);
-  const [receiverData, setReceiverData] = useState([]);
+
 
   // scroll to last message
   useEffect(() => {
     scroll.current?.scrollIntoView({ behaviour: "smooth" });
   }, [messages]);
-
-  // get receiver data
-  useEffect(() => {
-    async function getReceiverData() {
-      try {
-        console.log(receiverId) //receiver id undefined on first click into active chat
-        const payload = await axios.get(`api/users/${receiverId}`);
-        if (payload.status === 200) {
-          setReceiverData(payload.data);
-        }
-      } catch (error) {
-        console.log(error);
-      }
-    }
-    getReceiverData();
-  }, [currentChat]);
 
   return (
     <>
