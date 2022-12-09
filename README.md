@@ -13,7 +13,7 @@ Using our app allows you to maintain that same level of communication but withou
 - [Link to Wireframes](https://www.figma.com/file/sokWtK9ITMAuoRqUsckBqL/Daily-UI-013%2C-Direct-Messaging-(Community)?node-id=125%3A237&t=IMPmfOoZNcz5d72m-1)
 
 
-# Screen Shot
+# Pages
 
 <img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/login.png">
 
