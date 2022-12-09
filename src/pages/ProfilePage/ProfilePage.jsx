@@ -25,12 +25,8 @@ export default function ProfilePage({ user, setUser }) {
           lg={6}
           xl={6}
           sx={{
-            // justifyContent: "center",
-            // alignContent: "center",
-            // alignItems: "center",
             margin: "auto",
             marginTop: "10vh",
-            // height: "50px",
           }}
         >
           <Button

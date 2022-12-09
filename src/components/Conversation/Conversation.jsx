@@ -4,20 +4,9 @@ import "./Conversation.css";
 import axios from "axios";
 import { Avatar, Badge } from "@mui/material";
 import Stack from "@mui/material/Stack";
-// testing
 import { styled } from "@mui/material/styles";
 import CircleIcon from "@mui/icons-material/Circle";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
-
-// const StyledBadge = styled(Badge)(({ theme }) => ({
-//   "& .MuiBadge-badge": {
-//     right: -3,
-//     top: 13,
-//     border: `2px solid ${theme.palette.background.paper}`,
-//     padding: "0 4px",
-//   },
-// }));
-// testing
 
 export default function Conversation({ currentUserId, chat, online, user }) {
   const [userData, setUserData] = useState(null);
@@ -63,8 +52,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       sx={{
         paddingLeft: "5px",
         alignItems: "center",
-        // overflow: "scroll",
-        textAlign: "left",
+        textAlign: "center",
       }}
     >
       <Grid item xs={4}>
@@ -93,7 +81,6 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         <span className="name">
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
-        {/* message preview goes here */}
       </Grid>
       <Grid
         item
@@ -102,10 +89,9 @@ export default function Conversation({ currentUserId, chat, online, user }) {
           justifyContent: "right",
         }}
       >
-        {/* notification goes here */}
-
         {unreadMessages === 0 ? (
-          <div></div>
+      <MailOutlineIcon color="primary"></MailOutlineIcon>
+          
         ) : (
           <Badge
             className="badge"

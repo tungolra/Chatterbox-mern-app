@@ -4,13 +4,13 @@ import Messages from "../Messages/Messages";
 import axios from "axios";
 import { io } from "socket.io-client";
 import Conversation from "../Conversation/Conversation";
+import NavBar from "../NavBar/NavBar";
 import { Input, Grid, TextField, Box, Avatar, Menu } from "@mui/material";
 import { Container, Stack } from "@mui/material";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
-import NavBar from "../NavBar/NavBar";
 
 export default function ChatList({ user, setUser }) {
   const socket = useRef();
@@ -157,32 +157,22 @@ export default function ChatList({ user, setUser }) {
             fullWidth
             variant="standard"
             sx={{
-              border: "3px solid blue",
+              border: "3px solid #2f15d1",
               borderRadius: "50px",
               disableUnderline: "true",
               paddingLeft: "20px",
               paddingRight: "20px",
+              width: "70%",
             }}
             InputProps={{
               disableUnderline: true,
             }}
           >
             <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
-              Find Friends
+              Find a friend...
             </InputLabel>
-            <Select>
-              <MenuItem value={""}>
-                {/* <TextField
-                  sx={{
-                    width: "25vw",
-                    border: "3px solid #2f15d1",
-                    margin: "10px",
-                  }}
-                  className="outlined-basic"
-                  type="text"
-                  placeholder="Search for a User"
-                ></TextField> */}
-              </MenuItem>
+            <Select style={{ backgroundColor: "#ffffff" }}>
+              <MenuItem value={""}></MenuItem>
               {allUsers.map((friend, idx) => (
                 <MenuItem key={idx} onClick={() => startChat(friend._id)}>
                   {friend?.firstname} {friend?.lastname}
@@ -190,6 +180,7 @@ export default function ChatList({ user, setUser }) {
               ))}
             </Select>
           </FormControl>
+          <p>Click a Chat to Start Conversation</p>
           <Box>
             <div>
               <p className="section-heading">Active Chats:</p>
@@ -216,7 +207,7 @@ export default function ChatList({ user, setUser }) {
           </Box>
         </Grid>
         <Grid
-          item
+             item
           xs={12}
           sm={12}
           md={8}
@@ -227,7 +218,6 @@ export default function ChatList({ user, setUser }) {
             height: "50px",
           }}
         >
-          {/* <Container className="messages-container"> */}
           <ChatBox
             currentChat={currentChat}
             currentUserId={user._id}
@@ -238,7 +228,6 @@ export default function ChatList({ user, setUser }) {
             socket={socket}
             user={user}
           />
-          {/* </Container> */}
         </Grid>
         <Grid item xl={1}></Grid>
       </Grid>

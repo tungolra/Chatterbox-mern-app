@@ -29,10 +29,6 @@ export const themeOptions = createTheme({
       main: "#A378FF",
     },
   },
-  // navlinks: {
-  //   marginLeft: themeOptions.spacing(10),
-  //   display: "flex",
-  // },
 });
 
 function App() {
@@ -43,12 +39,8 @@ function App() {
       <ThemeProvider theme={themeOptions}>
         {user ? (
           <>
-            {/* <NavBar user={user} setUser={setUser} /> */}
             <Routes>
-              <Route
-                path="/chats"
-                element={<ChatPage user={user} setUser={setUser} />}
-              />
+              <Route path="/chats" element={<ChatPage user={user} />} />
               <Route
                 path="/profile"
                 element={<ProfilePage user={user} setUser={setUser} />}
