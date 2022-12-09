@@ -64,7 +64,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         paddingLeft: "5px",
         alignItems: "center",
         // overflow: "scroll",
-        textAlign: "left",
+        textAlign: "center",
       }}
     >
       <Grid item xs={4}>
@@ -95,13 +95,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         </span>
         {/* message preview goes here */}
       </Grid>
-      <Grid
-        item
-        xs={4}
-        sx={{
-          justifyContent: "right",
-        }}
-      >
+      <Grid item xs={4}>
         {/* notification goes here */}
 
         {unreadMessages === 0 ? (
