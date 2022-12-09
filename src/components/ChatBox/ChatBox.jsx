@@ -75,7 +75,7 @@ export default function ChatBox({
           <hr />
           <div
             style={{
-              border: "1px solid black",
+
               display: "flex",
               flexDirection: "row",
             }}
@@ -86,6 +86,7 @@ export default function ChatBox({
             <img className="profileImg" src={receiverData?.profilePicture} />
             {receiverData?.firstname}
           </div>
+            <hr />
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
