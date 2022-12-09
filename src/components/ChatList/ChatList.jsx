@@ -184,6 +184,7 @@ export default function ChatList({ user, setUser }) {
           <Box>
             <div>
               <p className="section-heading">Active Chats:</p>
+              <p className="text-descriptive">Select a chat to begin!</p>
               {chats.map((chat, idx) => (
                 <div
                   style={{

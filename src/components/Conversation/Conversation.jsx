@@ -52,7 +52,6 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       sx={{
         paddingLeft: "5px",
         alignItems: "center",
-        // overflow: "scroll",
         textAlign: "center",
       }}
     >
@@ -79,7 +78,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         )}
       </Grid>
       <Grid item xs={4}>
-        <span>
+        <span className="name">
           {userData?.firstname}&nbsp;{userData?.lastname}
         </span>
       </Grid>
@@ -91,7 +90,8 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         }}
       >
         {unreadMessages === 0 ? (
-          ""
+      <MailOutlineIcon color="primary"></MailOutlineIcon>
+          
         ) : (
           <Badge
             className="badge"
