@@ -7,6 +7,7 @@ import { Box, Button, IconButton, Container } from "@mui/material";
 import { Stack } from "@mui/system";
 import SendIcon from "@mui/icons-material/Send";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
+import SearchIcon from "@mui/icons-material/Search";
 
 export default function ChatBox({
   currentChat,
@@ -72,20 +73,35 @@ export default function ChatBox({
       {/* chatmembermodal here */}
       {currentChat ? (
         <div>
-          <hr />
           <div
-            style={{
-              display: "flex",
-              flexDirection: "row",
-            }}
+            className="chat-container"
             onClick={() => {
               setModalOpened(true);
             }}
           >
-            <img className="profileImg" src={receiverData?.profilePicture} />
-            {receiverData?.firstname}
+
+            <div className="section-heading chatmember-container">
+            <img
+              className="profileImg chatmember-image"
+              src={
+                receiverData?.profilePicture === ""
+                  ? "./logo192.png"
+                  : receiverData?.profilePicture
+              }
+            />
+              <h2 className="chatmember-name">
+                {`${receiverData?.firstname} ${receiverData?.lastname}`} <br/>
+                @{`${receiverData?.username}`}
+              </h2>
+
+
+              <SearchIcon
+                fontSizeLarge
+                className="section-heading searchIcon"
+              />
+            </div>
           </div>
-          <hr />
+
           <ChatMemberModal
             modalOpened={modalOpened}
             setModalOpened={setModalOpened}
@@ -103,34 +119,25 @@ export default function ChatBox({
               receiverData={receiverData}
             />
           </div>
-
           <Stack
             direction="row"
             alignItems="center"
             spacing={3}
             justifyContent="center"
-            sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-            {/* <form onSubmit={handleSend}> */}
-              <InputEmoji
-                color="secondary"
-                value={newMessage}
-                onChange={handleChange}
-                cleanOnEnter
-                onEnter={handleSend}
-                placeholder="Type a message"
-              />
-
-              {/* <IconButton onClick={handleSend}>SEND </IconButton> */}
-
-              <SendIcon id="sendmsg" color="secondary" onClick={handleSend}>
-                Send
-              </SendIcon>
+            <InputEmoji
+              color="secondary"
+              value={newMessage}
+              onChange={handleChange}
+              cleanOnEnter
+              onEnter={handleSend}
+              placeholder="Type a message..."
+            />
             {/* </form> */}
           </Stack>
         </div>
       ) : (
-        <span>Click a Chat to Start Conversation</span>
+        ""
       )}
     </>
   );
