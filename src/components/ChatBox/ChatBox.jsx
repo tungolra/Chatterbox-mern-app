@@ -111,7 +111,6 @@ export default function ChatBox({
             justifyContent="center"
             sx={{ width: "50vw", justifyItems: "center", margin: "auto" }}
           >
-            {/* <form onSubmit={handleSend}> */}
               <InputEmoji
                 color="secondary"
                 value={newMessage}
@@ -120,13 +119,9 @@ export default function ChatBox({
                 onEnter={handleSend}
                 placeholder="Type a message"
               />
-
-              {/* <IconButton onClick={handleSend}>SEND </IconButton> */}
-
               <SendIcon id="sendmsg" color="secondary" onClick={handleSend}>
                 Send
               </SendIcon>
-            {/* </form> */}
           </Stack>
         </div>
       ) : (
