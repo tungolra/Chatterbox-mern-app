@@ -163,6 +163,7 @@ export default function ChatPage({ user, setUser }) {
           setAllUsers={setAllUsers}
           socket={socket}
         />
+
         <ChatBox
           currentChat={currentChat}
           currentUserId={user._id}

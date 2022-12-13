@@ -1,25 +1,37 @@
-.messages-container {
+.chatpage-container{ 
+
+}
+.react-emoji { 
+  border: 3px solid #2e15d153;
+  border-top:none;
+
+}
+.chat-container {
+  /* margin-top: 7vmin; */
+  /* border: 3px solid #2e15d153; */
+  border-bottom: none;
+  border-top: none;
+  height: 100vh;
+  width: 100%;
+  /* border-radius: 25px; */
+}
+
+/* .messages-container {
   display: flex;
   flex-flow: column;
   flex-direction: column !important;
   border-top: 3px solid #2f15d1;
-
   border-radius: 25px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
-}
+} */
 /* .inputEmoji {
 } */
 
-.chat-container {
-  margin-top: 7vmin;
-  border: 3px solid #2f15d1;
-
-  border-radius: 25px;
-}
-
 .chatmember-container {
   display: flex;
+  border-right: solid #2e15d153;
+  border-left: solid #2e15d153;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;

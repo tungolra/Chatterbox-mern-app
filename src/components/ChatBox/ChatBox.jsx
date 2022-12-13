@@ -7,7 +7,6 @@ import { Stack } from "@mui/system";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 import SearchIcon from "@mui/icons-material/Search";
 
-
 export default function ChatBox({
   currentChat,
   currentUserId,
@@ -114,13 +113,13 @@ export default function ChatBox({
               receiverData={receiverData}
             />
           </div>
-          <Stack
+          {/* <Stack
             direction="row"
             spacing={3}
             justifyContent="center"
             sx={{ alignItems: "center" }}
-          >
-          <div className="input-field"></div>
+          > */}
+            {/* <div className="input-field"></div> */}
             <InputEmoji
               className="inputEmoji"
               color="secondary"
@@ -128,8 +127,9 @@ export default function ChatBox({
               onChange={handleChange}
               cleanOnEnter
               onEnter={handleSend}
+              sx={{border: "1px solid black"}}
             />
-          </Stack>
+          {/* </Stack> */}
         </div>
       ) : (
         ""

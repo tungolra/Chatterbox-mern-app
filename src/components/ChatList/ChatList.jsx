@@ -25,7 +25,7 @@ export default function ChatList({
   setAllUsers,
   currentChat,
   setMessages,
-  socket
+  socket,
 }) {
   // const socket = useRef();
   // const [chats, setChats] = useState([]);
@@ -161,66 +161,66 @@ export default function ChatList({
 
   return (
     <div className="chatlist-container">
-      <Grid container spacing={2}>
-        <Grid item xl={1}></Grid>
-        <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
-          <div>
-            <NavBar user={user} setUser={setUser} />
-          </div>
-          <p className="section-heading">Find a Friend to Start Conversation</p>
-          <FormControl
-            fullWidth
-            variant="standard"
-            sx={{
-              border: "3px solid #2f15d1",
-              borderRadius: "50px",
-              disableUnderline: "true",
-              paddingLeft: "20px",
-              paddingRight: "20px",
-              width: "70%",
-            }}
-            InputProps={{
-              disableUnderline: true,
-            }}
-          >
-            <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
-              Find a friend...
-            </InputLabel>
-            <Select style={{ backgroundColor: "#ffffff" }}>
-              <MenuItem value={""}></MenuItem>
-              {allUsers.map((friend, idx) => (
-                <MenuItem key={idx} onClick={() => startChat(friend._id)}>
-                  {friend?.firstname} {friend?.lastname}
-                </MenuItem>
-              ))}
-            </Select>
-          </FormControl>
-          <Box>
-            <div>
-              <p className="section-heading">Active Chats:</p>
-              <p className="text-descriptive">Select a chat to begin!</p>
-              {chats.map((chat, idx) => (
-                <div
-                  style={{
-                    margin: "5px",
-                    alignItems: "center",
-                    justifyContent: "center",
-                  }}
-                  key={idx}
-                  onClick={() => setChat(chat)}
-                >
-                  <Conversation
-                    currentUserId={user._id}
-                    chat={chat}
-                    online={isOnline(chat)}
-                    user={user}
-                  />
-                </div>
-              ))}
+      {/* <Grid container spacing={2}> */}
+      {/* <Grid item xl={1}></Grid> */}
+      {/* <Grid item xs={12} sm={12} md={4} lg={4} xl={4}> */}
+      <div>
+        <NavBar user={user} setUser={setUser} />
+      </div>
+      <p className="section-heading">Find a Friend to Start Conversation</p>
+      <FormControl
+        fullWidth
+        variant="standard"
+        sx={{
+          border: "3px solid #2f15d1",
+          borderRadius: "50px",
+          disableUnderline: "true",
+          paddingLeft: "20px",
+          paddingRight: "20px",
+          width: "70%",
+        }}
+        InputProps={{
+          disableUnderline: true,
+        }}
+      >
+        <InputLabel sx={{ border: "none", paddingLeft: "30px" }}>
+          Find a friend...
+        </InputLabel>
+        <Select style={{ backgroundColor: "#ffffff" }}>
+          <MenuItem value={""}></MenuItem>
+          {allUsers.map((friend, idx) => (
+            <MenuItem key={idx} onClick={() => startChat(friend._id)}>
+              {friend?.firstname} {friend?.lastname}
+            </MenuItem>
+          ))}
+        </Select>
+      </FormControl>
+      <Box>
+        <div>
+          <p className="section-heading">Active Chats:</p>
+          <p className="text-descriptive">Select a chat to begin!</p>
+          {chats.map((chat, idx) => (
+            <div
+              style={{
+                margin: "5px",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
+              key={idx}
+              onClick={() => setChat(chat)}
+            >
+              <Conversation
+                currentUserId={user._id}
+                chat={chat}
+                online={isOnline(chat)}
+                user={user}
+              />
             </div>
-          </Box>
-        </Grid>
-        <Grid
+          ))}
+        </div>
+      </Box>
+      {/* </Grid> */}
+      {/* <Grid
           item
           xs={12}
           sm={12}
@@ -231,8 +231,8 @@ export default function ChatList({
             justifyContent: "center",
             height: "50px",
           }}
-        >
-          {/* <ChatBox
+        > */}
+      {/* <ChatBox
             currentChat={currentChat}
             currentUserId={user._id}
             setMessages={setMessages}
@@ -242,9 +242,9 @@ export default function ChatList({
             socket={socket}
             user={user}
           /> */}
-        </Grid>
-        <Grid item xl={1}></Grid>
-      </Grid>
+      {/* </Grid> */}
+      {/* <Grid item xl={1}></Grid> */}
+      {/* </Grid> */}
     </div>
   );
 }

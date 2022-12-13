@@ -1,15 +1,22 @@
 .messages-container {
   display: flex !important;
+  flex-flow: column;
   flex-direction: column;
-  height: 60vh;
+  height: inherit;
   text-align: left;
+  border: 3px solid #2e15d13f;
+  border-bottom: none;
   overflow: scroll;
+
+  border-top-left-radius: 0px;
+  border-top-right-radius: 0px;
 }
 
 .message-row {
   display: flex;
   flex-direction: column;
 }
+
 .message {
   align-items: left;
   justify-items: left;

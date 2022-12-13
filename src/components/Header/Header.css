@@ -7,6 +7,8 @@ header {
   background-color: #2f15d1;;
 }
 .logo {
+  padding: 1vmin;
+  font-size: 3rem;
   color: white;
   text-transform: uppercase;
 }
