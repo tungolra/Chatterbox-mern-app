@@ -2,12 +2,13 @@
   display: flex !important;
   flex-flow: column;
   flex-direction: column;
-  height: inherit;
+  height: 70vmin;
   text-align: left;
   border: 3px solid #2e15d13f;
   border-bottom: none;
-  overflow: scroll;
-
+  border-top: none;
+  overflow: scroll, hidden;
+  overflow-x: hidden;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }

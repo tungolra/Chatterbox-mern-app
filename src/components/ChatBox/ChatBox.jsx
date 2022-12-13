@@ -113,23 +113,14 @@ export default function ChatBox({
               receiverData={receiverData}
             />
           </div>
-          {/* <Stack
-            direction="row"
-            spacing={3}
-            justifyContent="center"
-            sx={{ alignItems: "center" }}
-          > */}
-            {/* <div className="input-field"></div> */}
-            <InputEmoji
-              className="inputEmoji"
-              color="secondary"
-              value={newMessage}
-              onChange={handleChange}
-              cleanOnEnter
-              onEnter={handleSend}
-              sx={{border: "1px solid black"}}
-            />
-          {/* </Stack> */}
+          <InputEmoji
+            className="inputEmoji"
+            color="secondary"
+            value={newMessage}
+            onChange={handleChange}
+            cleanOnEnter
+            onEnter={handleSend}
+          />
         </div>
       ) : (
         ""

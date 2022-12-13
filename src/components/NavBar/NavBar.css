@@ -1,0 +1,18 @@
+nav {
+  border-bottom: 3px solid #2e15d153;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 10vmin;
+  padding: 24px;
+}
+
+.nav-buttons { 
+    margin: auto 0;
+}
+.nav-user-icon {
+  border: 3px solid #2f15d1;
+  border-radius: 50%;
+  width: 60px;
+  height: 60px;
+}

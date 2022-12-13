@@ -5,7 +5,12 @@ import axios from "axios";
 import { Badge } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-export default function Conversation({ currentUserId, chat, online, user }) {
+export default function Conversation({
+  currentUserId,
+  chat,
+  online,
+  currentChat,
+}) {
   const [userData, setUserData] = useState(null);
   const [unreadMessages, setUnreadMessages] = useState(null);
 
@@ -76,7 +81,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
       </Grid>
       <Grid item xs={4}>
         <span className="name">
-          {userData?.firstname}&nbsp;{userData?.lastname}
+          {`${userData?.firstname} ${userData?.lastname}`}
         </span>
       </Grid>
       <Grid
@@ -87,8 +92,7 @@ export default function Conversation({ currentUserId, chat, online, user }) {
         }}
       >
         {unreadMessages === 0 ? (
-      <MailOutlineIcon color="primary"></MailOutlineIcon>
-          
+          <MailOutlineIcon color="primary"></MailOutlineIcon>
         ) : (
           <Badge
             className="badge"

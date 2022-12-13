@@ -1,8 +1,25 @@
-.chatlist-container{
-    height: 100%;
-    width: 33vw;
+.chatlist-container {
+  height: 100%;
+  width: 33vw;
+}
+
+.friendlist-container {
+  overflow-y: scroll, hidden;
+  overflow-x: hidden;
+  height: 70vmin;
+  /* border-bottom: 3px solid #2e15d13f; */
+  background-color: #eae7fa;
 }
 .text-descriptive {
-    color: #2f15d1;
-    font-style: italic;
-  }
+  color: #2f15d1;
+  font-style: italic;
+}
+.find-friend-header {
+  padding-left: 24px;
+  text-align: left;
+  color: #2f15d1;
+  font-weight: bold;
+}
+.find-friend-searchbar {
+  width: 30vw;
+}

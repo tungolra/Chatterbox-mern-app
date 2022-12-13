@@ -1,11 +1,10 @@
-
 .bio-text {
-    color: #2f15d1;
-    font-style: italic;
-  }
-  .text-name {
-    font-size: x-large;
-    color: #2f15d1;
-    font-weight: bold;
-    padding: 20px;
-  }
+  color: #2f15d1;
+  font-style: italic;
+}
+.text-name {
+  font-size: x-large;
+  color: #2f15d1;
+  font-weight: bold;
+  padding: 20px;
+}
