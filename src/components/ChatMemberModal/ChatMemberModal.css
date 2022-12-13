@@ -2,7 +2,6 @@
     height: auto;
     padding: 3vmin;
     display: flex;
-    
     flex-direction: column;
     text-align: center;
     font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
@@ -10,7 +9,17 @@
     background-color: #EAE7FA;
 }
 
-
+.chatmember-container {
+    display: flex;
+    border-bottom: 3px solid #2e15d13f;
+    border-left: 3px solid #2e15d13f;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    height: 10vmin;
+    background-color: #EAE7FA;
+    padding: 24px;
+  }
 
 .chatmember-img { 
     width: 300px;

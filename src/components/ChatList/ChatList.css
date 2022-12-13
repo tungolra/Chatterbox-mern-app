@@ -1,6 +1,7 @@
 .chatlist-container {
   height: 100%;
   width: 33vw;
+  background-color: #eae7fa;
 }
 
 .friendlist-container {
@@ -9,6 +10,11 @@
   height: 70vmin;
   /* border-bottom: 3px solid #2e15d13f; */
   background-color: #eae7fa;
+}
+.select-friend:hover {
+  cursor: pointer;
+  background-color: white;
+  opacity: 10;
 }
 .text-descriptive {
   color: #2f15d1;

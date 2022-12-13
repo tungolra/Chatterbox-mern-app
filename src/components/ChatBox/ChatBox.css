@@ -12,15 +12,7 @@
   width: 67vw;
 }
 
-.chatmember-container {
-  display: flex;
-  border-bottom: 3px solid #2e15d13f;
-  border-left: 3px solid #2e15d13f;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-  height: 10vmin;
-}
+
 
 .chatmember-image {
   align-items: flex-start;

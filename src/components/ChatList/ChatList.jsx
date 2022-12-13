@@ -22,6 +22,7 @@ export default function ChatList({
   setAllUsers,
   currentChat,
 }) {
+  console.log(currentChat)
   return (
     <div className="chatlist-container">
       <div>
@@ -49,7 +50,7 @@ export default function ChatList({
       </FormControl>
       <Box className="friendlist-container">
         {chats.map((chat, idx) => (
-          <div
+          <div className="select-friend"
             style={{
               alignItems: "center",
               justifyContent: "center",
