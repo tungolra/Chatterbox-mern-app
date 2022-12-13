@@ -22,8 +22,8 @@ export default function ChatMemberModal({
       onClose={() => setModalOpened(false)}
     >
       <div className="chatmember-modal">
-        <div className="chatmember-img">
-          <img
+        <div className="chatmember-img-container">
+          <img className="chatmember-img"
             src={
               receiverData?.profilePicture === ""
                 ? "./logo192.png"

@@ -19,8 +19,11 @@ export default function ProfileCard({ user }) {
         <div className="text-name">
           {user?.firstname}&nbsp;{user?.lastname}
         </div>
+        <p>@{user?.username}</p>
         <p>{user?.email}</p>
-        <div className="bio-text">{user?.about === "" ?  "BIO HERE" : user?.about}</div>
+        <div className="bio-text">
+          {user?.about === "" ? "BIO HERE" : user?.about}
+        </div>
       </div>
     </>
   );

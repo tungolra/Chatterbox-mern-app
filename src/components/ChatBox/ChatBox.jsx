@@ -71,26 +71,23 @@ export default function ChatBox({
       {currentChat ? (
         <div className="chat-container">
           <div
-            
             onClick={() => {
               setModalOpened(true);
             }}
           >
-
             <div className="section-heading chatmember-container">
-            <img
-              className="profileImg chatmember-image"
-              src={
-                receiverData?.profilePicture === ""
-                  ? "./logo192.png"
-                  : receiverData?.profilePicture
-              }
-            />
+              <img
+                className="profileImg chatmember-image"
+                src={
+                  receiverData?.profilePicture === ""
+                    ? "./logo192.png"
+                    : receiverData?.profilePicture
+                }
+              />
               <h2 className="chatmember-name">
-                {`${receiverData?.firstname} ${receiverData?.lastname}`} <br/>
-                @{`${receiverData?.username}`}
+                {`${receiverData?.firstname} ${receiverData?.lastname}`} <br />@
+                {`${receiverData?.username}`}
               </h2>
-
 
               <SearchIcon
                 fontSizeLarge
@@ -118,9 +115,9 @@ export default function ChatBox({
           </div>
           <Stack
             direction="row"
-            alignItems="center"
             spacing={3}
             justifyContent="center"
+            sx={{ alignItems: "center" }}
           >
             <InputEmoji
               color="secondary"

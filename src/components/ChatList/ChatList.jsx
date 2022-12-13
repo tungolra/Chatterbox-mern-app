@@ -178,7 +178,6 @@ export default function ChatList({ user, setUser }) {
               ))}
             </Select>
           </FormControl>
-          <p>Click a Chat to Start Conversation</p>
           <Box>
             <div>
               <p className="section-heading">Active Chats:</p>

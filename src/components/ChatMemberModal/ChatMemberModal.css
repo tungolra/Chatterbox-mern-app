@@ -1,5 +1,6 @@
 .chatmember-modal { 
-    height: 50vw;
+    height: auto;
+    padding: 3vmin;
     display: flex;
     flex-direction: column;
     text-align: center;
@@ -8,8 +9,10 @@
     background-color: #EAE7FA;
 }
 
+
+
 .chatmember-img { 
-    margin-top: 3vmin;
+    width: 300px;
 }
 .chatmember { 
     margin: 0 2vmin;
