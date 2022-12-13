@@ -1,3 +1,9 @@
+* { 
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
 .App {
   text-align: center;
   background-color: #ffffff;
@@ -5,37 +11,19 @@
   vertical-align: middle;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.section-heading {
+  color: #2f15d1;
+  font-weight: bold;
+  text-transform: capitalize;
+  /* padding: 10px; */
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+input {
+  padding: 1vmin;
+  font-size: 2vmin;
+  border: 0.1vmin solid var(--tan-3);
+  border-radius: 0.5vmin;
+  color: var(--text-dark);
+  background-image: none !important; /* prevent lastpass */
+  outline: none;
 }

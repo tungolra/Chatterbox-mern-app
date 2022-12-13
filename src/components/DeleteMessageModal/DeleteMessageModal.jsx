@@ -1,6 +1,7 @@
 import { Modal, useMantineTheme } from "@mantine/core";
 import { Button } from "@mui/material";
 import axios from "axios";
+import "./DeleteMessageModal.css";
 
 export default function DeleteMessageModal({
   modalOpened,
@@ -49,7 +50,7 @@ export default function DeleteMessageModal({
             <img
               src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/2234003.png"
               style={{ margin: "auto", height: "20px", width: "20px" }}
-            />{" "}
+            />
             &nbsp; Delete Message
           </span>
         </div>

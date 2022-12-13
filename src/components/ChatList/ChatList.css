@@ -1,3 +1,31 @@
-.chatlist-container{
-    border: 1px solid grey
+.chatlist-container {
+  height: 100%;
+  width: 33vw;
+  background-color: #eae7fa;
+}
+
+.friendlist-container {
+  overflow-y: scroll, hidden;
+  overflow-x: hidden;
+  height: 70vmin;
+  /* border-bottom: 3px solid #2e15d13f; */
+  background-color: #eae7fa;
+}
+.select-friend:hover {
+  cursor: pointer;
+  background-color: white;
+  opacity: 10;
+}
+.text-descriptive {
+  color: #2f15d1;
+  font-style: italic;
+}
+.find-friend-header {
+  padding-left: 24px;
+  text-align: left;
+  color: #2f15d1;
+  font-weight: bold;
+}
+.find-friend-searchbar {
+  width: 30vw;
 }

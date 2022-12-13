@@ -5,7 +5,13 @@ import axios from "axios";
 import { Badge } from "@mui/material";
 import MailOutlineIcon from "@mui/icons-material/MailOutline";
 
-export default function Conversation({ currentUserId, chat, online, user }) {
+export default function Conversation({
+  currentUserId,
+  chat,
+  online,
+  currentChat,
+  messages,
+}) {
   const [userData, setUserData] = useState(null);
   const [unreadMessages, setUnreadMessages] = useState(null);
 
@@ -41,64 +47,48 @@ export default function Conversation({ currentUserId, chat, online, user }) {
     };
     countUnreadMessages();
   }, [unreadMessages]);
-
+  // console.log(messages[messages.length-1].text)
   return (
-    <Grid
-      container
-      spacing={3}
-      sx={{
-        paddingLeft: "5px",
-        alignItems: "center",
-        textAlign: "center",
-      }}
-    >
-      <Grid item xs={4}>
-        {online ? (
-          <img
-            className="profileImg"
-            src={
-              userData?.profilePicture === ""
-                ? "./logo192.png"
-                : userData?.profilePicture
-            }
-            style={{ border: "4px solid green" }}
-          />
-        ) : (
-          <img
-            className="profileImg"
-            src={
-              userData?.profilePicture === ""
-                ? "./logo192.png"
-                : userData?.profilePicture
-            }
-          />
-        )}
-      </Grid>
-      <Grid item xs={4}>
-        <span className="name">
-          {userData?.firstname}&nbsp;{userData?.lastname}
+    <div className="conversation-container">
+      {online ? (
+        <img
+          className="profileImg"
+          src={
+            userData?.profilePicture === ""
+              ? "./logo192.png"
+              : userData?.profilePicture
+          }
+          style={{ border: "4px solid green" }}
+        />
+      ) : (
+        <img
+          className="profileImg"
+          src={
+            userData?.profilePicture === ""
+              ? "./logo192.png"
+              : userData?.profilePicture
+          }
+        />
+      )}
+      <div className="chatmember-lastmessage">
+        <span className="chatlist-name">
+          {`${userData?.firstname} ${userData?.lastname}`}
         </span>
-      </Grid>
-      <Grid
-        item
-        xs={4}
-        sx={{
-          justifyContent: "right",
-        }}
-      >
-        {unreadMessages === 0 ? (
-      <MailOutlineIcon color="primary"></MailOutlineIcon>
-          
-        ) : (
-          <Badge
-            className="badge"
-            color="secondary"
-            badgeContent={unreadMessages}
-          >
-            <MailOutlineIcon color="primary"></MailOutlineIcon>
-          </Badge>
-        )}
-      </Grid>
-    </Grid>
+        {/* <span className="last-message">
+          placeholder last message
+        </span> */}
+      </div>
+      {unreadMessages === 0 ? (
+        <MailOutlineIcon color="primary"></MailOutlineIcon>
+      ) : (
+        <Badge
+          className="badge"
+          color="secondary"
+          badgeContent={unreadMessages}
+        >
+          <MailOutlineIcon color="primary"></MailOutlineIcon>
+        </Badge>
+      )}
+    </div>
   );
 }
