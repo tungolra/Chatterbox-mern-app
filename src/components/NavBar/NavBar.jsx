@@ -21,7 +21,6 @@ export default function NavBar(props) {
   return (
     <Grid container>
       <Grid item xs={12} md={12} lg={12} xl={12}>
-        <h1 className="logo">chatter[box]</h1>
         <img
           className="profileImg"
           src={
