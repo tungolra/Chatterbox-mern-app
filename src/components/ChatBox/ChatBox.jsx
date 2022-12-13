@@ -6,7 +6,7 @@ import axios from "axios";
 import { Stack } from "@mui/system";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 import SearchIcon from "@mui/icons-material/Search";
-import MdSend from "react-icons/md"
+
 
 export default function ChatBox({
   currentChat,
