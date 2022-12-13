@@ -3,15 +3,18 @@
   flex-flow: column;
   flex-direction: column !important;
   border-top: 3px solid #2f15d1;
-  border-bottom: 3px solid #2f15d1;
+
   border-radius: 25px;
   border-top-left-radius: 0px;
   border-top-right-radius: 0px;
 }
+/* .inputEmoji {
+} */
 
 .chat-container {
   margin-top: 7vmin;
   border: 3px solid #2f15d1;
+
   border-radius: 25px;
 }
 

@@ -9,6 +9,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select from "@mui/material/Select";
+import "./ChatList.css"
 
 export default function ChatList({ user, setUser }) {
   const socket = useRef();
@@ -134,6 +135,7 @@ export default function ChatList({ user, setUser }) {
   // their chatbox with the receiver
   // third, if sender clicks back into convo with receiver, then that will
   // clear the receiver's unread messages
+  
   const updateMessageStatus = async (chat) => {
     try {
       await axios.put(`api/messages/status/${chat._id}`);
@@ -143,7 +145,7 @@ export default function ChatList({ user, setUser }) {
   };
 
   return (
-    <>
+    <div className="chatlist-container">
       <Grid container spacing={2}>
         <Grid item xl={1}></Grid>
         <Grid item xs={12} sm={12} md={4} lg={4} xl={4}>
@@ -228,6 +230,7 @@ export default function ChatList({ user, setUser }) {
         </Grid>
         <Grid item xl={1}></Grid>
       </Grid>
-    </>
+    </div>
   );
+  
 }

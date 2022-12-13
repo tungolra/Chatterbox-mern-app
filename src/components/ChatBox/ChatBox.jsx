@@ -6,6 +6,7 @@ import axios from "axios";
 import { Stack } from "@mui/system";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 import SearchIcon from "@mui/icons-material/Search";
+import MdSend from "react-icons/md"
 
 export default function ChatBox({
   currentChat,
@@ -119,15 +120,15 @@ export default function ChatBox({
             justifyContent="center"
             sx={{ alignItems: "center" }}
           >
+          <div className="input-field"></div>
             <InputEmoji
+              className="inputEmoji"
               color="secondary"
               value={newMessage}
               onChange={handleChange}
               cleanOnEnter
               onEnter={handleSend}
-              placeholder="Press Enter to Send..."
             />
-            {/* </form> */}
           </Stack>
         </div>
       ) : (

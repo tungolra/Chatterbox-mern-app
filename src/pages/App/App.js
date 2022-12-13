@@ -13,6 +13,7 @@ import "./App.css";
 import { ThemeProvider, createTheme } from "@mui/material";
 import LogInForm from "../../components/LogInForm/LogInForm";
 import SignUpForm from "../../components/SignUpForm/SignUpForm";
+import Header from "../../components/Header/Header";
 
 export const themeOptions = createTheme({
   palette: {
@@ -35,6 +36,7 @@ function App() {
   return (
     <main className="App">
       <ThemeProvider theme={themeOptions}>
+      <Header/>
         {user ? (
           <>
             <Routes>
