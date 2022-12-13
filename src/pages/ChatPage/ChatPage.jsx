@@ -3,13 +3,6 @@ import ChatBox from "../../components/ChatBox/ChatBox";
 import ChatList from "../../components/ChatList/ChatList";
 import axios from "axios";
 import { io } from "socket.io-client";
-import Conversation from "../../components/Conversation/Conversation";
-import NavBar from "../../components/NavBar/NavBar";
-import { Grid, Box } from "@mui/material";
-import InputLabel from "@mui/material/InputLabel";
-import MenuItem from "@mui/material/MenuItem";
-import FormControl from "@mui/material/FormControl";
-import Select from "@mui/material/Select";
 import "./ChatPage.css";
 
 export default function ChatPage({ user, setUser }) {

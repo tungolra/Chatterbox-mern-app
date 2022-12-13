@@ -39,7 +39,7 @@ h1 {
   font-size: 14px;
   font-weight: bold;
 }
-.custom-file-input::-webkit-file-upload-button {
+/* .custom-file-input::-webkit-file-upload-button {
   visibility: hidden;
 }
 .custom-file-input::before {
@@ -52,12 +52,12 @@ h1 {
   padding: 5px 8px;
   outline: none;
   white-space: nowrap;
-  /* -webkit-user-select: none; */
+
   font-size: 14px;
 }
 .custom-file-input:hover::before {
   color: rgb(212, 215, 215);
-}
+} */
 
 .profileImg {
   margin:auto;

@@ -168,7 +168,7 @@ export default function UpdateUserModal({
           />
 
           <Input
-            className="outlined-basic custom-file-input"
+            className="outlined-basic"
             variant="outlined"
             type="file"
             name="profilePicture"
