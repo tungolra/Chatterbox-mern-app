@@ -59,7 +59,7 @@ export default function Conversation({
               ? "./logo192.png"
               : userData?.profilePicture
           }
-          style={{ border: "4px solid green" }}
+          style={{ border: "4px solid limegreen" }}
         />
       ) : (
         <img

@@ -45,6 +45,7 @@ export class SignUpForm extends Component {
           height: "100vh",
           width: "60vw",
           flexDirection: "column",
+          marginTop:"3vmin"
         }}
       >
         <CssBaseline />
@@ -57,7 +58,6 @@ export class SignUpForm extends Component {
             flexDirection: "column",
           }}
         >
-          <h1 className="logo">chatter[box]</h1>
           <h3> Welcome! Create an account to start chatting! </h3>
           <Input
             className="outlined-basic"
