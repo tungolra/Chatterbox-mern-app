@@ -13,6 +13,7 @@ export default function ChatPage({ user, setUser }) {
   const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState("");
   const [allUsers, setAllUsers] = useState([]);
+  
 
   //get chat
   useEffect(() => {

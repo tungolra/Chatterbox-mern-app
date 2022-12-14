@@ -3,10 +3,8 @@ import Messages from "../Messages/Messages";
 import InputEmoji from "react-input-emoji";
 import "./ChatBox.css";
 import axios from "axios";
-import { Stack } from "@mui/system";
 import ChatMemberModal from "../ChatMemberModal/ChatMemberModal";
 import SearchIcon from "@mui/icons-material/Search";
-import ChatBoxFiller from "../ChatBoxFiller/ChatBoxFiller";
 
 export default function ChatBox({
   currentChat,
@@ -21,6 +19,7 @@ export default function ChatBox({
   const [userData, setUserData] = useState(null);
   const [modalOpened, setModalOpened] = useState(false);
   const [receiverData, setReceiverData] = useState([]);
+   
   const receiverId = currentChat?.members?.find((id) => id !== currentUserId);
 
   useEffect(() => {
@@ -47,8 +46,7 @@ export default function ChatBox({
   function handleChange(inputText) {
     setNewMessage(inputText);
   }
-  async function handleSend(e) {
-    // e.preventDefault();
+  async function handleSend() {
     const messageInfo = {
       chatId: currentChat._id,
       senderId: currentUserId,
@@ -86,8 +84,12 @@ export default function ChatBox({
                 }
               />
               <h2 className="chatmember-name">
-                {`${receiverData?.firstname} ${receiverData?.lastname}`} <br />@
-                {`${receiverData?.username}`}
+                <div className="chatmember-contents">
+                  <span>{`${receiverData?.firstname} ${receiverData?.lastname}`}</span>
+                  <span className="chatmember-username">
+                    @{`${receiverData?.username}`}
+                  </span>
+                </div>
               </h2>
 
               <SearchIcon

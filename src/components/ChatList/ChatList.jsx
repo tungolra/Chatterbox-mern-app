@@ -21,6 +21,7 @@ export default function ChatList({
   allUsers,
   setAllUsers,
   currentChat,
+  lastMessage,
 }) {
   return (
     <div className="chatlist-container">
@@ -67,6 +68,7 @@ export default function ChatList({
               online={isOnline(chat)}
               user={user}
               messages={messages}
+              newMessage={newMessage}
             />
           </div>
         ))}
