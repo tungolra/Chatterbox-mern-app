@@ -6,6 +6,13 @@
   border-top-left-radius: 25px;
 }
 
+.convo-background-white{
+  background-color: rgb(245, 245, 245);
+}
+.convo-background-purple{
+  background-color: #eae7fa;
+}
+
 .friendlist-container {
   overflow-y: scroll, hidden;
   overflow-x: hidden;

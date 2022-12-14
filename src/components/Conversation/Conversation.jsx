@@ -49,7 +49,8 @@ export default function Conversation({
   }, [unreadMessages]);
   // console.log(messages[messages.length-1].text)
   return (
-    <div className="conversation-container">
+    <div className="conversation-container" 
+    >
       {online ? (
         <img
           className="profileImg"
