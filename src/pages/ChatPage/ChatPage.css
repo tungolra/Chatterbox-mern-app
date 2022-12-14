@@ -2,4 +2,6 @@
     display: flex;
     margin: 20px;
     border-top: 3px solid #2e15d13f;
+    border-top-right-radius: 25px;
+    border-top-left-radius: 25px;
 }

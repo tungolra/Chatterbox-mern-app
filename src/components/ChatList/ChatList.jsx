@@ -22,35 +22,37 @@ export default function ChatList({
   setAllUsers,
   currentChat,
 }) {
-  
   return (
     <div className="chatlist-container">
       <div>
         <NavBar user={user} setUser={setUser} />
       </div>
-      <p className="find-friend-header">Search or start a new chat...</p>
-      <FormControl
-        variant="standard"
-        InputProps={{
-          disableUnderline: true,
-        }}
-      >
-        <Select className="find-friend-searchbar">
-          <InputLabel
-            sx={{ border: "none", textAlign: "centre", width: "80%" }}
-          >
-            Search or start a new chat...
-          </InputLabel>
-          {allUsers.map((friend, idx) => (
-            <MenuItem key={idx} onClick={() => startChat(friend._id)}>
-              {friend?.firstname} {friend?.lastname}
-            </MenuItem>
-          ))}
-        </Select>
-      </FormControl>
+      <div className="searchbar-container">
+        <p className="find-friend-header">Search or start a new chat...</p>
+        <FormControl
+          variant="standard"
+          InputProps={{
+            disableUnderline: true,
+          }}
+        >
+          <Select className="find-friend-searchbar">
+            <InputLabel
+              sx={{ border: "none", textAlign: "centre", width: "80%" }}
+            >
+              Search or start a new chat...
+            </InputLabel>
+            {allUsers.map((friend, idx) => (
+              <MenuItem key={idx} onClick={() => startChat(friend._id)}>
+                {friend?.firstname} {friend?.lastname}
+              </MenuItem>
+            ))}
+          </Select>
+        </FormControl>
+      </div>
       <Box className="friendlist-container">
         {chats.map((chat, idx) => (
-          <div className="select-friend"
+          <div
+            className="select-friend"
             style={{
               alignItems: "center",
               justifyContent: "center",

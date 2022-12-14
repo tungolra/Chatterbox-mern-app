@@ -2,13 +2,14 @@
   height: 100%;
   width: 33vw;
   background-color: #eae7fa;
+  border-left: 3px solid #2e15d13f;
+  border-top-left-radius: 25px;
 }
 
 .friendlist-container {
   overflow-y: scroll, hidden;
   overflow-x: hidden;
   height: 70vmin;
-  /* border-bottom: 3px solid #2e15d13f; */
   background-color: #eae7fa;
 }
 .select-friend:hover {
@@ -21,6 +22,7 @@
   font-style: italic;
 }
 .find-friend-header {
+  margin: 1vh 0;
   padding-left: 24px;
   text-align: left;
   color: #2f15d1;

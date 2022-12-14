@@ -5,6 +5,7 @@ nav {
   justify-content: space-between;
   height: 10vmin;
   padding: 24px;
+  border-top-left-radius: 25px;
 }
 
 .nav-buttons { 
