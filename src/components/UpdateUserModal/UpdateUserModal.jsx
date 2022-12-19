@@ -7,7 +7,7 @@ import axios from "axios";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Input, Button, TextareaAutosize, Box } from "@mui/material";
 import { Container } from "@mui/system";
-import "./UpdatUserModal.css";
+import "./UpdateUserModal.css";
 
 export default function UpdateUserModal({
   user,

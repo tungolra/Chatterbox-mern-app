@@ -19,28 +19,40 @@
   flex-direction: column;
 }
 
+
 .message {
-  align-items: left;
-  justify-items: left;
+  align-self: flex-start;
   background-color: #1165eb;
   border-radius: 25px;
   border-bottom-left-radius: 0;
   padding: 15px;
   color: white;
   max-width: 25vw;
-  margin: 1vmin 2vmin;
+  margin: 3px 2vmin;
 }
 
 .own {
   background-color: #4c39c9;
   text-align: right;
-  justify-items: flex-end;
-  align-items: flex-end;
-  align-content: flex-end;
-  justify-self: flex-end;
   align-self: flex-end;
   border-radius: 25px;
   border-bottom-right-radius: 0;
+  
+}
+.message-contents {
+  display: flex;
+  flex-direction: column;
+}
+.timestamp {
+  text-align: right;
+  font-style: italic;
+  font-size: 10px;
+  margin-top: 2px;
+}
+.timestamp-own {
+  text-align: left;
+  font-style: italic;
+  font-size: 10px;
 }
 .sender-text {
   font-weight: bold;

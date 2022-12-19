@@ -37,9 +37,9 @@ export default function LogInForm({ setUser, showSignUp, setShowSignUp }) {
           height: "100vh",
           width: "60vw",
           flexDirection:"column",
+          marginTop:"3vmin"
         }}
       >
-        <h1 className="logo">chatter[box]</h1>
         <Box
           component="form"
           autoComplete="off"

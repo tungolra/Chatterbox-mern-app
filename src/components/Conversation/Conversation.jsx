@@ -11,9 +11,30 @@ export default function Conversation({
   online,
   currentChat,
   messages,
+  newMessage,
 }) {
   const [userData, setUserData] = useState(null);
   const [unreadMessages, setUnreadMessages] = useState(null);
+  const [lastMessage, setLastMessage] = useState([]);
+
+  useEffect(() => {
+    const serverRoute = "api/messages";
+    const getChatMessages = async () => {
+      try {
+        let { data } = await axios.get(`${serverRoute}/${chat._id}`);
+        if (data.length > 0) {
+          let last = data[data.length - 1];
+          console.log(last);
+          setLastMessage(data[data.length - 1]);
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    if (currentChat !== null) {
+      getChatMessages();
+    }
+  }, [newMessage]);
 
   //find all users but the current user
   useEffect(() => {
@@ -58,7 +79,7 @@ export default function Conversation({
               ? "./logo192.png"
               : userData?.profilePicture
           }
-          style={{ border: "4px solid green" }}
+          style={{ border: "4px solid limegreen" }}
         />
       ) : (
         <img
@@ -74,9 +95,15 @@ export default function Conversation({
         <span className="chatlist-name">
           {`${userData?.firstname} ${userData?.lastname}`}
         </span>
-        {/* <span className="last-message">
-          placeholder last message
-        </span> */}
+        <span className="last-message">
+          {!lastMessage.text ? (
+            <em>No messages</em>
+          ) : lastMessage.senderId === userData._id ? (
+            `${userData.firstname}: ${lastMessage.text.slice(0, 20)}...`
+          ) : (
+            `You sent: ${lastMessage.text.slice(0, 20)}...`
+          )}
+        </span>
       </div>
       {unreadMessages === 0 ? (
         <MailOutlineIcon color="primary"></MailOutlineIcon>

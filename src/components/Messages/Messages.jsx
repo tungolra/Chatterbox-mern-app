@@ -36,15 +36,23 @@ export default function Messages({
             setModalOpened(true);
           }}
         >
-          <span className="sender-text">
-            {user._id === message.senderId
-              ? user?.firstname
-              : receiverData?.firstname}
-          </span>
-          <br />
-          <Linkify>{message.text}</Linkify>
-          <br />
-          {moment(message.createdAt).format("LLL").slice(0)}
+          <div className="message-contents">
+            <span className="sender-text">
+              {user._id === message.senderId
+                ? ""
+                : receiverData?.firstname}
+            </span>
+            <Linkify>{message.text}</Linkify>
+            <span
+              className={
+                message.senderId === currentUserId
+                  ? "timestamp-own"
+                  : "timestamp"
+              }
+            >
+              {moment(message.createdAt).format("LLL").slice(0)}
+            </span>
+          </div>
         </p>
       ))}
 

@@ -21,6 +21,7 @@ export default function ChatList({
   allUsers,
   setAllUsers,
   currentChat,
+  lastMessage,
 }) {
   return (
     <div className="chatlist-container">
@@ -52,7 +53,7 @@ export default function ChatList({
       <Box className="friendlist-container">
         {chats.map((chat, idx) => (
           <div
-            className="select-friend"
+            className={currentChat == chat ? "select-friend convo-background-white" : "select-friend convo-background-purple"}
             style={{
               alignItems: "center",
               justifyContent: "center",
@@ -67,6 +68,7 @@ export default function ChatList({
               online={isOnline(chat)}
               user={user}
               messages={messages}
+              newMessage={newMessage}
             />
           </div>
         ))}
