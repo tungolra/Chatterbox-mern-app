@@ -97,5 +97,5 @@ Going forward, some early stage icebox additions we have planned include:
 
 Ralph Tungol
 Email: rarttungol@gmail.com
-Project Repo: [Repo]()
+Project Repo: [Repo](https://github.com/tungolra/mern-project/tree/development)
 Project Site: [Site](https://chatterbox-sei-55.herokuapp.com/)
