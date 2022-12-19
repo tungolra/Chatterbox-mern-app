@@ -17,38 +17,62 @@ I assisted with building a modern UI/UX platform, taking a mobile-first approach
 On the front-end, I used MVC architecture to build the Express backend, along with building socket routes to create real-time communication between the database and React frontend. Lastly, I created token-based authorization to validate user credentials.
 
 
-### Log In/Sign Up Pages
+### Chat Page
 
-<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/login.png">
-<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/signup.png">
+The core feature for this application is the chat page. It aims to resemble modern instant messaging interfaces where it features on the left-hand side a Chat List section showing all available chats. Users can see when another user is online indicated by the green border around the profile badge of each user. The nav bar allows them to reach their profile settings, to update their profile info within the same page, or to be redirected to the Chat Page if they are not currently within it. Lastly, users can click the Logout icon to remove their token from local storage and effectively logout. 
 
-### Profile Page
+Upon opening a chat, a scroll feature will pull the chatbox to the portion of the page where the last message was sent. For seamless UX, a chat member modal above the chatbox indicates the conversation they are in as well as making their selected conversation highlighted. Further, users can see who sent the message within each chat bubble. Lastly, within each message, a timestamp is included to show when a message has been received.
 
-### Update Profile Modal
-
-<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/profileUpdate.png">
-
-### Chatlist Component
-
-### Chatbox Component
-
-<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/Screen+Shot+2022-12-09+at+2.07.40+AM.png">
+<img src="https://i.imgur.com/tn2KTog.gif">
 
 ### Chat Member Modal
 
+Here, users can view the profile details of the corresponding chat member they are speaking with. 
+<img src="https://i.imgur.com/aXjkvsn.png">
+
+### Profile Page
+
+As a pseudo-social media application, we give users the option to update their profile settings. They can change their first and last name, their username, their profile picture, as well as their bio (see Update Profile Modal next)
+
+<img src="https://i.imgur.com/Y0UKqRK.png">
+
+#### Update Profile Modal
+
+<img src="https://i.imgur.com/GMz55U4.png">
+
+### Authorization Pages
+
+Using token-based authorization, users can create a new account by adding in their credentials or log in to their account with their existing credentials. 
+
+#### Log In Page
+
+<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/login.png">
+
+#### Sign Up Page
+
+<img src="https://ga-chatterbox.s3.ca-central-1.amazonaws.com/signup.png">
+
 ### Technologies Used
 
-- [x] React
+- [x] MongoDB
 - [x] Express
 - [x] React
-- [x] Node
-- [x] Mongoose database
-- [x] Socket io
-- [x] Amazon Web Services (aws-sdk)
+- [x] Node.js
+- [x] Mongoose 
+- [x] Socket.io
+- [x] AWS S3
+- [x] AJAX
+- [x] CSS/Material UI
+- [x] HTML/JSX
 
+ 
 ### Next Steps 
+- Users see the last message they have sent or received in each active conversation. 
+- Only upon page refresh, the mailing icon will change to indicate if they have unread messages.
+    - socket routes for real-time updates of unread messages. 
+- In the Chat List component, users will be able to search for other users to begin conversations with. For now, they can select the dropdown to find all users they do not currently have an active chat with to begin a new conversation. 
+- In the Chatbox component (right-hand side), users will have the option to search for messages within a particular chat. 
 - Create socket routes for real-time updates of updated user profiles. 
-- socket routes for real-time updates of unread messages. 
 
 ### Icebox:
 
