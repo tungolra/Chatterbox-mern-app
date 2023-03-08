@@ -3,9 +3,9 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 let aws = require('aws-sdk')
 
-aws.config.update({accessKeyId: "AKIAUYOEP5OLEHW6ZUMN", secretAccessKey: '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'})
+aws.config.update({accessKeyId: process.env.accessKeyId, secretAccessKey: process.env.secretAccessKey})
 var s3bucket = new aws.S3({ params: { Bucket: "ga-chatterbox"}})
-const base_URL = "https://ga-chatterbox.s3.ca-central-1.amazonaws.com"
+const base_URL = process.env.AWS_BASE_URL
 
 async function create(req, res) {
   try {
